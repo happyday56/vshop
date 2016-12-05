@@ -1,0 +1,107 @@
+﻿<hi:common_header runat="server" />
+<input type="hidden" runat="server" id="lituserstatus" />
+<input type="hidden" runat="server" id="litproductid" /> 
+<div class="pbox" style="padding:50px 15px 0;">
+    <form id="form" role="form" class="clearfix apply">
+        <div class="login-name">
+            <span class="glyphicon glyphicon-user"></span>
+            <input type="text" class="" id="txtUserName" placeholder="请输入您的用户名" />
+        </div>
+        <div class="login-name">
+            <span class="glyphicon glyphicon-lock"></span>
+            <input type="password" class="" id="txtPassword" placeholder="请输入您的密码" />
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-danger btn-block login-btn" style="width:100%" id="btnUserLogin">立即登录</button>
+            <p class="text-center" style="margin-top: 5px; font-size: 16px;"><a id="Register" class="text-muted">免费注册</a></p>
+        </div>
+    </form>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnUserLogin").bind("click", function () { UserLogin(); });
+        $("#Register").bind("click", function () { Register(); });
+    });
+    function Register() {
+        location.href = "/Vshop/Register.aspx?openId=" + getParam("openId") + "&headimgurl=" + getParam("headimgurl") + "&returnUrl=" + getParam("returnUrl");
+    }
+    var returnUrl;
+    function UserLogin() {
+        var username = $.trim($("#txtUserName").val())
+        var password = $.trim($("#txtPassword").val());
+        if (username == "") {
+            alert_h("用户名不能为空！");
+            return;
+        }
+        if (password == "") {
+            alert_h("密码不能为空！");
+            return;
+        }
+        if (username.length < 2) {
+            alert_h('用户名至少要2个字符');
+            return;
+        }
+        if (password.length < 6) {
+            alert_h('密码至少要6个字符');
+            return;
+        }
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "UserLogin", userName: $("#txtUserName").val(), headimgurl: getParam("headimgurl"), openId: getParam("openId"), password: $("#txtPassword").val() },
+            success: function (resultData) {
+                if (resultData.Status == "OK") {
+                    if (parseInt($("#vUserLogin_lituserstatus").val()) == 0) {
+                        location.href = "/Vshop/ProductDetails.aspx?ProductId=" + $("#vUserLogin_litproductid").val();
+                        return;
+                    }
+                    returnUrl = getParam("returnUrl");
+                    if (returnUrl != "" && returnUrl.indexOf("logout.aspx") < 0) {
+                        location.href = returnUrl;
+                    }
+                    else{
+                        location.href = "MemberCenter.aspx";
+                    }
+                    //alert_h("登录成功", function () {
+                        
+                    //    //if ($("#vUserLogin_lituserstatus").val() != "") {
+                    //    //    if (parseInt($("#vUserLogin_lituserstatus").val()) >= 0) {
+                    //    //        if (parseInt($("#vUserLogin_lituserstatus").val()) == 0) {
+                    //    //            location.href = "/Vshop/ProductDetails.aspx?ProductId=" + $("#vUserLogin_litproductid").val();
+                    //    //        }
+                    //    //        if (parseInt($("#vUserLogin_lituserstatus").val()) == 1) {
+                    //    //            location.href = "/Vshop/SubmmitOrder.aspx?" + $("#vUserLogin_hitString").val();
+                    //    //        }
+                    //    //    }
+                    //    //    else {
+                    //    //        location.href = "/Vshop/MemberCenter.aspx";
+                    //    //    }
+                    //    //}
+                    //    //else {
+                    //    //    location.href = "/Vshop/MemberCenter.aspx";
+                    //    //}
+
+                    //});
+                }
+                else {
+                    if (resultData.Status == "-1") {
+
+                        alert_h("用户名不存在！");
+                    }
+                    else {
+                        alert_h("密码错误！");
+                    }
+                }
+            }
+        });
+    }
+</script>
+<hi:common_footer runat="server" />
+

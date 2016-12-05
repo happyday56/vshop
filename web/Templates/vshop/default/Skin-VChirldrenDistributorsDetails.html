@@ -1,0 +1,47 @@
+﻿<hi:common_header runat="server" />
+<style>
+    .title {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    .list-group .glyphicon {
+        top: -5px;
+        font-size: 16px;
+    }
+
+    .row {
+        border-top: solid 1px #a09f9f;
+        font-size: 14px;
+        padding: 5px;
+    }
+
+        .row.data:last-child {
+            border-bottom: solid 1px #a09f9f;
+        }
+
+        .row.data > div:nth-last-child(2) {
+            text-align: center;
+        }
+
+        .row.data > div:last-child {
+            color: #f6c509;
+            text-align: right;
+        }
+</style>
+<asp:panel id="twodistributor" runat="server">
+    <div class="title">团队总收入:<span style="color:#ff9c00;"><asp:Literal ID="litTeamTotal" runat="server"></asp:Literal></span></div>
+    <div class="title">团队成员：<asp:Literal ID="litTeamNumber" runat="server"></asp:Literal></div>
+    <div class="row">
+        <div class="col-xs-4">名称</div>
+        <div class="col-xs-4" style="text-align:center;">身份</div>
+        <div class="col-xs-4" style="text-align:right;">累计收益</div>
+    </div>
+    <hi:vshoptemplatedrepeater id="rpDistributorDetails" templatefile="/Tags/Skin-Common-ChirldrenStoresDetails.ascx" runat="server" />
+</asp:panel>
+
+<div id="empty" style="text-align: center;">
+    <img src="/Utility/pics/nonestore.gif" />
+</div>
+
+<hi:common_footerdistributor runat="server" />

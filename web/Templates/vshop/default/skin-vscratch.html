@@ -1,0 +1,31 @@
+﻿<Hi:Common_Header runat="server" />
+<section id="content3">
+<form runat="server">  
+    <div class="s_img">
+        <div class="s_c">
+          <div class="textScratch"></div>
+          <div id="canvasScratch"></div>
+        </div>
+    </div>  
+    <div class="d_mt"> </div>
+   <div class="s_exp">
+         <h2>活动说明:</h2>
+         <p><asp:Literal runat="server" ID="litActivityDesc" /></p>
+   </div>
+   <div class="s_exp">
+         <h2>活动时间:</h2>
+         <p><asp:Literal runat="server" ID="litStartDate" /></p>
+         <p><asp:Literal runat="server" ID="litEndDate" /></p>
+   </div>
+   <div class="s_exp">
+         <h2>奖项设置:</h2>
+         <Hi:Common_PrizeNames runat="server" ID="litPrizeNames" />
+   </div>
+   <div class="s_exp">
+         <h2>中奖用户:</h2>
+         <Hi:Common_PrizeUsers runat="server" ID="litPrizeUsers" />
+   </div>
+   </form>
+<script type="text/javascript" src="/Utility/Scratch.js"></script>
+</section>
+<Hi:Common_Footer runat="server" />

@@ -1,0 +1,42 @@
+﻿<hi:common_header runat="server" />
+<style>
+    .title {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    .list-group .glyphicon {
+        top: -5px;
+        font-size: 16px;
+    }
+
+    .row {
+        border-top: solid 1px #a09f9f;
+        font-size: 14px;
+        padding: 5px;
+    }
+
+        .row.data:last-child {
+            border-bottom: solid 1px #a09f9f;
+        }
+
+        .row.data > div:nth-last-child(2) {
+            text-align: center;
+        }
+
+        .row.data > div:last-child {
+            color: #f6c509;
+            text-align: right;
+        }
+</style>
+<asp:panel id="onedistributor" runat="server">
+    <div class="list-group">
+        <hi:vshoptemplatedrepeater id="rpdistributor" templatefile="/Tags/Skin-Common-ChirldrenStores.ascx" runat="server" />
+    </div>
+</asp:panel>
+
+<div id="empty" style="text-align: center;">
+    <img src="/Utility/pics/nonestore.gif" />
+</div>
+
+<hi:common_footerdistributor runat="server" />

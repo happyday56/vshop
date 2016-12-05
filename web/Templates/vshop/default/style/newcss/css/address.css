@@ -1,0 +1,146 @@
+
+.padding14{
+    padding:14px 14px;
+}
+.form-control{
+    border:none;
+    border-bottom: solid 1px #b5b5b5;
+    box-shadow: none;
+    outline: none;
+    border-radius: 0;
+    height:37px;
+    padding-left: 30px;
+}
+.form-control:focus{
+    box-shadow: none;
+    outline: none;
+     border-bottom: solid 1px #b5b5b5;
+}
+section .form-group:last-child .form-control{
+    border:none;
+}
+.form-group{
+    margin-bottom: 0;
+    position:relative;
+    height:37px;
+    border-bottom: solid 1px #b5b5b5;
+}
+i.icon{
+    display: inline-block;
+    width:15px;
+    height:15px;
+    background-image: url('../imgs/icon-sa7a6a9da63.png');
+    background-repeat: no-repeat;
+    background-position: 0 -30px;
+    -webkit-background-size: 15px;
+    background-size: 15px;
+    position:absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -7.5px;
+    font-style: normal;
+}
+i.phone{
+    background-position: 0 -45px;
+}
+i.address{
+    background-position: 0 0;
+}
+i.loaction{
+    background-position: 0 -15px;
+}
+.address_wrap{
+    font-size: 14px;
+    color: #a0a0a0;
+}
+.remark i.icon{
+    background:none;
+    width:auto;
+    margin-top: -10.5px;
+}
+.area{
+    padding:8px 0 0 30px;
+}
+.area span{
+    display:inline-block;
+    width:30%;
+}
+.area span select{
+    -webkit-appearance:none;
+    margin-left: 5px;
+    border:none;
+}
+.weixin .btn{
+    margin:8px 0;
+    font-size: 12px;
+    color:#ffffff;
+    text-align: center;
+    background:#46993d;
+    border-radius: 0;
+}
+section{
+    background:#fff;
+    margin-bottom: 10px;
+    padding:14px 14px 0px 14px;
+}
+section.s1{
+    padding-top:0;
+    padding-bottom:0;
+}
+section.s2{
+    height:47px;
+}
+section.s2 .flex_item{
+    text-align: right;
+    color:#ff0000;
+    font-size: 14px;
+}
+section.s3{
+    font-size: 14px;
+    color:#ff0000;
+    padding:8px 0 8px 14px;
+    line-height: 34px;
+    background:#f0f1ec;
+     margin-bottom: 0;
+}
+section.s3 em{
+    font-style: normal;
+    color:#000;
+}
+section.s3 .btn{
+    text-align: center;
+    font-size: 14px;
+    color:#fff;
+    background:#ff0000;
+    display:inline-block;
+    border-radius: 0;
+}
+section.s4{
+    padding:0;
+    color:#000000;
+}
+section.s4 .title{
+    height:30px;
+    line-height: 30px;
+    padding-left:14px;
+    padding-right:14px;
+}
+section.s4 .product{
+    padding:10px 4px;
+    background:#f0f1ec;
+    font-size: 12px;
+    color:#7e7e7e;
+}
+.product img{
+    width:64px;
+    margin-right: 15px;
+}
+.product .right{
+    text-align: right;
+}
+.product .name{
+    color:#000000;
+}
+.product .p0{
+    color:#ff0000;
+}

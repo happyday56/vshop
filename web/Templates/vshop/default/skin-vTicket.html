@@ -1,0 +1,69 @@
+﻿<hi:common_header runat="server" />
+<style>
+    body { background: #b90100; }
+</style>
+<script type="text/javascript">
+    var isLoading = false;
+    function AddTicket() {
+        var id = document.getElementById("vTicket_hdID").value;
+        if (isLoading)
+            return;
+        isLoading = true;
+        var data = {};
+        data.activityid = id;
+        data.rundom=(new Date().getTime());
+        $.post("/api/VshopProcess.ashx?action=AddTicket", data, function (json) {
+            if (json.success === true) {
+                alert_h(json.msg, function () {
+                    isLoading = false;
+                    location.href = "/Vshop/WinningResults.aspx?activityid=" + id;
+                });
+            }
+            else {
+                alert_h(json.msg, function () {
+                    isLoading = false;
+                });
+
+            }
+        });
+    }
+
+    if (window.DeviceMotionEvent) {
+        var speed = 10;
+        var x = y = lastX = lastY = 0;
+
+        window.addEventListener('devicemotion', function (e) {
+            var acceleration = e.accelerationIncludingGravity;
+            x = parseInt(acceleration.x);
+            y = parseInt(acceleration.y);
+            if (Math.abs(x - lastX) > speed && Math.abs(y - lastY) > speed) {
+                AddTicket();
+                lastX = lastY = 0;
+            }
+        });
+    }
+</script>
+<form runat="server">
+    <asp:HiddenField id="hdID" runat="server" value="0" />
+    <section>
+        <div class="lottery"><img src="/images/process/lott.jpg"></div>
+        <div id="content">
+            <div class="s_exp2">
+                <h2 class="lo">奖项设置：</h2>
+                <Hi:Common_PrizeNames runat="server" ID="litPrizeNames" />
+            </div>
+            <div class="s_exp2">
+                <h2 class="lo">活动说明：</h2>
+                <p><asp:Literal runat="server" ID="litStartDate" /></p>
+                <p><asp:Literal runat="server" ID="litEndDate" /></p>
+            </div>
+            <div class="s_exp2">
+                <h2 class="lo">活动描述：</h2>
+                <p class="lo_p">
+                    <asp:Literal runat="server" ID="litActivityDesc" />
+                </p>
+            </div>
+        </div>
+    </section>
+    </form>
+    <hi:common_footer runat="server" />

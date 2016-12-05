@@ -1,0 +1,101 @@
+﻿<hi:common_header runat="server" />
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/bootstrapValidator.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/css/login.css">
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/jquery.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrapValidator.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/zh_CN.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/countdown.js"></script>
+  
+  <div class="padding14">
+		<form class="bindfrm">
+		  <div class="form-group">
+		    <input type="tel" class="form-control" placeholder="手机号" name="phone" id="phone" autocomplete="off">
+		  </div>
+		  <div class="form-group sendcode">
+            <div class="flex">
+    		  	<div class="flex_item"><input type="tel" class="form-control" placeholder="验证码" name="verifycode" autocomplete="off"></div>
+    		  	<div><input type="button" class="countdown" value="获取验证码" id="send"></div> 
+            </div>
+		  </div>
+		  <button type="submit" class="btn btn-danger btn-block">绑定</button>
+		</form>
+	</div>
+    <script>
+        $('.bindfrm').bootstrapValidator({
+            live: 'enabled',
+            trigger:'blur',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                phone: {
+                    message: 'The username is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: '请输入手机号'
+                        },
+                        regexp: {
+                            regexp: /^(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[0-9])[0-9]{8}$/,
+                            message: '请输入正确的手机号'
+                        }
+                    }
+                },
+                verifycode: {
+                    trigger:'blur input',
+                    validators: {
+                        notEmpty: {
+                            message: '请输入验证码'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv',function(e){
+          //ajax提交表单入口
+          e.preventDefault();
+          $.post('/vshop/invite_login.aspx?isAjax=1', $(".bindfrm").serialize(), function (ret, textStatus, xhr) {
+              if (ret.success) {
+                  location.href = ret.msg;
+              } else {
+                  alert_h("登陆失败！" + ret.msg);
+              }
+          });
+        })
+        var timer1=new CountDown({id:"send"});
+        var timer;
+        document.getElementById("send").onclick=function(){
+          $("#phone").blur();
+          var len=$("#phone").parents().children(".help-block:visible").length>0;
+          if(!len){
+            timer=new CountDown({
+              id:"send",
+              afterFont:"重发短信",
+              clicking: function () {
+                  $.post("/API/VshopProcess.ashx?action=SendRegiestVerifyCode", { "phone": $("#phone").val() }, function (ret) {
+                      if (ret.success) {
+                          //发送成功!
+                      } else {
+                          alert_h("发送失败!" + ret.msg);
+                      }
+                  });
+              },
+              duringTime:30,
+              duringEvent: function () {
+
+              },
+              callback:function(){
+                timer=null;
+              }
+            });
+            timer.startCount();
+          }
+        }
+    </script>
+
+  
+
+<Hi:Common_FooterNo runat="server" />

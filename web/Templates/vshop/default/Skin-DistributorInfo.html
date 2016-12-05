@@ -1,0 +1,212 @@
+﻿<hi:common_header runat="server" />
+
+<div id="BgDiv1"></div>
+<div class="DialogDiv" style="display:none; ">
+    <div class="U-guodu-box">
+        <div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td align="center" class="bakimage"><span></span></td></tr>
+                <tr><td valign="middle" align="center">提交中，请稍后！</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="pbox distributor well">
+
+    <div class="shopInfo" style="display:none;">
+        <label for="txtacctount">提现账号：</label>
+        <input type="text" class="form-control" name="acctount" runat="server" id="txtacctount" placeholder="填写银行账号" />
+    </div>
+    <div class="shopInfo">
+        <label for="phone">店铺名称：</label>
+        <input type="text" class="form-control" runat="server" name="stroename" id="txtstorename" placeholder="店铺名称限制在20字以内" />
+    </div>
+    <div class="shopInfo">
+        <label for="phone">店铺简介：</label>
+        <textarea class="form-control" rows="3" runat="server" name="descriptions" id="txtdescription" placeholder="填写数字限制在30字以内"></textarea>
+    </div>
+
+    <div class="bgstore clearfix" style="display:none;">
+        <p>选择店铺背景</p>
+
+        <form id="ImageBakForm" method="post" enctype="multipart/form-data">
+            <asp:Literal ID="litBackImg" runat="server"></asp:Literal>
+
+        </form>
+
+    </div>
+    <div class="storeLogo">
+        <p>店铺Logo</p>
+        <form id="ImageForm" method="post" enctype="multipart/form-data">
+            <div class="upFile clearfix">
+                <div class="bgImg"><img id="imglogo" runat="server" src="http://fpoimg.com/100x100/product" /></div>  <div class="adds"><input type="file" id="exampleInputFile" name="logo"></div>
+                <p class="font-s text-muted">点击左边的图片修改logo</p>
+            </div>
+        </form>
+    </div>
+    <input type="hidden" name="backimg" id="hdbackimg" runat="server" />
+    <input type="hidden" name="hdlogo" id="hdlogo" runat="server" />
+
+
+</div>
+<div class="nextstep pbox">
+    <a type="button" class="btn btn-danger btn-block" id="savemes" onclick="javascript:return ValidRequestDistributor()">保存店铺</a>
+</div>
+
+<script>
+    var BakImgList = "";
+    function FileUpload_onselect(BakImg) {
+
+        if ($("#" + BakImg)[0].src.indexOf("/Storage/data/DistributorBackgroundPic/") > 0) {
+            var strstart = $("#" + BakImg)[0].src.lastIndexOf("/") + 1;
+            var strend = $("#" + BakImg)[0].src.length - strstart;
+            BakImgList += "/Storage/data/DistributorBackgroundPic/" + $("#" + BakImg)[0].src.substr(strstart, strend) + "|";
+        }
+
+    }
+    function upLoadFile() {
+        var options = {
+            type: "POST",
+            url: '/API/Files.ashx?action=LogoUpload',
+            success: showResponse
+        };
+        // 将options传给ajaxForm
+        $('#ImageForm').ajaxSubmit(options);
+    }
+    function upLoadBakFile() {
+        var options = {
+            type: "POST",
+            url: '/API/Files.ashx?action=BakUpload',
+            success: showbakResponse
+        };
+        // 将options传给ajaxForm
+        $('#ImageBakForm').ajaxSubmit(options);
+    }
+    var BackImage;
+    function showbakResponse(data) {
+        BackImage = "";
+
+        if (data == "0") {
+            alert_h("店铺背景上传图片失败!");
+            btnstate(1);
+            return;
+        } else
+            if (data == "1") {
+                alert_h("你店铺背景上传的文件不能大于4M!请重新上传！!");
+                btnstate(1);
+                return;
+            } else
+                if (data == "2") {
+
+                    alert_h("你店铺背景上传的文件格式不正确！上传格式有(.gif、.jpg、.png、.bmp)!");
+                    btnstate(1);
+                    return;
+                }
+                else {
+                    if (data != "3") {
+                        var oldBakImg = $("#VDistributorInfo_hdbackimg").val();
+                        var BakImgListItems = BakImgList.split('|');
+                        if (BakImgList == "" && data != "") {
+                            oldBakImg += data;
+                            BackImage = oldBakImg;
+                        }
+                        else {
+                            var newdata = data;
+                            var NewBackImage = data.split('|');
+                            for (var i = 0; i < BakImgListItems.length; i++) {
+
+                                if (BakImgListItems[i] != "") {
+                                    oldBakImg = oldBakImg.replace(BakImgListItems[i], NewBackImage[i]);
+                                    newdata = newdata.replace(NewBackImage[i] + "|", "");
+                                }
+                            }
+                            BackImage = oldBakImg + newdata;
+                        }
+
+                    }
+                    else
+                        BackImage = $("#VDistributorInfo_hdbackimg").val();
+                    upLoadFile();
+
+                }
+    }
+    function showResponse(data) {
+
+        if (data == "0") {
+            alert_h("店铺Logo上传图片失败!");
+            btnstate(1);
+            return;
+        } else
+            if (data == "1") {
+                alert_h("你店铺Logo上传的文件不能大于4M!请重新上传！!");
+                btnstate(1);
+                return;
+            } else
+                if (data == "2") {
+
+
+                    alert_h("你店铺Logo上传的文件格式不正确！上传格式有(.gif、.jpg、.png、.bmp)!");
+                    btnstate(1);
+                    return;
+                } else
+                    if (data == "3")
+                        data = $("#VDistributorInfo_hdlogo").val();
+
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "UpdateDistributor", stroename: $("#VDistributorInfo_txtstorename").val(), descriptions: $("#VDistributorInfo_txtdescription").val(), backimg: BackImage, accountname: $("#VDistributorInfo_txtacctount").val(), logo: data },
+            cache: false,
+            success: function (resultData) {
+                if (resultData.success) {
+                    location.href = "DistributorCenter.aspx";
+                } else {
+                    btnstate(1);
+                    alert_h(resultData.msg);
+                  
+                }
+            }
+        });
+
+    }
+    function ValidRequestDistributor() {
+        if ($("#VDistributorInfo_txtstorename").val().replace(/\s/g, "").length <= 0) {
+            alert_h("请输入店铺名称");
+            return false;
+        }
+        if ($("#VDistributorInfo_txtstorename").val().replace(/\s/g, "").length > 20) {
+            alert_h("店铺名称限制在20字以内");
+            return false;
+        }
+        if ($("#VDistributorInfo_txtdescription").val().replace(/\s/g, "").length > 30) {
+            alert_h("店铺描述在30字以内");
+            return false;
+        }
+        btnstate(0);
+        upLoadBakFile();
+    }
+    function btnstate(obj) {
+        if (obj == 0) {
+            $("#savemes").text("正在保存...");
+            $("#savemes").attr({ "disabled": "disabled" });
+            maskayer(0);
+
+        }
+        else {
+            $("#savemes").text("保存店铺");
+            $("#savemes").removeAttr("disabled");
+            maskayer(1);
+        }
+
+    }
+    $(function () {
+
+        $("#exampleInputFile").uploadPreview({ Img: "VDistributorInfo_imglogo", Width: 100, Height: 100 });
+        $("#BakFile1").uploadPreview({ Img: "BakImg1" });
+        $("#BakFile2").uploadPreview({ Img: "BakImg2" });
+        $("#BakFile3").uploadPreview({ Img: "BakImg3" });
+        $("#BakFile4").uploadPreview({ Img: "BakImg4" });
+    });
+
+</script>
+<hi:common_footerdistributor runat="server" />

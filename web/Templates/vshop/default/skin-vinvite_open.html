@@ -1,0 +1,102 @@
+﻿<hi:common_header runat="server"/>
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/bootstrapValidator.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/css/login.css">
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/jquery.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrapValidator.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/zh_CN.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/countdown.js"></script>
+
+   <div class="padding14 open">
+        <div class="tips">请在<em class="red"><asp:literal runat="server" id="litLostTime" /></em>内完成支付</div>
+        <form class="bindfrm">
+          <div class="form-group">
+           
+            <input type="text" class="form-control" placeholder="真实姓名" name="realname" autocomplete="off">
+            <div class="tip">店铺登记的所有人姓名</div>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" placeholder="手机号" name="mobile" id="mobile" autocomplete="off">
+            <div class="tip">此手机号码将作为登录平台的帐号</div>
+          </div>
+          <button type="submit" class="btn btn-danger btn-block">开店</button>
+        </form>
+    </div>
+    <script>
+        $('.bindfrm').bootstrapValidator({
+            live: 'enabled',
+            trigger:'blur',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                mobile: {
+                    message: 'The username is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: '请输入手机号'
+                        },
+                        regexp: {
+                            regexp: /^(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[0-9])[0-9]{8}$/,
+                            message: '请输入正确的手机号'
+                        }
+                    }
+                },
+                realname: {
+                    trigger:'blur input',
+                    validators: {
+                        notEmpty: {
+                            message: '请输入真实姓名'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            if (isStop) {
+                alert_h("邀请码已过期!");
+                return;
+            }
+          //ajax提交表单入口
+          e.preventDefault();
+          $.post("/API/VshopProcess.ashx?action=RegInviteOpen&hdInviteCode="+inviteCode, $(".bindfrm").serialize(), function (ret, textStatus, xhr) {
+              if (ret.success) {
+                  location.href = ret.msg;
+              } else {
+                  alert_h("注册失败！");
+              }
+          });
+        })
+        var time = '';
+        var isStop = false;
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+        function startTimer() {
+            time = $("#splosttime").attr('val');
+            if (time) {
+                var GetRTime = function () {
+                    var EndTime = new Date(time);
+                    var NowTime = new Date();
+                    var t = EndTime.getTime() - NowTime.getTime();
+                    //var d = Math.floor(t / 1000 / 60 / 60 / 24);
+                    //var h = Math.floor(t / 1000 / 60 / 60 % 24);
+                    var m = Math.floor(t / 1000 / 60 % 60);
+                    var s = Math.floor(t / 1000 % 60);
+                    $("#splosttime").text(checkTime(m) + ":" + checkTime(s));
+                    if (m <= 0 && s <= 0) { clearInterval(tt); isStop = true; alert_h("邀请码已过期!") }
+                }
+                tt = setInterval(GetRTime, 1000);
+            }
+        }
+        startTimer();
+    </script>
+ 
+
+<hi:common_footerno runat="server" />

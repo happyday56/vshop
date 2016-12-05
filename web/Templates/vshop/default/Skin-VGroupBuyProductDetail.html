@@ -1,0 +1,162 @@
+﻿<!--<Hi:Common_Header runat="server" />
+
+<br />
+商品名称:<br />
+团购介绍:<br />
+团购价:￥<br />
+已售数量:<br />
+最小成团数:<br />
+<br />
+规格:<br />
+扩展属性:<br />
+短介绍:<br />
+完整介绍:<br />
+团购编号：<br />
+
+<asp:literal runat="server" id="content" />
+
+-->
+<hi:common_header runat="server" />
+<div id="slides">
+     <hi:vshoptemplatedrepeater id="rptProductImages" templatefile="/Tags/skin-Common_Slide.ascx"
+        runat="server" />
+</div>
+<div class="pbox bgColor-white">
+    <div class="goods-info">
+        <div class="name font-xl">
+            <asp:literal runat="server" id="litProdcutName" />
+        </div>
+        <div class="intro text-muted">
+            <asp:literal runat="server" id="litShortDescription" />
+        </div>
+        <div class="price text-danger font-l">
+
+            ¥<asp:literal runat="server" id="price" /><del class="text-muted font-s">¥<asp:literal
+                runat="server" id="salePrice" /></del> <span class="text-muted font-s info">已团<asp:literal runat="server" id="soldCount" />件（<span id="maxCount">团购最多可团：<asp:literal runat="server"
+                        id="litMaxCount" />件</span> <span id="minCount">还需<asp:literal runat="server" id="minSuccessCount" />件成团</span>
+                    ）</span>
+        </div>
+        <div class="well">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" role="progressbar" id="progress" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    <span class="sr-only">40% Complete (success)</span>
+                </div>
+            </div>
+            <p class="text-center text-muted">
+                <span id="tuan_time"></span><span id="t_d"></span><span id="t_h"></span></span><span
+                    id="t_m"></span><span id="t_s"></span></p>
+        </div>
+    </div>
+</div>
+<div class="specification-box">
+    <div class="specification">
+        <hi:common_skuselector id="skuSelector" runat="server" />
+    </div>
+    <div class="buy-num">
+        <div class="text-muted">
+            购买数量
+        </div>
+        <div class="goods-num clearfix">
+                        <div id="spSub" class="shopcart-add">
+                <span class="glyphicon glyphicon-minus-sign"></span>
+            </div>
+            <input type="tel" id="buyNum" class="form-control" value="1" />
+            <div id="spAdd" class="shopcart-minus">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </div>
+            <div class="info font-s text-muted">
+                （剩余可购买数量：<asp:literal runat="server" id="leftCount" />件）
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="goods-detail pbox bgColor-white btns-fixed-padding">
+    <div class="panel panel-default" id="gbContentContainer">
+        <div class="panel-heading">
+            <h3 class="panel-title">团购说明</h3>
+        </div>
+        <div class="panel-body" id="gbContent">
+            <asp:literal runat="server" id="litGroupbuyDescription" />
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            属性
+        </div>
+        <table class="table" id="attrtable">
+            <tbody>
+                <hi:common_expandattributes id="ExpandAttributes" runat="server" />
+            </tbody>
+        </table>
+    </div>
+    <div class="list-group">
+        <a href="javascript:;" class="list-group-item" onclick="javascript:location.href='ProductConsultations.aspx?ProductId='+$('#txtProductId').val();">
+            商品咨询 <span class="badge-h"><asp:literal runat="server" id="litConsultationsCount" /></span>
+        </a><a href="javascript:;" class="list-group-item"
+               onclick="javascript:location.href='ProductReview.aspx?ProductId='+$('#txtProductId').val();">
+            商品评价 <span class="badge-h"><asp:literal runat="server" id="litReviewsCount" /></span>
+        </a>
+    </div>
+    <asp:literal runat="server" id="litDescription" />
+</div>
+<div class="btns-fixed">
+    <button id="buyButton" class="btn btn-danger">立刻参团</button>
+</div>
+<input type="text" style="display: none;" runat="server" id="txtProductId" clientidmode="Static" />
+<input type="hidden" runat="server" clientidmode="Static" id="litGroupbuyId" />
+<input type="hidden" value="2014/04/23 9:27:46" id="startTime" runat="server" clientidmode="Static">
+<input type="hidden" value="2014/04/23 9:28:56" id="endTime" runat="server" clientidmode="Static">
+<input type="hidden" id="groupBuySoldCount" runat="server" clientidmode="Static">
+<input type="hidden" id="groupBuyMinCount" runat="server" clientidmode="Static">
+<input type="hidden" id="nowTime" runat="server" clientidmode="Static">
+<script src="/script/carousel.js"></script>
+<hi:common_footer runat="server" />
+<script src="/utility/vgroupbuy.helper.js" type="application/javascript"> </script>
+<script type="text/javascript">
+    $(function () {
+        var slidesImg = $('#slides img');
+        var width = 650, height = 650;
+        if (slidesImg.length > 1) {
+            $('#slides').slidesjs({
+                width: width,
+                height: height,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+            $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+        }
+        else {
+
+            $('#slides').css('display', 'block').html('<div style="width:100%;"><a href="javascript:;"></a></div>');
+            $('#slides div a').append(slidesImg);
+        }
+    });
+
+
+    $(function () {
+        var soldCount = parseInt($('#groupBuySoldCount').val());
+        var minCount = parseInt($('#groupBuyMinCount').val());
+        if (soldCount < minCount)
+            $('#maxCount').hide();
+        else
+            $('#minCount').hide();
+
+        if (!$.trim($('#gbContent').html())) {
+            $('#gbContentContainer').hide();
+        }
+    });
+
+
+
+    $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+    setInterval(GetRTime, 1000);
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+</script>

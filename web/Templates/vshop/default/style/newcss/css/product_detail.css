@@ -1,0 +1,167 @@
+.buy_op{
+    background:#e8e8e8;
+    font-size: 12px;
+    color:#000000;
+}
+.buy_op .padding14{
+     padding:8px;
+     position:relative;
+}
+.buy_op .top img{
+    width:45px;
+    max-width: 45px;
+    margin-right: 8px;
+}
+.buy_op .price{
+    font-size: 16px;
+    color:#ff0000;
+}
+.buy_op .topwrap{
+    border-bottom: solid 1px #d2d2d2;
+    margin-bottom: 10px;
+}
+.buy_op .padding14 .close{
+    display:inline-block;
+}
+.buy_op .padding14 .close i{
+    display:inline-block;
+    width:23px;
+    height:23px;
+    background:url(../imgs/close.png);
+    background-size: 23px;
+}
+.btn{
+    color: #fff;
+    font-size: 16px;
+    border-radius: 0;
+    background:#ff0000;
+    margin-top: 30px;
+}
+div.title{
+    font-size: 12px;
+    color:#000000;
+}
+.label-radio {
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    margin: 5px 10px 5px 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+}
+.label-radio input {
+    display: none;
+}
+.label-radio span {
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    height: 26px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #ccc;
+}
+.label-radio input:checked + span {
+    background-color: #f00;
+}
+.table-number input[type="tel"] {
+    width: 43px;
+    color: inherit;
+    background: #ffffff;
+    border: 1px solid #dadada;
+    border-width: 0 1px;
+    text-align: center;
+}
+.table-number .flex {
+    border: 1px solid #dadada;
+    overflow: hidden;
+}
+.table-number input {
+    -webkit-appearance: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    border: 0;
+    background: none;
+    background: url(../imgs/icon.png) no-repeat -30px -811px;
+    -webkit-background-size: 50px auto;
+    color: transparent;
+}
+.leave{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px 10px 5px 10px;
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+}
+.table-number input[type="tel"]{
+    border:none;
+}
+.buy_op_wrap{
+    position:fixed;
+    left: 0;
+    top:0;
+    width:100%;
+    display:none;
+    z-index: 999;
+}
+.buy_op_wrap .table{
+    height:480px;
+    margin-bottom: 0;
+    background:rgba(0,0,0,.6);
+}
+.buy_op_wrap .table .table_cell{
+    vertical-align: bottom;
+}
+.info{
+    font-size: 12px;
+    color:#000000;
+}
+.info .title{
+    font-size: 15px;
+    color:#9c9c9c;
+}
+.info .price{
+    font-size: 19px;
+    color:#ff0000;
+}
+.info .price del{
+    font-size: 12px;
+    color:#9c9c9c;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+.info .left{
+
+}
+.info .right{
+    text-align: right;
+}
+.info .right span:before{
+    content:'';
+    display:inline-block;
+    width:15px;
+    height:15px;
+    background:url(../imgs/zan.png);
+    background-size: 15px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#showselect{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+}
+.detial{
+    padding-bottom: 40px;
+}
+.tab-content{
+    padding:10px 0 0 0;
+}

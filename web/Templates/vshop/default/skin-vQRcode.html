@@ -1,0 +1,30 @@
+﻿<hi:common_header runat="server" />
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+
+<div class="invite_success">
+    <h1 style="display:none;">你的邀请码生成成功</h1>
+    <input type="button" value="立即分享给小伙伴" class="btn" id="share" style="display:none;">
+
+    <img id="ifameQRcode" style="max-width:100%;" src='/API/GetQRCode.ashx?code=<asp:literal runat="server" id="liturl" />'></img>
+    
+    <div style="display:none;">
+        <asp:Literal ID="litShareurl" runat="server"></asp:Literal>
+    </div>
+    <div style="display:none;">
+        <asp:Literal ID="litShareName" runat="server"></asp:Literal>
+    </div>
+    <a href="invite.aspx" style="display:none;">返回我的邀请列表</a>
+</div>
+<div class="share"><img src="/style/newcss/imgs/share.png" alt=""></div>
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<script>
+    $("#share").click(function () {
+        $(".share").height($(window).height()).show();
+    });
+   
+    WinXinShareMessage(shareTitle, shareDesc, shareLink, shareImgUrl);
+
+</script>
+
+<hi:common_footerno runat="server" />

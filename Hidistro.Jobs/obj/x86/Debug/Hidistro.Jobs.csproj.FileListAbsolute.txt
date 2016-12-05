@@ -1,0 +1,8 @@
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Jobs\obj\x86\Debug\Hidistro.Jobs.csprojResolveAssemblyReference.cache
+C:\BuildDLL\Hidistro.Jobs.dll
+C:\BuildDLL\Hidistro.Jobs.pdb
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Jobs\obj\x86\Debug\Hidistro.Jobs.dll
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Jobs\obj\x86\Debug\Hidistro.Jobs.pdb
+D:\wfx3.0\Hidistro.Jobs\obj\x86\Debug\Hidistro.Jobs.csprojResolveAssemblyReference.cache
+D:\wfx3.0\Hidistro.Jobs\obj\x86\Debug\Hidistro.Jobs.dll
+D:\wfx3.0\Hidistro.Jobs\obj\x86\Debug\Hidistro.Jobs.pdb

@@ -1,0 +1,315 @@
+﻿<hi:common_header runat="server" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/product_detail_new.css">
+ <link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+<!--<div class="slides-collect-btn">
+    <a id="addF" href="javascript:AddFavorite();" class="">
+
+        <span class="star-null"></span>
+    </a>
+    <a id="addedF" href="javascript:;" class="hide">
+        
+        <span class="star-full"></span>
+    </a>
+</div>-->
+<!--<div id="slides">
+    <hi:vshoptemplatedrepeater id="rptProductImages" templatefile="/Tags/skin-Common_Slide.ascx" runat="server" />
+</div>
+<div class="pbox bgColor-white">
+    <div class="goods-info">
+        <div class="name font-lg">
+            <asp:literal runat="server" id="litProdcutName2" />
+        </div>
+        <div class="intro text-danger font-s">
+            <asp:literal runat="server" id="litShortDescription" />
+        </div>
+        <div class="price clearfix">            
+            <span class="spSalaPrice">¥<asp:literal runat="server" id="litSalePrice2" /></span>&nbsp;&nbsp;&nbsp;&nbsp;<del class="font-s">¥<asp:literal runat="server" id="litMarketPrice2" /></del>         
+            <span class="selled">销量&nbsp;&nbsp;<asp:literal id="litSoldCount2" runat="server" /></span>
+        </div>
+        <div>
+            <asp:literal id="litActivities2" runat="server" />
+        </div>
+    </div>
+</div>-->
+<div class="imgwrap banner swiper-container">
+   <div class="clearfix swiper-wrapper">
+     <!--<div class="swiper-slide">
+       <a href=""><img src="/style/newcss/imgs/product_d/banner.jpg" alt=""></a>
+     </div>
+     <div class="swiper-slide">
+       <a href=""><img src="/style/newcss/imgs/product_d/banner.jpg" alt=""></a>
+     </div>-->
+       <asp:literal runat="server" id="litBanner" />
+   </div>
+   <div class="swiper-pagination"></div>
+ </div>
+<div class="info">
+ 	<div class="flex title">
+ 		<div class="flex_item"><hi:hiimage runat="server" id="siteImglogo" imageurl="/style/newcss/imgs/product_d/logo.png" /><span>
+ 	<asp:literal runat="server" id="litProdcutName" />
+</span></div>
+		<div class="right">
+			<em id="emgood"><i></i><b>赞一个(<asp:literal id="litGood" runat="server"></asp:literal>)</b></em>
+			<em id="emshare" class="em"><i></i><b>分享</b></em>
+		</div>
+        <div class="share"><img src="/style/newcss/imgs/share.png" alt=""></div>
+ 	</div>
+ 	<div class="price"><em>¥</em><i><asp:literal runat="server" id="litSalePrice" /></i><b>专享价</b></div>
+ 	<div>价格：<del>￥<asp:literal runat="server" id="litMarketPrice" /></del></div>
+ 	<div class="t_b">
+ 		<span>快递：0.00</span>
+ 		<span>月销<asp:literal id="litSoldCount" runat="server" />笔</span>
+ 		<span><asp:literal id="litSaleLocation" runat="server" /></span>
+ 	</div>
+</div>
+<div class="remark">
+	<div class="d0"><span>极速退款</span><span><asp:literal id="litReturnInfo" runat="server" /></span></div>
+	<div class="d1">
+	<!--<span><i>送</i></span>-->
+	<span><asp:literal id="litActivities" runat="server" /></span>
+	</div>
+</div>
+
+<div class="well">
+    <hi:common_skuselector id="skuSelector" runat="server" />
+    <div class="buy-num">
+        <div class="font-s">数量：</div>
+        <div class="list clearfix">
+            <div class="goods-num clearfix">
+                <div id="spSub" class="shopcart-minus">-</div>
+                <input type="tel" id="buyNum" class="form-control" value="1" />
+                <div id="spAdd" class="shopcart-add">+</div>
+                <div class="info font-s" style='border-bottom:0px'>库存：<span id="spStock"><asp:literal runat="server" id="litStock" /></span>件</div>
+                <div style="display:none">
+                     <span id="maxCross"><asp:literal id="litMaxCross" runat="server" /></span>
+                     <span id="isBuy"><asp:literal id="litIsBuy" runat="server" /></span>
+                     <span id="isPdBuy"><asp:literal id="litIsPdBuy" runat="server" /></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs product_detail font-m" role="tablist">
+    <li role="presentation" class="active"><a href="#product-detail" data-toggle="tab">商品详情</a></li>
+<!--    <li role="presentation"><a href="#product-ask" data-toggle="tab" onclick="javascript:location.href='ProductConsultations.aspx'+location.search;">商品咨询 (<asp:literal runat="server" id="litConsultationsCount" />)</a></li>-->
+    <li role="presentation"><a href="#product-eva" data-toggle="tab" onclick="gotoProductReview();">商品评价 (<asp:literal runat="server" id="litReviewsCount" />)</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="product-detail">
+        <div class="goods-detail bgColor-white btns-fixed-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">属性</div>
+                <table class="table" id="attrtable">
+                    <tbody>
+                        <hi:common_expandattributes id="ExpandAttributes" runat="server" />
+                    </tbody>
+                </table>
+            </div>
+            <asp:literal runat="server" id="litDescription" />
+        </div>
+    </div>
+
+</div>
+
+<!--<div class="btns-fixed">
+    <button id="addcartButton" type="shoppingBtn" onclick="AddProductToCart()" class="btn btn-warning">加入购物车</button>
+    <button id="buyButton" type="shoppingBtn" class="btn btn-danger">立刻购买</button>
+</div>-->
+
+<div class="pro_d_footer flex">
+	<div class="flex_item">
+		<div class="flex">
+            <div class="flex_item d0">
+                <a href="/Vshop/SaleService.aspx">
+                    <em></em>
+                    <i>客服</i>
+                </a>
+            </div>
+            <div class="flex_item d0">
+                <a href="/vshop/default.aspx">
+                    <em class="em1"></em>
+                    <i>首页</i>
+                </a>
+            </div>
+            <div class="flex_item d0">
+                <a id="addF" href="javascript:AddFavorite();">
+                    <em class="em2"></em>
+                    <i>收藏</i>
+                </a>
+            </div>
+        </div>
+	</div>
+    <a class="a" id="addcartButton" type="shoppingBtn" onclick="AddProductToCart()" style='<asp:Literal ID="litD1" runat="server"></asp:Literal>' >加入购物车</a>
+	<a class="a buy"  id="buyButton" type="shoppingBtn" >立即购买</a>
+</div>
+
+<div class="share" style="z-index: 99999;"><img src="/style/newcss/imgs/share.png" alt=""></div>
+
+<input type="hidden" runat="server" clientidmode="Static" id="litHasCollected" />
+<input type="hidden" runat="server" id="litCategoryId" />
+<input type="hidden" runat="server" id="litReferralUserId" />
+<input type="hidden" runat="server" id="litproductid" />
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display: none">
+    <asp:literal id="litItemParams" runat="server"></asp:literal>
+</span>
+<script type="text/javascript">
+
+    function gotoProductReview() {
+        window.location.href = 'ProductReview.aspx?ProductId=' + getParam('ProductId');
+    }
+
+    $(function () {
+        $(".right").unbind("click");
+        $('.price em').click(function () {
+            $('.price .actionnone').css('display', 'block');
+            $(this).css("display", "none");
+        })
+        var slidesImg = $('#slides img');
+        var width = 650, height = 650;
+        if (slidesImg.length > 1) {
+            $('#slides').slidesjs({
+                width: width,
+                height: height,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+            $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+            $(".slidesjs-pagination li").css("width", function () { return 100 / slidesImg.length + "%" });
+        }
+        else {
+
+            $('#slides').css('display', 'block').html('<div style="width:100%;"><a href="javascript:;"></a></div>');
+            $('#slides div a').append(slidesImg);
+        }
+        //分享
+        doShare();
+    });
+    function doShare() {
+        $("#emgood").click(function () {
+            AddGoodCounts();
+            //alert_h("点赞成功！");
+            //$("#emgood").hide();
+        });
+        $("#emshare").click(function () {
+            $(".share").height($(window).height()).show();
+        });
+        $(".share").click(function () {
+            $(this).hide()
+        })
+    }
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    function AddGoodCounts() {
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=AddProductGoodCounts", data, function (json) {
+            if (json.success === true) {
+                alert_h('点赞成功！');
+            }
+        });
+    }
+
+    function AddFavorite() {
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=AddFavorite", data, function (json) {
+            if (json.success === true) {
+                $("#imgFavorite").hide().css('display', 'block').addClass('select');
+                $('#addF').addClass('hide');
+                $('#addedF').removeClass('hide');
+                alert_h('收藏成功！');
+
+            }
+            else {
+                alert_h('您当前还没有登录！', function () {
+                    location.replace('/vshop/MyFavorites.aspx?returnUrl=/vshop/ProductDetails.aspx?productId=' + getParam('productId'));
+                });
+            }
+        });
+    }
+
+    $(function () {
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=CheckFavorite", data, function (json) {
+            if (json.success === true) {
+                $("#imgFavorite").hide().css('display', 'block').addClass('select');
+
+            }
+        });
+
+        if ($('#litHasCollected').val() == "1") {
+            $('#addF').addClass('hide');
+            $('#addedF').removeClass('hide');
+        }
+
+        //包含多个规格时，首先禁用购买和加入购物车按钮
+        if ($(".SKUValueClass").length > 0) disableShoppingBtn(true);
+
+
+    });
+
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = NoSetItems.split('|')[1];
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+    WinXinShareMessage(title, Dec, link, imgUrl);
+    //微信分享接口结束
+
+</script>
+<script src="/utility/vproduct.helper.js?v=1.3" type="application/javascript"> </script>
+<!--<script src="/script/swipe.js"></script>-->
+ <link rel="stylesheet" type="text/css" href="/style/newcss/js/swiper/swiper.3.1.7.min.css">
+<script type="text/javascript" src="/style/newcss/js/swiper/swiper.3.1.7.min.js"></script>
+  <script>
+    window.onload=function(){
+       var slider=new Swiper(".swiper-container",{
+          // 如果需要分页器
+          pagination: '.swiper-pagination',
+          autoplayDisableOnInteraction : false
+       })
+    }
+  </script>
+<!--<hi:common_footer runat="server" />-->

@@ -1,0 +1,104 @@
+﻿<head>
+    <hi:pagetitle runat="server" />
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/utility/bootflat/css/bootstrap.min.css" type="text/css">
+    <script src="/script/jquery-1.11.0.min.js"></script>
+    <script src="/utility/bootflat/js/bootstrap.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/script/WeiXinShare.js?v=2.2"></script>
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/shouiyi.css">
+    <script src="/utility/jquery.cookie.js"></script>
+    <script src="/script/main.js"></script>
+        <style>
+        .activenum {
+            border-bottom: 2px solid #da4453;
+            color:red;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="order_maneger">
+        <div class="hr hr2"><span class="s0"></span></div>
+        <div class="table">
+            <a href="?status=0" class="table_cell">
+                <p>全部订单</p>
+            </a>
+            <a href="?status=1" class="table_cell">
+                <p>待付款</p>
+            </a>
+            <a href="?status=2" class="table_cell">
+                <p>待发货</p>
+            </a>
+            <a href="?status=5" class="table_cell">
+                <p>已完成</p>
+            </a>
+        </div>
+        <div class="item_list">
+            <hi:vshoptemplatedrepeater id="vshoporders" templatefile="/Tags/Skin-Common_OrderManager.ascx"
+                runat="server" />
+
+            <!--            <div class="item">
+                <div class="flex top">
+                    <div class="flex_item time">2015年06月22日 21:49</div>
+                    <div class="right">已完成</div>
+                </div>
+                <div class="pro flex">
+                    <div class="imgwrap">
+                        <img src="/style/newcss/imgs/pro1.jpg">
+                    </div>
+                    <div class="de flex_item">
+                        <h1>全婴汇店主推荐</h1>
+                        <div class="re">有效期:1年（专享礼包概不退换）规格:酵醒轻断食系列</div>
+                        <div class="flex pri">
+                            <div class="lef flex_item">佣金：0.00</div>
+                            <div class="righ flex_item">¥ 600.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bo">
+                    <p>运费:¥ 600.00</p>
+                    <p>实付款:<em class="red">¥ 600.00</em></p>
+                    <p class="red">人民币</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="flex top">
+                    <div class="flex_item time">2015年06月22日 21:49</div>
+                    <div class="right">已完成</div>
+                </div>
+                <div class="pro flex">
+                    <div class="imgwrap">
+                        <img src="/style/newcss/imgs/pro1.jpg">
+                    </div>
+                    <div class="de flex_item">
+                        <h1>全婴汇店主推荐</h1>
+                        <div class="re">有效期:1年（专享礼包概不退换）规格:酵醒轻断食系列</div>
+                        <div class="flex pri">
+                            <div class="lef flex_item">佣金：0.00</div>
+                            <div class="righ flex_item">¥ 600.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bo">
+                    <p>运费:¥ 600.00</p>
+                    <p>实付款:<em class="red">¥ 600.00</em></p>
+                    <p class="red">人民币</p>
+                </div>
+            </div>-->
+        </div>
+        <div class="hr"><span class="s0"></span></div>
+        <div class="hr1"></div>
+    </div>
+
+    <script type="text/javascript">
+        var strparam = getParam('status');
+        var k = { 5: 3, 0: 0, 1: 1, 2: 2 };
+        $(".order_maneger .table a:eq(" + k[strparam | 0] + ")").addClass("activenum").siblings().removeClass("activenum");
+
+
+    </script>
+</body>

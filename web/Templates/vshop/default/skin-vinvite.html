@@ -1,0 +1,129 @@
+﻿<hi:common_header runat="server" />
+<!--  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/bootstrapValidator.min.css">-->
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css?v=1.5">
+<!--  <script type="text/javascript" src="/style/newcss/js/bootstrap/jquery.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrapValidator.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/zh_CN.min.js"></script>-->
+<script type="text/javascript" src="/style/newcss/js/countdown.js"></script>
+
+
+<div class="invite" style='<asp:Literal ID="litD1" runat="server"></asp:Literal>'>
+    <div class="y_title">你还不是店主，<br/>请申请成为正式店主获得邀请开店资格！</div>
+    <div class="y_title"></div>
+</div>
+
+<div class="invite" style='<asp:Literal ID="litD2" runat="server"></asp:Literal>'>
+    <div class="tilte">可用名额</div>
+    <div class="intro">
+        <asp:literal runat="server" id="litProduct" />
+        <input type="button" value="申请邀请码" onclick="ApplyInvite()" class="btn">
+    </div>
+    <div class="intro">
+        <input type="button" value="获取邀请码" onclick="AddInvite()" class="btn">
+        <asp:Literal ID="litQRcode" runat="server"></asp:Literal>&nbsp;&nbsp;
+        <asp:Literal ID="litQRcode2" runat="server"></asp:Literal>
+    </div>
+
+    <div class="y_title">我的邀请码</div>
+    <div>
+        <table class="table">
+            <hi:vshoptemplatedrepeater id="rptInvitelist" visible="true" templatefile="/Tags/skin-Common_InviteList.ascx"
+                                       runat="server">
+            </hi:vshoptemplatedrepeater>
+            <hi:vshoptemplatedrepeater id="rptInviteComplatedList" visible="true" templatefile="/Tags/skin-Common_InviteComplatedList.ascx"
+                                       runat="server">
+            </hi:vshoptemplatedrepeater>
+        </table>
+    </div>
+
+</div>
+<hi:common_footerno runat="server" />
+
+<script type="text/javascript">
+    var ispost = false;
+    var isApplyPost = false;
+
+    function AddInvite() {
+        if (ispost) {
+            alert_h("正在提交中...");
+            return;
+        }
+
+        var lostNum = $("#loseNum").attr("val");
+        if (lostNum > 0) {
+            ispost = true;
+            $.ajax({
+                url: "/API/VshopProcess.ashx",
+                type: 'post',
+                dataType: 'json',
+                timeout: 10000,
+                data: {
+                    action: "AddInviteCode",
+                    ProductId: $("#hdproduct").val()
+                },
+                success: function (resultData) {
+                    if (resultData.success) {
+                        location.href = "/vshop/invite_success.aspx?invitecode=" + resultData.msg;
+                    }
+                    else {
+                        if (!resultData.msg) {
+                            alert_h("添加失败!没有限额或该产品不存在！");
+                        } else
+                            alert_h("添加失败!" + resultData.msg);
+                    }
+                    ispost = false;
+                },
+                error: function () {
+                    ispost = false;
+                }
+            });
+        } else {
+            alert_h("没有限额!");
+        }
+    }
+
+    function ApplyInvite() {
+        if (!isApplyPost) {
+            isApplyPost = true;
+            console.log('enter');
+            var lostNum = $("#loseNum").attr("val");
+            if (lostNum == 0) {
+
+                $.ajax({
+                    url: "/API/VshopProcess.ashx",
+                    type: 'post',
+                    dataType: 'json',
+                    timeout: 10000,
+                    data: {
+                        action: "ApplyInvite",
+                    },
+                    success: function (resultData) {
+                        if (resultData.success) {
+                            alert_h("申请成功,等待审核！");
+                        }
+                        else {
+                            alert_h("申请失败!" + resultData.msg);
+                        }
+                        isApplyPost = false;
+                    },
+                    error: function () {
+                        isApplyPost = false;
+                    }
+                });
+
+            } else {
+                alert_h("还剩" + lostNum + "个限额,不能继续申请!");
+                isApplyPost = false;
+            }
+
+        }
+        else {
+            alert_h("正在提交中...");
+        }
+    }
+
+
+</script>

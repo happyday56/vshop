@@ -1,0 +1,102 @@
+﻿<head>
+    <hi:pagetitle runat="server" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/utility/bootflat/css/bootstrap.min.css" type="text/css">
+    <script src="/script/jquery-1.11.0.min.js"></script>
+    <script src="/utility/bootflat/js/bootstrap.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/script/WeiXinShare.js?v=2.2"></script>
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/shouiyi.css">
+    <asp:literal runat="server" id="litMData" />
+</head>
+<body>
+    <div>
+        <header class="header1">
+            <div class="imgwrap">
+                <img src="/style/newcss/imgs/bg.png" class="bg">
+                <div class="wrap">
+                    <div class="flex info f1">
+                        <div class="touxiang">
+                            <!--<img src="images/tou.jpg">-->
+                            <a href="DistributorInfo.aspx"><asp:literal runat="server" id="litBackground" /></a>
+                        </div>
+                        <div>
+                            <div class="d0">
+                                <asp:literal runat="server" id="litRealName" />
+                            </div>
+                            <div class="d1">
+                                <asp:literal runat="server" id="litStoreName" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bo bo2">
+                        <div class="flex">
+                            <div class="flex_item d2">累 计 收 益</div>
+                            <div class="flex_item d3"><a href="CommissionDetails.aspx">账 单</a></div>
+                        </div>
+                        <div class="d4">{Leijishouyi}</div>
+                    </div>
+                    <div class="hr hr2"><span class="s0"></span></div>
+                </div>
+            </div>
+        </header>
+        <div class="dd0 padding30">
+            <div class="title">
+                可提现金额<p class="red">{Tixian}</p>
+            </div>
+            <div class="flex">
+                <div class="flex_item">
+                    <span>今日收益</span><p class="red">{Jinrishouyi}</p>
+                </div>
+                <div class="flex_item">
+                    <span>我的金贝</span><p>{Jinbei}</p>
+                </div>
+                <div class="flex_item">
+                    <span>累计访问</span><p>{Leijifangwen}</p>
+                </div>
+            </div>
+        </div>
+        <div class="iconwrap">
+            <div class="table">
+                <a class="table_cell" href="/vshop/find.aspx">
+                    <img src="/style/newcss/imgs/icon1.png">
+                    <p>发现</p>
+                </a>
+                <a class="table_cell" href='/vshop/default.aspx<asp:literal id="litRefId" runat="server"></asp:literal>'>
+                    <img src="/style/newcss/imgs/icon2.png">
+                    <p>我的店铺</p>
+                </a>
+                <a class="table_cell" href="/vshop/ChirldrenDistributors.aspx">
+                    <img src="/style/newcss/imgs/icon3.png">
+                    <p>我的团队</p>
+                </a>
+            </div>
+            <div class="table">
+                <a class="table_cell" href="/vshop/shouyi.aspx">
+                    <img src="/style/newcss/imgs/icon4.png">
+                    <p>我的收益</p>
+                </a>
+                <a class="table_cell" href="/vshop/ordermanager.aspx">
+                    <span class="imgwrap iconnum" data-num='<asp:literal id="litTodayOrderNum" runat="server"></asp:literal>'><img src="/style/newcss/imgs/icon5.png"></span>
+                    <p>订单管理</p>
+                </a>
+                <a class="table_cell" href='<asp:literal runat="server" id="litSJStore" />'>
+                    <img src="/style/newcss/imgs/icon6.png">
+                    <p><asp:literal runat="server" id="litSJName" /></p>
+                </a>
+            </div>
+        </div>
+        <div style="text-align:center;font-size:smaller;">
+            开店起止日期：<span><asp:literal runat="server" id="litStartDate" />~<span style="color:red;"><asp:literal runat="server" id="litEndDate" /></span><span>
+        </div>
+        <footer class="footer1">
+            <div class="imgwrap">
+                <img src="/style/newcss/imgs/logo.png"></div>
+            <div class="hr"><span class="s0"></span></div>
+            <div class="hr1"></div>
+        </footer>
+    </div>
+
+</body>

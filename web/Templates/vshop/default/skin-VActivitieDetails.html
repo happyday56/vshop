@@ -1,0 +1,17 @@
+﻿<hi:common_header runat="server" />
+<style>
+    h1 { color: #000000; font-weight: bolder; font-size: 16px; margin-top: 10px; margin-bottom: 6px; }
+    p.date { color: #666666;margin-bottom: 10px; }
+
+</style>
+<h1><asp:literal runat="server" id="litTitle" /></h1>
+<div><p class="date">有效期：<asp:literal runat="server" id="litStartTime" /> 至 <asp:literal runat="server" id="litEndTIme" /></p></div>
+<asp:literal runat="server" id="litActivitieDetail" />
+
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_footer runat="server" />

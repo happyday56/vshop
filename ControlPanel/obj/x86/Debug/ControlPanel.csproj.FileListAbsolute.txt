@@ -1,0 +1,5 @@
+C:\BuildDLL\ControlPanel.dll
+C:\BuildDLL\ControlPanel.pdb
+D:\wfx3.0\ControlPanel\obj\x86\Debug\ControlPanel.csprojResolveAssemblyReference.cache
+D:\wfx3.0\ControlPanel\obj\x86\Debug\ControlPanel.dll
+D:\wfx3.0\ControlPanel\obj\x86\Debug\ControlPanel.pdb

@@ -1,0 +1,76 @@
+﻿<p style="display: none">
+    <hi:cnzzshow runat="server" />
+</p>
+<footer>
+        <%<asp:HyperLink ID="hyperindex" runat="server" NavigateUrl="Default.aspx" name="homestyle"   style="color: #999;"> 
+            <div class="glyphicon "></div>
+            <p>商城</p>
+        </asp:HyperLink> %>
+        <a href="ProductSearch.aspx" id="anchors4" Class="footer-div-type" style="color: #999;">
+            <div class="glyphicon"></div>
+            <p>分类</p>
+        </a>
+         <a href="ShoppingCart.aspx" id="anchors0" class="footer-div-cart" style="color: #999;">
+            <div class="glyphicon "></div>
+            <p>购物车</p>
+        </a>
+        <a href="MemberCenter.aspx" id="anchors1" class="footer-div-my" style="color: #999;">
+            <div class="glyphicon"></div>
+            <p>我</p>
+        </a>
+        <asp:Panel ID="paneldistributor" runat="server" class="last-footer clearfix footer-div-shop">
+        <a href="<% <asp:Literal runat="server" ID="litDistrbutorUrl" />%>" id="anchors2" style="color: #999;">
+            <div class="glyphicon"></div>
+            <p><% <asp:Literal runat="server" ID="litDistrbutorTitle" Text="申请开店" />%></p>
+        </a>
+        </asp:Panel>
+        <span style=" display:none" id="spanstyle"><% <asp:Literal runat="server" ID="lblStyle" />%></span>
+        
+    </footer>
+<script type="text/javascript">
+    function showOrderState() {
+        var status;
+        if (navigator.appName.indexOf("Explorer") > -1) {
+
+            status = document.getElementById("spanstyle").innerText;
+
+        } else {
+
+            status = document.getElementById("spanstyle").textContent;
+
+        }
+    
+        if ($.trim(status) == "3") {
+            if (document.getElementById("vDefault_ctl02_hyperindex")!=null) {
+                document.getElementById("vDefault_ctl02_hyperindex").className = 'footer-div-home-over';
+            }
+                }
+        if($.trim(status)=="4")
+        {
+            document.getElementById("anchors" + $.trim(status)).className = 'footer-div-type-over';
+        }
+        if ($.trim(status) == "1") {
+            document.getElementById("anchors" + $.trim(status)).className = 'footer-div-my-over';
+        }
+        if ($.trim(status) == "0") {
+            document.getElementById("anchors" + $.trim(status)).className = 'footer-div-cart-over';
+        }
+        if ($.trim(status) == "2") {
+            document.getElementById("anchors" + $.trim(status)).className = 'footer-div-shop-over';
+        }
+    }
+
+     $(document).ready(function () { showOrderState(); });
+
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+</script>
+<script type="text/javascript">
+	if($('footer').children().length == 5){
+		$('footer').children().css("width","25%");
+	}
+</script>
+</body> 
+</html> 

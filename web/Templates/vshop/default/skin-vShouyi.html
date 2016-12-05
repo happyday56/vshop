@@ -1,0 +1,103 @@
+﻿<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/utility/bootflat/css/bootstrap.min.css" type="text/css">
+    <script src="/script/jquery-1.11.0.min.js"></script>
+    <script src="/utility/bootflat/js/bootstrap.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/script/WeiXinShare.js?v=2.2"></script>
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/shouiyi.css">
+</head>
+<body>
+    <asp:literal runat="server" id="litShouyeData" />
+     <div class="shouyi">
+         <header class="header1">
+             <div class="imgwrap">
+                 <img src="/style/newcss/imgs/bg.png" class="bg">
+                 <div class="wrap">
+                     <div class="flex info f1">
+                         <div class="touxiang">
+                             <!--<img src="images/tou.jpg">-->
+                             <asp:literal runat="server" id="litBackground" />
+                         </div>
+                         <div>
+                             <div class="d0">
+                                 <asp:literal runat="server" id="litRealName" />
+                             </div>
+                             <div class="d1">
+                                 <asp:literal runat="server" id="litStoreName" />
+                             </div>
+                         </div>
+                     </div>
+                     <div class="bo bo2">
+                         <div class="flex">
+                             <div class="flex_item d2">累 计 收 益</div>
+                         </div>
+                         <div class="d4">{Leijishouyi}</div>
+                     </div>
+                     <div class="hr hr2"><span class="s0"></span></div>
+                 </div>
+             </div>
+
+         </header>
+         <div class="dd0 padding30">
+             <div class="title">可提现金额<p class="red">{Tixian}</p>
+             </div>
+         </div>
+         <div class="iconwrap">
+             <div>
+                 <div class="remark">
+                     全婴汇每月进行两次提现审核，分别为15日和30日（节假日顺延）。且每个提现审
+核期内仅有一次提现申请机会，提现申请一旦生成则无法修改。
+                 </div>
+                 <div><a href="/Vshop/RequestCommissions.aspx" class="btn">我要提现</a></div>
+             </div>
+             <div class="table">
+                 <a class="table_cell" href="">
+                     <p>待确认</p>
+                     <p class="p1">{Daiqueren}</p>
+                 </a>
+                 <a class="table_cell" href="">
+                     <p>提现中</p>
+                     <p class="p1">{Tixianzhong}</p>
+                 </a>
+                 <a class="table_cell" href="">
+                     <p>已提现</p>
+                     <p class="p1 red">{Yitixian}</p>
+                 </a>
+             </div>
+             <div class="table">
+                 <a class="table_cell" href="">
+                     <p>我的金贝</p>
+                     <p class="p1 red">{Jinbei}</p>
+                 </a>
+                 <a class="table_cell" href="">
+                     <p>我的积分</p>
+                     <p class="p1">{Jifen}</p>
+                 </a>
+                 <a class="table_cell" href="">
+                     <p>今日收益</p>
+                     <p class="p1">{Jinrishouyi}</p>
+                 </a>
+             </div>
+             <div class="table">
+                 <a class="table_cell" href="">
+                     <p>本月收益</p>
+                     <p class="p1">{Benyueshouyi}</p>
+                 </a>
+                 <a class="table_cell" href="">
+                     <p>上月收益</p>
+                     <p class="p1">{Shangyueshouyi}</p>
+                 </a>
+             </div>
+         </div>
+         <footer class="footer1">
+             <div class="imgwrap">
+                 <img src="/style/newcss/imgs/logo.png"></div>
+             <div class="hr"><span class="s0"></span></div>
+             <div class="hr1"></div>
+         </footer>
+     </div>
+
+</body>

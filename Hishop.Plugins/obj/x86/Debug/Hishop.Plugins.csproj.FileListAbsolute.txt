@@ -1,0 +1,8 @@
+C:\BuildDLL\Hishop.Plugins.dll
+C:\BuildDLL\Hishop.Plugins.pdb
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.csprojResolveAssemblyReference.cache
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.dll
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.pdb
+D:\wfx3.0\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.csprojResolveAssemblyReference.cache
+D:\wfx3.0\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.dll
+D:\wfx3.0\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.pdb

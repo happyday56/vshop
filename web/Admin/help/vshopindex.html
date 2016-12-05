@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet" href="style/layout.css" />
+<script src="../../Utility/jquery-1.6.4.min.js"></script>
+<script src="../../Utility/jquery.cookie.js"></script>
+<!--<script type="text/javascript" src="images/jquery.corner.js"></script>-->
+<script src="../../Utility/jquery.artDialog.js"></script>
+<script src="../../Utility/iframeTools.js"></script>
+<script>
+    function ShowSecondMenuLeft(firstnode, secondurl, threeurl) {
+        window.parent.ShowMenuLeft(firstnode, secondurl, threeurl);
+        art.dialog.close();
+    }
+    function SetGuide(checkobj) {
+        if (checkobj.checked) {
+            $.cookie("guide", 1, { expires: 360, path: "/" });
+        } else {
+            $.cookie("guide", null, { expires: 360, path: "/" });
+        }
+    }
+
+    $(function () {
+        var a;
+        $(".guide_con ul li").hover(function () {
+
+            if (a) {
+                window.clearTimeout(a)
+            }
+            var c = this;
+            a = window.setTimeout(function () {
+                var g = $(".detail-frame", c).html();
+                var i = $("img", c).eq(1).offset().left;
+                var h = $("img", c).eq(1).offset().top;
+                var j = 0;
+                if ($(c).width() == 100) {
+                    j = 110;
+                } else {
+                    j = $("img", c).eq(1).width() + 10
+                }
+                $("body").append('<div class="detail-tip"></div>');
+                if ($(c).hasClass("r-end")) {
+                    $(".detail-tip").html(g).append('<span class="arrow-right"></span>').css("left", i + j - 295).css("top", h);
+                } else {
+                    $(".detail-tip").html(g).append('<span class="arrow-left"></span>').css("left", i + j).css("top", h);
+                }
+                //$(".detail-tip").corner();
+            }, 200)
+        }, function () {
+            if (a) {
+                window.clearTimeout(a)
+            }
+            $(".detail-tip").remove()
+        });
+        if ($.cookie("guide") == "1") {
+            $("#ckguide").attr("checked", true);
+        }
+    });
+
+</script>
+</head>
+
+<body>
+<div class="guide_con">
+    <div style=" padding:0px 30px;">
+    <div style=" line-height:30px;"><p style="font-family:'Microsoft yahei'; font-size:24px; color:rgb(34,142,212); font-weight:bold"></p>
+    <p style="font-family:'Microsoft yahei'; font-size:16px; color:#666">在使用系统前，您需要完成以下基本设置：</p></div>
+    <hr />
+   <p style=" line-height:30px;"> 1、将微分销生成的URL与TOKEN配置到<a target="_blank" style=" color:#07f" href="https://mp.weixin.qq.com/">微信公众平台</a>-开发者模式下。<br />
+    2、将<a target="_blank" style=" color:#07f" href="https://mp.weixin.qq.com/">微信公众平台</a>-开发者模式下的AppId与AppSecret配置到微配置-服务号配置下。（备注：在复制微信公众平台账号的AppId和AppSecret时，确保您的复制内容不包含空格，否则会造成您的配置失败。） <br />
+    3、以上步骤操作完成后您的微信公众账号和微分销系统即为绑定状态，您可通过微分销平台对微信公众号菜单和商城前台进行配置，即可正常的访问。
+    </p>
+    </div>
+</div>
+
+
+ <div class="guide_optionbor">
+<div class="guide_option" style=" margin-left:30px;"><input type="checkbox" onclick="SetGuide(this)" id="ckguide" /><label for="ckguide">下次不再显示此向导</label></div>
+<div class="guide_close2"><a href="#">关闭</a></div>
+
+</div>
+</body>
+</html>

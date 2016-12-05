@@ -1,0 +1,7 @@
+C:\BuildDLL\Hishop.Components.Validation.dll
+C:\BuildDLL\Hishop.Components.Validation.pdb
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Components.Validation\obj\x64\Release\Hishop.Components.Validation.Properties.Resources.resources
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Components.Validation\obj\x64\Release\Hishop.Components.Validation.csproj.GenerateResource.Cache
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Components.Validation\obj\x64\Release\Hishop.Components.Validation.dll
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Components.Validation\obj\x64\Release\Hishop.Components.Validation.pdb
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Components.Validation\obj\x64\Release\Hishop.Components.Validation.csprojResolveAssemblyReference.cache

@@ -1,0 +1,113 @@
+﻿<hi:common_header runat="server" />
+<div class="home-head distributor-head distributorCenter">
+    <div class="shop-photo">
+        <a href="DistributorInfo.aspx"><hi:hiimage runat="server" id="imglogo" cssclass="img-circle" imageurl="/Utility/pics/headLogo.jpg" /></a>
+        <span><asp:Image ID="imgGrade" runat="server" Width="20" Height="20" /></span>
+    </div>
+    <div class="shop-user-name">
+        <a href="DistributorInfo.aspx"><asp:Literal ID="litStroeName" runat="server"></asp:Literal></a>
+    </div>
+    <div class="info">
+        <div class="title" style="width: 200px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; margin-bottom: 2px;"></div>
+        <div class="presentExp font-s"></div>
+    </div>
+    <ul class="order-money" style="display:none;">
+        <li><a href="javascript:;">订单总额<span></span></a></li>
+        <li><a href="javascript:;">今日佣金<span></span></a></li>
+        <li><a href="javascript:;">今日订单<span></span></a></li>
+    </ul>
+</div>
+
+<div class="row custom-row">
+    <div class="col-xs-3">
+        <p class="font-xs text-muted">
+            销售总额(元)
+            <hi:formatedmoneylabel id="saletotal" runat="server" nulltodisplay="0.00"></hi:formatedmoneylabel>
+        </p>
+    </div>
+    <div class="col-xs-3">
+        <p class="font-xs text-muted">今日佣金(元)<hi:formatedmoneylabel id="refrraltotal" runat="server" nulltodisplay="0.00"></hi:formatedmoneylabel></p>
+    </div>
+    <div class="col-xs-3">
+        <p class="font-xs text-muted">
+            团队数 <span>
+                <asp:literal id="litStoreNum" runat="server" text="0"></asp:literal>
+            </span>
+        </p>
+    </div>
+    <div class="col-xs-3">
+        <p class="font-xs text-muted">
+            今日订单 <span>
+                <asp:literal id="litTodayOrdersNum" runat="server" text="0"></asp:literal>
+            </span>
+        </p>
+    </div>
+    <div class="col-xs-3">
+        <p class="font-xs text-muted">
+            累计收益(元)
+            <Hi:FormatedMoneyLabel id="lblAccumulatedIncome" runat="server" NullToDisplay="0.00"></Hi:FormatedMoneyLabel>
+        </p>
+    </div>
+    <div class="col-xs-3">
+        <p class="font-xs text-muted">
+            账户余额(元)
+            <Hi:FormatedMoneyLabel id="lblAccountBalance" runat="server" NullToDisplay="0.00"></Hi:FormatedMoneyLabel>
+        </p>
+    </div>
+    <div class="col-xs-6">
+        <p class="font-xs text-muted">
+            可提现余额(元)
+            <Hi:FormatedMoneyLabel ID="lblsurpluscommission" runat="server" NullToDisplay="0.00"></Hi:FormatedMoneyLabel>
+            <asp:HyperLink ID="hyrequest" onclick="javascript:return RequestMoneys()" runat="server" Text="提现" CssClass="other border0"></asp:HyperLink>
+        </p>
+    </div>
+</div>
+
+<ul class="order-img-tags">
+    <asp:Literal ID="litVP" runat="server"></asp:Literal>
+    <li><a href='/vshop/default.aspx<asp:literal id="litRefId" runat="server"></asp:literal>' class="shop-info">我的店铺</a></li>
+    <li><a class="shop-info" href="MyProducts.aspx">我的商品</a></li>
+    <li><a class="shop-info" href="ProductListAll.aspx">选品上架</a></li>
+    <asp:Literal ID="litdistirbutors" runat="server"></asp:Literal>
+    <li><a class="shop-brokerage" href="DistributorCommission.aspx">我的佣金</a></li>
+    <!--<li><a class="shop-card" href="invite.aspx">邀请</a></li>-->
+    <!--<li><a class="shop-card" href="NameCard.aspx">掌柜名片</a></li>-->
+    <li<asp:Literal ID="litOrders" runat="server"></asp:Literal>><a class="shop-order" href="DistributorOrders.aspx">店铺订单</a></li>
+    <!--<li><a class="shop-friend" href="FriendsCircle.aspx">朋友圈素材</a></li>-->
+    <li><a class="shop-top" href="MyRanking.aspx">店铺排名</a></li>
+    <!--li><a class="shop-info" href="Activities.aspx">活动参与</a></li-->
+    <li><a href='<asp:Literal ID="litinviteurl" runat="server"></asp:Literal>' class="shop-info"><asp:Literal ID="litSJName" runat="server"></asp:Literal></a></li>
+    <li><a class="shop-friend" href="BusinessArticleList.aspx">商学院</a></li>
+    <asp:Literal ID="litQRcode" runat="server"></asp:Literal>
+    <asp:Literal ID="litQRcode2" runat="server"></asp:Literal>
+</ul>
+
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+    //$(function(){
+    //    $(".distributorCenter .shop-photo").css({"left":($(".distributorCenter").width()-$(".distributorCenter .shop-photo").width())/2+"px"});
+    //});
+
+    function RequestMoneys() {
+
+        if (parseFloat($("#vDistributorCommission_lblsurpluscommission").text()) <= 0) {
+            alert_h('佣金金额小于0，无法进行提现');
+            return false;
+        }
+        else {
+            if ($.trim($("#vDistributorCommission_hyrequest").text()) != "您的申请正在审核当中……")
+                location.href = "RequestCommissions.aspx";
+        }
+        if ($("#vDistributorCommission_hyrequest").attr("href").indexOf('UserInfo.aspx') >= 0) {
+            alert_h('个人资料未完善，请先完善个人资料', function () {
+                location.href = $("#vDistributorCommission_hyrequest").attr("href");
+            });
+        }
+    }
+
+</script>
+<hi:common_footerdistributor runat="server" />

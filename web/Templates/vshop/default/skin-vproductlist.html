@@ -1,0 +1,119 @@
+﻿<hi:common_header runat="server" />
+<div class="list-rank clearfix sort">
+    <a name="default" href="#" style="display:none">
+        <div>
+            默认<span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></div>
+    </a><a name="saleprice" href="#">
+        <div>
+            价格<span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></div>
+    </a><a name="addedDate" href="#">
+        <div>
+            上架<span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></div>
+    </a><a name="VistiCounts" href="#">
+        <div>
+            浏览量<span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></div>
+    </a><a name="showsaleCounts" href="#">
+        <div>
+            销量<span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></div>
+    </a><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <div class="sort-action show">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </a>
+</div>
+<div class="panel panel-default list-sort-panel" style="margin-bottom: 0; border-radius: 0;
+    position: relative;">
+    <div id="collapseOne" class="panel-collapse collapse">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="jt">
+            ◆</span></a>
+        <div class="panel-body">
+            <hi:vshoptemplatedrepeater id="rptCategories" templatefile="/Tags/skin-Common_VProductListCategory.ascx"
+                runat="server" />
+            <div class="clearfix" style="border-bottom: 1px dashed #CCD1D9;">
+            </div>
+            <div class="goods-list-bar">
+                <div class="input-group form-search">
+                    <input type="text" class="form-control search-query" id="txtKeywords" style="height: 30px;
+                        border-color: #F6BB42;">
+                    <span class="input-group-btn">
+                        <button type="submit" onclick="searchs()" class="btn btn-warning btn-sm" data-type="last">
+                            搜索</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="text-center list-empty hide" id="empty">
+    没有找到相关商品
+</p>
+<div class="pbox" id="productListContainer">
+    <div class="goods-list-grid clearfix" id="goodslist">
+        <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_Prodcts.ascx"
+            runat="server" />
+    </div>
+    <div id="pager">
+    </div>
+</div>
+<input type="hidden" value="" runat="server" clientidmode="static" id="txtTotal" />
+<hi:common_footer runat="server" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+    $(function () {
+
+
+        if (!$.trim($('#goodslist').html())) {
+
+            $('#productListContainer').addClass('hide');
+            $('#empty').removeClass('hide');
+        }
+
+        var sort = getParam('sort');
+        var order = getParam('order');
+        if (sort && order) {
+            debugger;
+            var selectedLink = $('.sort a[name="' + sort + '"]');
+            if (order == 'desc')
+                selectedLink.find('div').addClass('down');
+            else
+                selectedLink.find('div').addClass('up');
+        }
+
+        var sortLink = $('.sort a[href="#"]');
+        var categoryId = getParam('categoryId');
+
+        var keyWords = getParam('keyWord');
+        if (keyWords)
+            $("#txtKeywords").val(keyWords);
+
+
+        $.each(sortLink, function (i, link) {
+            link = $(link);
+            url = '/vshop/productList.aspx?categoryId=' + categoryId + '&keyWord=' + escape(keyWords);
+            if (i > 0) {//第一个为默认面，不设置排序
+                url += '&sort=' + link.attr('name');
+                if (link.find('div.up').length > 0)
+                    url += '&order=desc';
+                else
+                    url += '&order=asc';
+            }
+            link.attr('href', url);
+        });
+
+        vshopPager('pager', $('#txtTotal').val(), 1, 50);
+
+    });
+    function searchs() {
+
+        var key = $("#txtKeywords").val();
+        var categoryId = getParam('categoryId');
+        var url = "/Vshop/ProductList.aspx?categoryId=" + categoryId + "&keyWord=" + escape(key);
+
+        window.location.href = url;
+    }
+
+
+</script>

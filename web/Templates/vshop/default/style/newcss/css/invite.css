@@ -1,0 +1,99 @@
+.invite_success{
+    text-align: center;
+}
+.invite_success h1{
+    color: #000000;
+    font-size: 28px;
+    margin-top: 40px;
+}
+.invite_success .btn{
+    font-size: 16px;
+    color:#fff;
+    width: 158px;
+    height: 40px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #f00;
+    margin:5px 0 20px 0;
+}
+.invite_success a{
+    display:block;
+    color:#ff0000;
+    font-size: 13px;
+}
+.share{
+    position: fixed;
+    top:0;
+    left: 0;
+    width:100%;
+    text-align: center;
+    background:rgba(0,0,0,0.6);
+    display:none;
+}
+.share img{
+    max-width: 320px;
+}
+.invite .tilte{
+    font-size: 15px;
+    color:#000000;
+    height:40px;
+    line-height: 40px;
+    padding: 0 0 0 14px;
+    border-bottom: solid 2px #ff0000;
+}
+.invite .intro{
+    font-size: 12px;
+    color:#000000;
+    padding: 9px 14px 9px 14px;
+    line-height: 25px;
+    border-bottom: solid 1px #d2d2d2;
+    margin-bottom: 5px;
+}
+.invite .intro .btn{
+    font-size: 12px;
+    color:#ff0000;
+    float: right;
+    width: 84px;
+    height: 25px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border:solid 1px #f00;
+    padding:0;
+    line-height: 25px;
+    background:#fff;
+}
+.invite  .y_title{
+    font-size: 15px;
+    color:#fff;
+    padding:0 0 0 14px;
+    background:#ff0000;
+    height:36px;
+    line-height: 36px;
+}
+.invite td{
+    color:#d00010;
+}
+.invite .c0{
+    width:25%;
+}
+.invite .c1{
+    width:25%;
+}
+.invite .c2{
+    width:25%;
+}
+.invite .c3{
+    text-align: center;
+    width:25%;
+}
+.invite .c3 .btn{
+    font-size: 13px;
+    color:#ffffff;
+    width: 55px;
+    height: 23px;
+    padding:0;
+    line-height: 23px;
+    background-color: #f00;
+}

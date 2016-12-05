@@ -1,0 +1,23 @@
+﻿<hi:common_header runat="server" />
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/js/bootstrap/bootstrapValidator.min.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/jquery.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/bootstrapValidator.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/bootstrap/zh_CN.min.js"></script>
+  <script type="text/javascript" src="/style/newcss/js/countdown.js"></script>
+  <div class="invite_success">
+        <h1>你的邀请码生成成功</h1>
+        <input type="button" value="立即分享给小伙伴" class="btn" id="share">
+        <a href="">返回我的邀请列表</a>
+    </div>
+    <div class="share"><img src="/style/newcss/imgs/share.png" alt=""></div>
+    <script>
+        $("#share").click(function(){
+            $(".share").height($(window).height()).show();
+        });   
+    </script>
+
+<hi:common_footerno runat="server" />

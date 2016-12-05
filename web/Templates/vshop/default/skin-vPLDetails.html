@@ -1,0 +1,68 @@
+﻿<hi:common_header runat="server" />
+<meta name="format-detection" content="telephone=no" />
+<div class="pbox bgColor-white">
+    <div class="text-danger font18">
+        <asp:literal runat="server" id="litArticleTitle" />
+    </div><br/>
+    <div class="font18">
+        <asp:literal runat="server" id="litSummary" />
+    </div><br />
+    <div class="cenimg">
+        <img runat="server" id="articleImage1" class="cenimg" />
+        <img runat="server" id="articleImage2" class="cenimg" />
+        <img runat="server" id="articleImage3" class="cenimg" />
+        <img runat="server" id="articleImage4" class="cenimg" />
+        <img runat="server" id="articleImage5" class="cenimg" />
+    </div>
+</div>
+
+
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display: none">
+    <asp:literal id="litItemParams" runat="server"></asp:literal>
+</span>
+<script type="text/javascript">
+
+ 
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = NoSetItems.split('|')[1];
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+    WinXinShareMessage(title, Dec, link, imgUrl);
+    //微信分享接口结束
+
+</script>
+<hi:common_footerno runat="server" />

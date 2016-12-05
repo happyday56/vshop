@@ -1,0 +1,83 @@
+﻿<hi:common_header runat="server" />
+  <ul class="clearfix memberorders-title title_bg">
+        <li class=""><a href="?status=0">全部订单</a></li>
+        <li><a href="?status=1">待付款</a></li>
+        <li><a href="?status=3">配送中</a></li>
+      </ul>
+<div id="divorderlist">
+    <hi:vshoptemplatedrepeater id="rptOrders" templatefile="/Tags/skin-Common_MemberCenterOrders.ascx"
+        runat="server" />
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<p id="divEmpty" class="te
+xt-center list-empty hide">
+    <span class="glyphicon glyphicon-list-alt" style="margin-left: -3px;"></span><em>订单列表为空</em>
+</p>
+<script type="text/javascript">
+    function FinishOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定已经收到货物了吗？', '确定收货', function () {
+            $.post("/api/VshopProcess.ashx?action=FinishOrder", data, function (json) {
+                if (json.success === true) {
+                    if (json.isapply == 0) {
+                        alert_h('确认收货成功！', function () {
+                            location.reload();
+                        });
+                    }
+                    else {
+                        alert_h('确认收货成功,您的消费达到成为分销商要求,是否申请？', function () {
+                            location.href = "/Vshop/ApplicationDescription.aspx";
+                        });
+                    }
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });
+    }
+
+    function CloseOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定关闭订单吗？', '确定关闭', function () {
+            $.post("/api/VshopProcess.ashx?action=CloseOrder", data, function (json) {
+                if (json.success === true) {
+                        alert_h('关闭成功！', function () {
+                            location.reload();
+                        });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });
+    }
+
+    $(function () {
+        if (!$.trim($("#divorderlist").html())) {
+            $("#divorderlist").hide();
+            $("#divEmpty").removeClass('hide');
+        }
+
+        var list_h = (document.documentElement.clientHeight - 49 - $('.list-empty').height()) * .5 + 'px';
+        $('.list-empty').css('margin-top', list_h);
+        var status = getParam('status');
+        if (status == "0") {
+            $(".title_bg li").removeClass("activenum").eq(0).addClass("activenum");
+        } else if (status == "3") {
+            $(".title_bg li").removeClass("activenum").eq(2).addClass("activenum");
+        } else if (status == "1") {
+            $(".title_bg li").removeClass("activenum").eq(1).addClass("activenum");
+        }
+
+    })
+</script>
+
+<hi:common_footer runat="server" />

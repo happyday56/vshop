@@ -1,0 +1,46 @@
+﻿<hi:common_header runat="server" />
+<br/>
+<p class="text-muted font-xs text-center">转发到朋友圈就能带来销量的好东西我们已经帮你准备好了，不用谢~</p>
+
+    <div id="empty" style="text-align: center;">
+        <img src="/Utility/pics/nonestore.gif" />
+    </div>
+    <div id="friendscircle">
+        <hi:vshoptemplatedrepeater id="refriendscircle" templatefile="/Tags/skin-Common_FriendsCircle.ascx" runat="server" />
+    </div>
+    <div class="pagination" style=" display:none;">
+        <UI:Pager runat="server" ShowTotalPages="false" DefaultPageSize="20" ID="pager"/> 
+   </div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (!$.trim($('#friendscircle').html())) {
+            $('#empty').css('display', '');
+        }
+        else {
+            $('#empty').css('display', 'none');
+        }
+    });
+    
+    WeixinApi.ready(function(Api) {
+        $("div[class*='wechart-img'] img").click(function(){
+            var srcList = [];
+            var wechart_imgs;
+            $(this).parents().each(function(i){
+                var flag = true;
+                $(this).filter(".wechart-img").length == 0 ? flag = true : flag = false, wechart_imgs = this;
+                return flag;
+            })
+            $(wechart_imgs).find("img").each(function(i){
+                srcList[i] = $(this).attr("src");
+            })
+            Api.imagePreview($(this).attr("src"), srcList);
+        });
+    });  
+</script>
+<hi:common_footer runat="server" /> 

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>红包支付证书下载帮助</title>
+<link type="text/css" rel="stylesheet" href="style/layout.css" />
+<script src="../../Utility/jquery-1.6.4.min.js"></script>
+<script src="../../Utility/jquery.cookie.js"></script>
+<!--<script type="text/javascript" src="images/jquery.corner.js"></script>-->
+<script src="../../Utility/jquery.artDialog.js"></script>
+<script src="../../Utility/iframeTools.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(".wechat-help-left li").click(function(){
+            var isClick = $(this).attr("isClick");
+            $(window).scrollTop($("#help-"+isClick).offset().top-30);
+        })
+    })
+</script>
+</head>
+
+<body>
+    <div class="wechat-help">
+        <ul class="wechat-help-left">
+            <li isClick="1">
+                <a href="javascript:;">
+                    <h1>第一步</h1>
+                    <div class="text">登录微信商户平台安装操作证书</div>
+                </a>
+            </li>
+            <li isClick="2">
+                <a href="javascript:;">
+                    <h1>第二步</h1>
+                    <div class="text">左边菜单选择API安全下载API证书</div>
+                </a>
+            </li>
+            <li isClick="3">
+                <a href="javascript:;">
+                    <h1>第三步</h1>
+                    <div class="text">解压证书包并找到文件“apiliclient_cert.p12”上传</div>
+                </a>
+            </li>
+            <li isClick="4">
+                <a href="javascript:;">
+                    <h1>完成</h1>
+                </a>
+            </li>
+        </ul>
+        <ul class="wechat-help-right">
+            <li id="help-1"><img src="images/pic/wechat-img-1.jpg"></li>
+            <li id="help-2"><img src="images/pic/wechat-img-2.png" style="width: 100%; height: 100%;"></li>
+            <li id="help-3"><img src="images/pic/wechat-img-3.png"></li>
+            <li id="help-4"><img src="images/pic/wechat-img-4.png"></li>
+        </ul>
+    </div>
+</body>
+</html>

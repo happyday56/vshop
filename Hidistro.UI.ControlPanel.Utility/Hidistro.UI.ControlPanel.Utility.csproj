@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B477E491-2A69-47E5-BD2D-A4B8CC585DA9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Hidistro.UI.ControlPanel.Utility</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Hidistro.UI.ControlPanel.Utility</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Hidistro.UI.ControlPanel.Utility.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Hidistro.UI.ControlPanel.Utility.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="NewLife.Core, Version=5.4.5736.38074, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NewLife.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
+    <Compile Include="ProductCategoriesCheckBoxList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AllowLoginRadioButtonList.cs" />
+    <Compile Include="AttributeUseageModeRadioButtonList.cs" />
+    <Compile Include="AdminPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BrandCategoriesCheckBoxList.cs" />
+    <Compile Include="ExpressCheckBoxList.cs" />
+    <Compile Include="ExpressPrintButton.cs" />
+    <Compile Include="GiftStatusRadioButtonList.cs" />
+    <Compile Include="GridSkuMemberPriceTable.cs" />
+    <Compile Include="HiControls.cs" />
+    <Compile Include="ImageDataGradeDropDownList.cs" />
+    <Compile Include="ImageTypeLabel.cs" />
+    <Compile Include="LogsUserNameDropDownList.cs" />
+    <Compile Include="DistributorGradeDropDownList.cs" />
+    <Compile Include="MemberGradeDropDownList.cs" />
+    <Compile Include="MemberGradeCheckBoxList.cs" />
+    <Compile Include="MemberSearch.cs" />
+    <Compile Include="PaymentDropDownList.cs" />
+    <Compile Include="ProductCategoriesDropDownList.cs" />
+    <Compile Include="ProductCategoriesListBox.cs" />
+    <Compile Include="ProductEditColumn.cs" />
+    <Compile Include="ProductTypesCheckBoxList.cs" />
+    <Compile Include="PurchaseOrderItemUpdateHyperLink.cs" />
+    <Compile Include="RegionArea.cs" />
+    <Compile Include="RoleDropDownList.cs" />
+    <Compile Include="ShippingTemplatesDropDownList.cs" />
+    <Compile Include="SiteNameLabel.cs" />
+    <Compile Include="SKUImage.cs" />
+    <Compile Include="UseAttributeImageRadioButtonList.cs" />
+    <Compile Include="ShippersDropDownList.cs" />
+    <Compile Include="MemberPriceDropDownList.cs" />
+    <Compile Include="MemberHasVipCardDropDownList.cs" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlPanel\ControlPanel.csproj">
+      <Project>{FC8AED53-44FA-40A9-96AE-BBFC8C8EFFA7}</Project>
+      <Name>ControlPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Core\Hidistro.Core.csproj">
+      <Project>{4F98DDDB-C05A-4A71-8400-BC5F790CC8DF}</Project>
+      <Name>Hidistro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Entities\Hidistro.Entities.csproj">
+      <Project>{71E1154B-E640-414D-AA73-57A7F4589BA2}</Project>
+      <Name>Hidistro.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.Common.Controls\Hidistro.UI.Common.Controls.csproj">
+      <Project>{532E98E3-5752-43DF-934E-5EB49FF11E48}</Project>
+      <Name>Hidistro.UI.Common.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Components.Validation\Hishop.Components.Validation.csproj">
+      <Project>{8E0FB795-0E87-49E0-85EF-948CC144EDED}</Project>
+      <Name>Hishop.Components.Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

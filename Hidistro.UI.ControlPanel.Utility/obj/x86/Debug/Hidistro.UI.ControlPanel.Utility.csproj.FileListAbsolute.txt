@@ -1,0 +1,8 @@
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.ControlPanel.Utility\obj\x86\Debug\Hidistro.UI.ControlPanel.Utility.csprojResolveAssemblyReference.cache
+C:\BuildDLL\Hidistro.UI.ControlPanel.Utility.dll
+C:\BuildDLL\Hidistro.UI.ControlPanel.Utility.pdb
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.ControlPanel.Utility\obj\x86\Debug\Hidistro.UI.ControlPanel.Utility.dll
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.ControlPanel.Utility\obj\x86\Debug\Hidistro.UI.ControlPanel.Utility.pdb
+D:\wfx3.0\Hidistro.UI.ControlPanel.Utility\obj\x86\Debug\Hidistro.UI.ControlPanel.Utility.csprojResolveAssemblyReference.cache
+D:\wfx3.0\Hidistro.UI.ControlPanel.Utility\obj\x86\Debug\Hidistro.UI.ControlPanel.Utility.dll
+D:\wfx3.0\Hidistro.UI.ControlPanel.Utility\obj\x86\Debug\Hidistro.UI.ControlPanel.Utility.pdb

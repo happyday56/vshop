@@ -1,0 +1,5 @@
+C:\BuildDLL\Hidistro.UI.Web.dll
+C:\BuildDLL\Hidistro.UI.Web.pdb
+D:\wfx3.0\Hidistro.UI.Web\obj\x86\Debug\Hidistro.UI.Web.csprojResolveAssemblyReference.cache
+D:\wfx3.0\Hidistro.UI.Web\obj\x86\Debug\Hidistro.UI.Web.dll
+D:\wfx3.0\Hidistro.UI.Web\obj\x86\Debug\Hidistro.UI.Web.pdb

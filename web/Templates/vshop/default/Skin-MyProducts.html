@@ -1,0 +1,118 @@
+﻿<hi:common_header runat="server" />
+<ul class="clearfix orders-title title_bg">
+        <li class="activenum"><a>我的商品</a></li>
+        <li><a href="ProductListAll.aspx">全部商品</a></li>
+</ul>
+<div class="pbox clearfix">
+<div class="clearfix class_goods">
+    <div class="dropdown">
+        <div class="dropdown-toggle search_img" id="dropdownMenu1" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span>
+        </div>
+        <div class="search_input">
+        
+            <input type="text" class="text" runat="server" id="keywords" placeholder="">
+            <span class="glyphicon glyphicon-search" onclick="Searchkeys()">
+            </span>
+        </div>
+        <label>
+            全选<input type="checkbox" name="DistributorCheckAll" /></label>
+        <ul class="dropdown-menu submenu" role="menu" aria-labelledby="dropdownMenu1">
+            <hi:vshoptemplatedrepeater id="rpCategorys" templatefile="/Tags/skin-Common_SubCategory.ascx"
+                runat="server" />
+        </ul>
+    </div>
+</div>
+    <div id="empty" style="text-align: center;">
+        <img src="/Utility/pics/nonestore.gif" />
+    </div>
+    <div class="row myproduct" id="shops">
+        <hi:vshoptemplatedrepeater id="rpChooseProducts" templatefile="/Tags/skin-Common_DistributorProducts.ascx"
+            runat="server" />
+    </div>
+</div>
+<script>
+    var deleteProdcut = $.cookie("DeleteProcutId") == null ? {} : JSON.parse($.cookie("DeleteProcutId"));
+    $(function () {
+        if (!$.trim($('#shops').html())) {
+            $('#empty').css('display', '');
+        }
+        else {
+            $('#empty').css('display', 'none');
+        }
+
+        $("input[type='checkbox'][name='DistributorCheckAll']:eq(0)").on('ifChecked', function (a) {
+            $("input[name='DistributorCheckGroup']").iCheck('check');
+        });
+        $("input[type='checkbox'][name='DistributorCheckAll']:eq(0)").on('ifUnchecked', function (a) {
+            $("input[name='DistributorCheckGroup']").iCheck('uncheck');
+        });
+        $("input[name='DistributorCheckGroup']").on('ifChecked', function (event) {
+         
+            deleteProdcut["DistributorCheckGroup" + $(this).val()] = $(this).val();
+            RemoveCookieProductId();
+
+
+            var real_h;
+            var right_H = $(this).parent().parent().prev().height();
+          
+            $(this).parent().parent().height(right_H);
+            var right_W = $(this).parent().parent().prev().width();
+            $(this).parent().parent().width(right_W);
+            real_h = (right_H - $(this).parent().height()) * 0.5;
+            $(this).parent().css({ position: 'absolute', top: real_h, left: right_W/2 - 10});
+
+
+
+            $(this).parent("div").parent("div").css("display", "block");
+        });
+        $("input[name='DistributorCheckGroup']").on('ifUnchecked', function (event) {
+            $(this).parent("div").parent("div").css({ display: 'none' });
+            $("input[type='checkbox'][name='DistributorCheckAll']:eq(0)").attr("checked", false);
+            $("input[type='checkbox'][name='DistributorCheckAll']:eq(0)").parent("div").removeClass("checked");
+            delete deleteProdcut["DistributorCheckGroup" + $(this).val()];
+            RemoveCookieProductId();
+        });
+        
+    });
+
+    setTimeout("MyproductsShow()", 150);
+    function MyproductsShow() {
+        if (!jQuery.isEmptyObject(deleteProdcut)) {
+            $.each(deleteProdcut, function (index, items) {
+                $("input[type='checkbox'][value='" + items + "']").iCheck('check');
+            });
+        }
+    }
+
+
+    function Searchkeys() {
+        var serachkey = $("#VMyProducts_keywords").val().replace(/\s/g, "");
+        location.href = "?keyWord=" + escape(serachkey);
+    }
+    function RemoveCookieProductId() {
+        var valstr = JSON.stringify(deleteProdcut);
+        $.cookie("DeleteProcutId", valstr);
+    }
+    function SaveDistributorProducts() {
+        if (jQuery.isEmptyObject(deleteProdcut)) {
+            alert_h('请先选择要下架的商品！');
+            return false;
+        }
+
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'POST', dataType: 'json', timeout: 10000,
+            data: { action: "DeleteProducts", Params: JSON.stringify(deleteProdcut) },
+            async: false,
+            success: function (resultData) {
+                $.cookie("DeleteProcutId", null);
+                alert_h('下架成功', function () { location.href = 'MyProducts.aspx' });
+            }
+        });
+    }
+</script>
+<div class="nextstep pbox">
+    <a type="button" class="btn btn-danger btn-block" href="#" onclick="javascript:return SaveDistributorProducts()">
+        下架所选商品</a>
+</div>
+<hi:common_footerdistributor runat="server" />

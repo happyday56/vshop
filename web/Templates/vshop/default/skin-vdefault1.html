@@ -1,0 +1,225 @@
+﻿<hi:common_header runat="server" />
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/index.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/js/swiper/swiper.3.1.7.min.css">
+<script type="text/javascript" src="/style/newcss/js/swiper/swiper.3.1.7.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+<script>
+    window.onload = function () {
+        var slider = new Swiper("#d0", {
+            // 如果需要分页器
+            pagination: '.s0',
+            autoplayDisableOnInteraction: false
+        });
+        var slider1 = new Swiper("#d1", {
+            // 如果需要分页器
+            pagination: '.s1',
+            autoplayDisableOnInteraction: false
+        });
+        //分享
+        doShare();
+    }
+    function doShare() {
+        $("#emgood").click(function () {
+            AddGoodCounts();
+            //alert_h("点赞成功！");
+            //$("#emgood").hide();
+        });
+        $("#emshare").click(function () {
+            $(".share").height($(window).height()).show();
+        });
+        $(".share").click(function () {
+            $(this).hide()
+        })
+    }
+</script>
+<div class="share" style="z-index: 99999;"><img src="/style/newcss/imgs/share.png" alt=""></div>
+<div class="main">
+    <!-- s:顶部分销商信息 -->
+    <div class="top">
+        <img runat="server" id="imgDefaultBg" src="/style/newcss/imgs/index/bg.jpg">
+        <!-- 头像 -->
+        <span class="toux">
+            <!--        <img src="/style/newcss/imgs/tou.jpg">-->
+            <hi:hiimage runat="server" id="imglogo" imageurl="/Utility/pics/headLogo.jpg" />
+        </span>
+    </div>
+    <div class="info">
+        <!-- 分销商名称 -->
+        <p class="p0"><asp:literal id="litstorename" runat="server"></asp:literal></p>
+        <p class="p1"><asp:literal id="litdescription" runat="server"></asp:literal></p>
+        <div class="op">
+            <em id="emgood"><i></i><b>赞一个(<asp:literal id="litGood" runat="server"></asp:literal>)</b></em>
+            <em id="emshare" class="em"><i></i><b>分享</b></em>
+        </div>
+        <div class="share"><img src="/style/newcss/imgs/share.png" alt=""></div>
+    </div>
+    <!-- e:顶部分销商信息 -->
+    <!-- s:顶部导航栏 -->
+    <div class="menu">
+        <ul class="clearfix">
+            <li>
+                <a href="#">
+                    <em></em>
+                    <b>首页</b>
+                </a>
+            </li>
+            <li>
+                <a href="/Vshop/ProductList.aspx?categoryId=6">
+                    <em class="em1"></em>
+                    <b>超值特价</b>
+                </a>
+            </li>
+            <li>
+                <a href="/Vshop/ProductSearch.aspx">
+                    <em class="em2"></em>
+                    <b>分类产品</b>
+                </a>
+            </li>
+            <li>
+                <a href="/Vshop/ProductList.aspx">
+                    <em class="em3"></em>
+                    <b>全部产品</b>
+                </a>
+            </li>
+            <li>
+                <asp:literal id="litAllStore" runat="server"></asp:literal>
+                <!--a href="">
+                    <em class="em4"></em>
+                    <b><a href="http://www.lelch.com.cn/index.php?ac=article&at=list&tid=23">全国门店</a></b>
+                </a-->
+            </li>
+        </ul>
+    </div>
+    <!-- e:顶部导航栏 -->
+    <!-- s:导航栏下方专题图（暂不清楚） -->
+    <!--s:搜索框 -->
+    <div class="input-append clearfix">
+        <input class="form-control" type="text" style="width:85%;float: left;" id="keyword">
+        <button class="btn btn-default" type="button" id="btnSearch">搜索</button>
+    </div>
+    <!--e:搜索框 -->
+
+    <hi:vshoptemplatedrepeater id="rptCategories" visible="true" templatefile="/Tags/skin-Common_HomeCategories.ascx" runat="server">
+        <headertemplate>
+            <div class="mid-nav">
+                <ul class="mid-nav-tags" id="ulcsd">
+        </headertemplate>
+        <footertemplate>
+                </ul>
+            </div>
+        </footertemplate>
+    </hi:vshoptemplatedrepeater>
+
+<!--品牌商官网-->
+<asp:literal id="litStoreAd" runat="server" visible="false"></asp:literal>
+<!--div class="imgwrap"><a href="http://www.lelch.com.cn/index.php?ac=article&at=list&tid=23"><img src="/style/newcss/imgs/index/1.jpg"></a></div-->
+<!-- 活动图显示区 -->
+<asp:literal id="litActivitiesAd" runat="server"></asp:literal>
+<!--div class="imgwrap"><a href=""><img runat="server" id="imgAd" src="/style/newcss/imgs/index/lasad.jpg"></a></div-->
+<!-- e:导航栏下方专题图（暂不清楚） -->
+<!-- s:商品分类区 -->
+<asp:literal id="litCategories" runat="server"></asp:literal>
+
+<!-- e:商品分类区 -->
+<!-- s:实际分类展示商品模式-->
+<asp:literal id="litProducts" runat="server"></asp:literal>
+
+
+<!-- e:实际分类展示商品模式-->
+</div>
+
+
+<ul class="right-tags">
+    <li class="right-tags-service"><a href="/Vshop/SaleService.aspx"></a></li>
+    <li class="right-tags-select"><a href='<asp:literal id="litattention" runat="server"></asp:literal>'></a></li>
+</ul>
+
+<!--<div class="pbox ">
+    <div class="row" id="products">
+        <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_DefaultProducts.ascx"
+                                   runat="server" />
+    </div>
+    <div id="empty" style=" text-align:center;">
+        <img src="/Utility/pics/nonestore.gif" />
+    </div>
+    <nav>
+        <div class="pagination">
+            <%<UI:Pager runat="server" ShowTotalPages="false" DefaultPageSize="50" ID="pager" />%>
+        </div>
+    </nav>
+</div>-->
+<p class="text-center text-des text-muted copyright" style="margin-bottom: 5px;">
+    <hi:licensecontrol runat="server" />
+</p>
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display:none">
+    <asp:literal id="litItemParams"
+                 runat="server"></asp:literal>
+</span>
+<!--<script src="../script/slider.js"></script>-->
+<script type="text/javascript" charset="utf-8">$("img").lazyload();</script>
+<hi:common_footer runat="server" />
+<script type="text/javascript">
+    $("#emshare").click(function () {
+        $(".share").height($(window).height()).show();
+    });
+
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = $.trim(NoSetItems.split('|')[1]);
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+
+    WinXinShareMessage(title, Dec, link, imgUrl);
+    //微信分享接口结束
+
+    $(function () {
+        $(".right").unbind("click");
+        $("#btnSearch").click(function () {
+            if ($("#keyword").val())
+                location.href = "/Vshop/ProductList.aspx?categoryId=&keyWord=" + $("#keyword").val();
+        });
+    })
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    function AddGoodCounts() {
+        var data = {};
+        data.ReferralId = getQueryString("ReferralId");
+
+        $.post("/api/VshopProcess.ashx?action=AddGoodCounts", data, function (json) {
+            if (json.success === true) {
+                alert_h('点赞成功！');
+            }
+        });
+    }
+
+</script>

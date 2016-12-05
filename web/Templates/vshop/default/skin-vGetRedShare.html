@@ -1,0 +1,28 @@
+﻿<hi:common_header runat="server" />
+    <div class="pbox well redpagershow">
+    <img src="/images/sharp.png" style="width: 100%;height: 100%;" id="imgGetRedPager" >
+</div>
+    
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display:none">
+    <asp:literal id="litItemParams"
+                 runat="server"></asp:literal>
+</span>
+<script>
+    var Items = $("#ItemParams").text();
+    var title;
+    var link;
+    var imgUrl;
+   
+    if ($.trim(Items.split('|')[0]) != "") {
+        imgUrl = $.trim(Items.split('|')[0]);
+    }
+    if ($.trim(Items.split('|')[1]) != "") {
+        title = Items.split('|')[1];
+    }
+    if ($.trim(Items.split('|')[2]) != "") {
+        link = Items.split('|')[2];
+    }
+    WinXinShareMessage(title, "数量有限先到先得，快来点我抢哦～", link, imgUrl);
+</script>
+<hi:common_footer runat="server" />

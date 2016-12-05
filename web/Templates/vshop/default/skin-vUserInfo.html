@@ -1,0 +1,142 @@
+﻿<hi:common_header runat="server" />
+<div class="pbox fill_info well">
+     <form id="form" role="form" class="clearfix apply">
+    <label for="txtUserName">
+        帐号名</label>
+    <input id="txtUserName" type="text" disabled="disabled" runat="server" clientidmode="Static"
+        class="form-control" placeholder="请填写您的昵称">
+   <label for="txtRealName">
+                姓名</label>
+    <input id="txtRealName" type="text" runat="server" clientidmode="Static" class="form-control"
+        placeholder="请填写您的姓名">
+    <label for="txtPhone">
+        手机</label>
+    <input id="txtPhone" type="text" runat="server" clientidmode="Static" class="form-control"
+        placeholder="请填写您的手机号">
+    <label for="txtEmail">
+        QQ</label>
+    <input id="txtEmail" type="text" runat="server" clientidmode="Static" class="form-control"
+        placeholder="请填写您的QQ号码">
+         <label class="EditPwd" style="display:none;">修改密码(点击修改密码)</label>
+    </form>
+</div>
+<div class="pbox well" id="DivPwd" style="padding:10px;">
+
+    <div class="form-group">
+        <label for="phone">原密码</label>
+        <input id="txtOldPwd" type="password" placeholder="输入原密码" clientidmode="Static" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="phone">新密码</label>
+        <input id="txtNewPwd" type="password" placeholder="输入6-15位数密码" clientidmode="Static" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="phone">确认密码</label>
+        <input id="txtAgainNewPwd" type="password" placeholder="输入6-15位数密码" clientidmode="Static" class="form-control">
+    </div>
+    <div class="pbox"><button id="btnEditpwd"   type="button" class="btn btn-danger btn-block">确定修改</button></div>
+
+</div>
+<div class="pbox"><button id="btnSetUserName" type="button"  style="width:100%" class="btn btn-danger btn-block">保存用户信息</button></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSetUserName").bind("click", function () { SetUserName(); }); //设置新昵称
+        $("#btnEditpwd").bind("click", function () { EditPassword(); });
+        $("#DivPwd").css("display", "none");
+    });
+    $(".EditPwd").click(function () {
+
+        if ($("#DivPwd").css("display") == "none") {
+            $("#DivPwd").css("display", "block");
+        }
+        else {
+            $("#DivPwd").css("display", "none");
+        }
+    });
+    function EditPassword() {
+        var oldPwd = $.trim($("#txtOldPwd").val());
+        var password = $.trim($("#txtNewPwd").val());
+        var passagain = $.trim($("#txtAgainNewPwd").val());
+        
+        if (oldPwd.length < 6) {
+            alert_h('原密码至少要6个字符');
+            return;
+        }
+        if (password.length < 6) {
+            alert_h('密码至少要6个字符');
+            return;
+        }
+        if (oldPwd == "") {
+            alert_h("原密码不能为空！");
+            return;
+        }
+        if (password == "") {
+            alert_h("新密码不能为空！");
+            return;
+        }
+        if (passagain == "") {
+            alert_h("确认密码不能为空！");
+            return;
+        }
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "EditPassword", oldPwd: $("#txtOldPwd").val(), password: $("#txtNewPwd").val(), passagain: $("#txtAgainNewPwd").val() },
+            success: function (resultData) {
+                if (resultData.Status == "OK") {
+                    alert_h("密码成功！", function () {
+                        $("#txtOldPwd").val("");
+                        $("#txtNewPwd").val("");
+                        $("#txtAgainNewPwd").val("");
+                    });
+                }
+                else {
+                    if (resultData.Status == "-1") {
+                        alert_h("用户不存在！");
+                    }
+                    else if (resultData.Status == "-3") {
+                        alert_h("密码修改失败！");
+                    }
+                    else if (resultData.Status == "-4") {
+                        alert_h("原密码错误！");
+                    }
+                    else {
+                        alert_h("两次密码输入不正确！");
+                    }
+
+                }
+            }
+        });
+    }
+    function SetUserName() {
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "SetUserName", userName: $("#txtUserName").val(), RealName: $("#txtRealName").val(), CellPhone: $("#txtPhone").val(), QQ: $("#txtEmail").val()},
+            success: function (resultData) {
+                if (resultData.Status == "OK") {
+                    alert_h("修改用户信息成功", function () {
+                        var returnURL = window.location.search.substr(window.location.search.indexOf("returnUrl=") + 10);
+                        if (window.location.search.indexOf("returnUrl=") != -1) {
+                            location.href = decodeURIComponent(returnURL);
+                        } else {
+                            location.href = "/Vshop/MemberCenter.aspx";
+                        }
+
+                    });
+
+                }
+                else {
+                    alert_h("修改用户信息失败, 请重试");
+                }
+            }
+        });
+    }
+</script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_footer runat="server" />

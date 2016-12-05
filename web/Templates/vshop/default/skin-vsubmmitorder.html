@@ -1,0 +1,241 @@
+﻿<!--<a id="aLinkToShipping" runat="server" />-->
+<!--   <input type="hidden" id="hiddenCartTotal" runat="server" />
+    </div>
+    <div class="ui_gap">
+        <a id="a1" class="mod_btn btn_strong btn_block">提交订单</a>
+    </div>
+-->
+<hi:common_header runat="server" />
+   	<div class="shoppingStepBar clearfix">  
+        <div class="step active text-left"><em style="margin-left: -8px;">购物车</em><div class="glyphicon glyphicon-ok"></div><i style="border-bottom:2px solid #8cc152;"></i></div>                  
+        <div class="step active text-center"><em>确认订单</em><div class="glyphicon glyphicon-ok"></div></div>
+        <div class="step text-right"><em style="margin-right: -14px;">下单成功</em><div class="glyphicon glyphicon-ok"></div><i></i></div>            
+	</div>
+    <hr />
+    <div class="well clearfix">
+    <div class="btn-group rptAddress">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <asp:literal runat="server" id="litShipTo" />
+            <asp:literal runat="server" id="litCellPhone" />
+            <asp:literal runat="server" id="litAddress" />
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu " role="menu">
+            <hi:vshoptemplatedrepeater id="rptAddress" templatefile="/Tags/skin-Common_Addresses.ascx" runat="server" />
+            <li class="divider"></li>
+            <li><a <asp:literal runat="server" id="litAddAddress" />>新增收货地址</a></li>
+        </ul>
+        <input type="hidden" runat="server" clientidmode="Static" id="selectShipTo" />
+    </div>
+    <div class="btn-group selectShipToDate">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">时间不限<span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#" name="时间不限">时间不限</a></li>
+            <li><a href="#" name="周一至周五">周一至周五</a></li>
+            <li><a href="#" name="周六及公众假期">周六及公众假期</a></li>
+        </ul>
+        <input type="hidden" runat="server" clientidmode="Static" id="selectShipToDate" value="时间不限" />
+    </div>
+    <div class="btn-group selectShippingType">
+        <hi:common_shippingtypeselect id="dropShippingType" runat="server" />
+        <input type="hidden" runat="server" clientidmode="Static" id="selectShippingType" />
+    </div>
+    <div class="btn-group selectPaymentType">
+        <hi:common_paymenttypeselect runat="server" />
+        <input type="hidden" runat="server" clientidmode="Static" id="selectPaymentType" />
+    </div>
+    <div class="btn-group redpager">
+        <hi:common_userredpagerselect id="dropRedPager" cssclass="mod_select" runat="server" />
+        <input type="hidden" runat="server" clientidmode="Static" id="selectRedPager" />
+    </div>
+    <div class="btn-group coupon">
+        <hi:common_couponselect id="dropCoupon" cssclass="mod_select" runat="server" />
+        <input type="hidden" runat="server" clientidmode="Static" id="selectCoupon" />
+    </div>
+    <div class="panel panel-default" style="display:none">
+        <div class="panel-heading order-shopcart">
+            <h3 class="panel-title">订单商品</h3>
+            <a id="orderProductsChange" href="/vshop/shoppingCart.aspx">修改</a>
+        </div>
+        <div class="panel-body goods-list-p">
+            <hi:vshoptemplatedrepeater id="rptCartProducts" templatefile="/Tags/skin-Common_SubmmitCartProducts.ascx" runat="server" />
+        </div>
+    </div>
+    <input type="text" class="form-control" id="idcard" style='<asp:literal runat="server" id="litIdCard" />' placeholder="身份证号码"/>
+    <textarea id="remark" class="form-control" rows="3" placeholder="订单备注（选填）"></textarea>
+    <div class="last" style="float: right;">
+        <p class="virtualPoints"><asp:literal runat="server" id="litVPName" />：<asp:literal runat="server" id="litVirtualPointsAll" />元  <span id="vpBranch" style="display:none;"><asp:literal runat="server" id="litVirtualPoints" /></span>本次使用：<span id="vpYuan">0</span>元 　<input id="ckbVirtualPoints" data-value="0" name="Points" type="checkbox" /></p>
+        <p class="">商品金额：<span>¥<asp:literal runat="server" id="litProductTotalPrice" /></span></p>
+        <p class=""><span>优惠减免：</span><span>¥<asp:literal runat="server" id="litExemption" /></span></p>
+        <p class="shippingTypes">运费金额：<span>¥<label style="font-weight: normal; margin-bottom: 0;" id="shipcost">0.00</label></span></p>
+        <p class="coupon">优惠券抵扣：<span>¥<label style="font-weight: normal; margin-bottom:0;" id="couponcost">0.00</label></span></p>
+        <p class="redpager">代金券抵扣：<span>¥<label style="font-weight: normal; margin-bottom:0;" id="redpagercost">0.00</label></span></p>
+        <p class="">应付总额：<span><strong class="text-danger">¥<label id="total" style="margin-bottom: 0;"><asp:literal runat="server" id="litOrderTotal" /></label></strong></span></p>
+    </div> 
+    </div>
+    <div class="pbox">
+        <button type="button" class="btn btn-danger btn-block" id="aSubmmitorder">提交订单</button>
+    </div>
+    <input type="hidden" id="regionId" runat="server" clientidmode="Static" />
+    <input type="hidden" id="groupbuyHiddenBox" runat="server" clientidmode="Static" />
+<script>
+    $('.rptAddress li a').click(function () {
+        $('.rptAddress button').html($(this).attr('briefAddress') + '<span class="caret"></span>');
+        var regionId = $(this).attr('name');
+        var shippingId = $(this).attr('shippingId');
+        $('#selectShipTo').val(shippingId);
+        refreshShippingTypes(regionId);
+
+    });
+
+    $('.selectPaymentType li a').click(function () {
+        $('.selectPaymentType button').html($(this).html() + '<span class="caret"></span>');
+        $('#selectPaymentType').val($(this).attr('name'));
+
+    });
+
+    $('.selectShipToDate li a').click(function () {
+        $('.selectShipToDate button').html($(this).html() + '<span class="caret"></span>');
+        $('#selectShipToDate').val($(this).attr('name'));
+    });
+
+    $('.coupon li a').click(function () {
+        $('.coupon button').html($(this).html() + '<span class="caret"></span>');
+        $('#selectCoupon').val($(this).attr('name'));
+        var oldCouponCost = parseFloat($('#couponcost').html());
+        var newCouponCost = parseFloat($(this).attr('value'));
+        $('#couponcost').html(newCouponCost);
+        var total = parseFloat($('#total').html());
+        total += oldCouponCost;
+        total -= newCouponCost;
+        $('#total').html(total.toFixed(2));
+
+    });
+
+    $('.redpager li a').click(function () {
+        $('.redpager button').html($(this).html() + '<span class="caret"></span>');
+        $('#selectRedPager').val($(this).attr('name'));
+        var oldRedPagerCost = parseFloat($('#redpagercost').html());
+        var newRedPagerCost = parseFloat($(this).attr('value'));
+        $('#redpagercost').html(newRedPagerCost);
+        var total = parseFloat($('#total').html());
+        total += oldRedPagerCost;
+        total -= newRedPagerCost;
+        $('#total').html(total.toFixed(2));
+    });
+
+    function registSelectShippingType() {
+
+        $('.selectShippingType li a').click(function () {
+            $('.selectShippingType button').html($(this).html() + '<span class="caret"></span>');
+            $('#selectShippingType').val($(this).attr('name'));
+
+            var oldShipCost = parseFloat($('#shipcost').html());
+            var newShipCost = parseFloat($(this).attr('value'));
+
+            $('#shipcost').html(newShipCost);
+            var total = parseFloat($('#total').html());
+            total -= oldShipCost;
+            total += newShipCost;
+            $('#total').html(total.toFixed(2));
+        });
+
+    }
+
+    function registSelectVirtualPoints() {
+        $("#vpYuan").text($("#vpBranch").text());
+
+        $(".iCheck-helper").bind("click", function () {
+        
+            var total = parseFloat($('#total').html());
+            var vp = parseFloat($('#vpYuan').html());
+
+            if (!$(this).parent().hasClass("checked")) {
+                total += vp;
+                $("#ckbVirtualPoints").attr("data-value", 0);
+            }
+            else {
+                total -= vp;
+                $("#ckbVirtualPoints").attr("data-value", vp);
+            }
+
+            $('#total').html(total.toFixed(2));
+        });
+
+
+    }
+
+    function refreshShippingTypes(regionId) {
+        $.post('/api/vshopprocess.ashx?action=GetShippingTypes',
+         {
+             regionId: regionId,
+             buyAmount: getParam('buyAmount'),
+             productSku: getParam('productSku'),
+             groupBuyId: $('#groupbuyHiddenBox').val()
+         },
+         function (shippingTypes) {
+             $('#shippingTypeUl li').remove();
+             var html = '';
+             $.each(shippingTypes.data, function (i, shippingType) {
+                 html += '<li><a href="#" name="' + shippingType.modelId + '" value="' + shippingType.freight + '">' + shippingType.text + '</a></li>';
+             });
+             $('.selectShippingType button').html('请选择配送方式<span class="caret"></span>');
+             $('#shippingTypeUl').html(html);
+             $('#selectShippingType').val('');
+
+             //修改总价
+             var oldShipCost = parseFloat($('#shipcost').html());
+             var total = parseFloat($('#total').html());
+             total -= oldShipCost;
+             $('#total').html(total.toFixed(2));
+             $('#shipcost').html('0.00');
+             registSelectShippingType();
+             //设置默认快递和支付方式
+             initShopingType();
+         }, "json");
+    }
+    
+    $(function () {
+
+        registSelectShippingType();
+
+        registSelectVirtualPoints();
+        
+        //团购时，去掉货到付款
+        if (getParam('from') == "groupBuy") {
+            $('#selectPaymentType a[name="0"]').parent().remove();
+            $('.coupon').hide();
+            $('.redpager').hide();
+            $('.detailLink').attr('href', '/vshop/GroupBuyProductDetails.aspx?groupBuyId=' + getParam('groupbuyId'));
+            $('#orderProductsChange').hide();
+        }
+
+        if (getParam('from') == 'signBuy')
+            $('#orderProductsChange').hide();
+
+        if ($('.coupon li').length == 0)
+            $('.coupon').hide();
+
+        if ($('.redpager li').length == 0)//明天修改后开启
+            $('.redpager').hide();
+
+        var regionId = $('#regionId').val();
+        refreshShippingTypes(regionId);
+       
+    });
+    
+    function initShopingType() {
+        //默认快递和付款方式
+        $('.selectPaymentType li a:eq(0)').click();
+        $('.selectShippingType li a:eq(0)').click();
+    }
+
+</script>
+<script src="/utility/vshoping.helper.js?v=1.1" type="text/javascript"></script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_footer runat="server" />

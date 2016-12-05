@@ -1,0 +1,60 @@
+﻿// Metadata version: v4.0.30319
+.assembly extern mscorlib
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 4:0:0:0
+}
+.assembly extern System
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 4:0:0:0
+}
+.assembly extern System.Web
+{
+  .publickeytoken = (B0 3F 5F 7F 11 D5 0A 3A )                         // .?_....:
+  .ver 4:0:0:0
+}
+.assembly Hishop.Components.Validation
+{
+  .custom instance void [mscorlib]System.Reflection.AssemblyTitleAttribute::.ctor(string) = ( 01 00 1C 48 69 73 68 6F 70 2E 43 6F 6D 70 6F 6E   // ...Hishop.Compon
+                                                                                              65 6E 74 73 2E 56 61 6C 69 64 61 74 69 6F 6E 00   // ents.Validation.
+                                                                                              00 ) 
+  .custom instance void [mscorlib]System.Reflection.AssemblyDescriptionAttribute::.ctor(string) = ( 01 00 1C 48 69 73 68 6F 70 2E 43 6F 6D 70 6F 6E   // ...Hishop.Compon
+                                                                                                    65 6E 74 73 2E 56 61 6C 69 64 61 74 69 6F 6E 00   // ents.Validation.
+                                                                                                    00 ) 
+  .custom instance void [mscorlib]System.Security.AllowPartiallyTrustedCallersAttribute::.ctor() = ( 01 00 00 00 ) 
+  .custom instance void [mscorlib]System.Reflection.AssemblyFileVersionAttribute::.ctor(string) = ( 01 00 0B 31 2E 30 2E 30 2E 31 39 30 38 38 00 00 ) // ...1.0.0.19088..
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilationRelaxationsAttribute::.ctor(int32) = ( 01 00 08 00 00 00 00 00 ) 
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.RuntimeCompatibilityAttribute::.ctor() = ( 01 00 01 00 54 02 16 57 72 61 70 4E 6F 6E 45 78   // ....T..WrapNonEx
+                                                                                                             63 65 70 74 69 6F 6E 54 68 72 6F 77 73 01 )       // ceptionThrows.
+
+  // --- 下列自定义属性会自动添加，不要取消注释 -------
+  //  .custom instance void [mscorlib]System.Diagnostics.DebuggableAttribute::.ctor(valuetype [mscorlib]System.Diagnostics.DebuggableAttribute/DebuggingModes) = ( 01 00 03 00 00 00 00 00 ) 
+
+  .custom instance void [mscorlib]System.Security.SecurityTransparentAttribute::.ctor() = ( 01 00 00 00 ) 
+ .publickey = (00 24 00 00 04 80 00 00 94 00 00 00 06 02 00 00   // .$..............
+                00 24 00 00 52 53 41 31 00 04 00 00 01 00 01 00   // .$..RSA1........
+                D1 E0 6A E2 76 9C C4 A4 DB B5 B3 29 CC D5 69 43   // ..j.v......)..iC
+                CB 01 5C 1A 65 A6 22 29 53 44 ED 5C 93 6C 3E 92   // ..\.e.")SD.\.l>.
+                7E 04 6F 1E 6A F4 1B 11 C1 D2 18 C9 43 A3 D5 10   // ~.o.j.......C...
+                3B 1C 15 55 B5 25 67 8A 29 7F 8D 6C 94 1F D6 EF   // ;..U.%g.)..l....
+                D6 39 E8 22 7A 00 25 38 38 B4 55 D8 97 92 87 81   // .9."z.%88.U.....
+                D1 82 E7 B2 0C E3 77 56 18 70 F9 96 2D 16 3F 02   // ......wV.p..-.?.
+                F8 A0 8F 3A 1C E8 B4 06 D2 D6 E1 09 37 B0 B6 5F   // ...:........7.._
+                6D EE A7 61 53 7F 3B 66 47 A9 D7 BC E3 0B 68 AC ) // m..aS.;fG.....h.
+  .hash algorithm 0x00008004
+  .ver 1:0:0:19088
+}
+.mresource public Hishop.Components.Validation.Properties.Resources.resources
+{
+  // Offset: 0x00000000 Length: 0x00002972
+}
+.module Hishop.Components.Validation.dll
+// MVID: {C4E32D35-0F99-4EA8-A367-F4B2B4829698}
+.imagebase 0x00400000
+.file alignment 0x00000200
+.stackreserve 0x00100000
+.subsystem 0x0003       // WINDOWS_CUI
+.corflags 0x00000003    //  ILONLY 32BITREQUIRED
+// Image base: 0x01680000
+

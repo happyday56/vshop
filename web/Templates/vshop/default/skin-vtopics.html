@@ -1,0 +1,22 @@
+﻿<Hi:Common_Header runat="server" />
+<Hi:HiImage runat="server" ID="imgUrl" class="img-responsive" />
+    <p class="text-center list-empty hide">
+        没有找到相关商品
+    </p>
+    <div class="goods-detail pbox bgColor-white">
+         <asp:Literal runat="server" ID="litContent" />
+    </div>
+    <div class="pbox">
+         <Hi:VshopTemplatedRepeater ID="rptProducts" TemplateFile="/Tags/skin-Common_TopicProducts.ascx" runat="server" />  
+        
+<!--        <ul class="pager">
+            <li class="previous"><a href="#">上一页</a></li>
+            <li class="next disabled"><a href="#">下一页</a></li>
+        </ul>-->
+  </div>
+
+<Hi:Common_Footer runat="server" />
+
+
+
+

@@ -1,0 +1,61 @@
+﻿<hi:common_header runat="server" />
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/style/newcss/css/shouiyi.css">
+
+    <div class="order_maneger wenan">
+        <!--div class="hr hr2"><span class="s0"></span></!--div>
+        <div class="table wen_top">
+            <a href="" class="table_cell">
+                <p>今日文案</p>
+            </a>
+            <a href="" class="table_cell">
+                <p><span>热卖产品<i>5</i></span></p>
+            </a>
+            <a href="" class="table_cell">
+                <p>纸尿裤</p>
+            </a>
+            <a href="" class="table_cell">
+                <p>全部产品</p>
+            </a>
+        </div-->
+        <asp:literal id="litProductList" runat="server"></asp:literal>
+    </div>
+    <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+    <script>
+        function SwitchShare(obj) {
+
+            //微信分享接口开始
+            //var Items = $("#ItemParams").text();
+            var Items = $(obj).text();
+            var SetItems = Items.split('$')[0];
+            var NoSetItems = Items.split('$')[1];
+            var title;
+            var link;
+            var imgUrl;
+            var Dec;
+            if ($.trim(SetItems.split('|')[0]) != "") {
+                imgUrl = $.trim(SetItems.split('|')[0]);
+            }
+            else {
+                imgUrl = $.trim(NoSetItems.split('|')[0]);
+            }
+            if ($.trim(SetItems.split('|')[1]) != "") {
+                title = SetItems.split('|')[1];
+            }
+            else {
+                title = NoSetItems.split('|')[1];
+            }
+            if ($.trim(SetItems.split('|')[2]) != "") {
+                Dec = SetItems.split('|')[2];
+            }
+            else {
+                Dec = $.trim(NoSetItems.split('|')[2]);
+            }
+            link = NoSetItems.split('|')[3];
+            WinXinShareMessage(title, Dec, link, imgUrl);
+            //微信分享接口结束
+
+        }
+        
+    </script>
+<hi:common_footerno runat="server" />

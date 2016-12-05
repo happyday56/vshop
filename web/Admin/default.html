@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<script src="../Utility/jquery-1.6.4.min.js"></script>
+<script src="../Utility/jquery.cookie.js"></script>
+<script src="../Utility/jquery.artDialog.js"></script>
+<script src="../Utility/iframeTools.js"></script>
+<script src="js/Frame.js"></script>
+<link rel="stylesheet" type="text/css" href="css/frame.css">
+<link rel="stylesheet" type="text/css" href="../Utility/skins/blue.css">
+<title>无标题文档</title>
+    <script>
+        //IFrame弹出
+        function DialogFrame(url, title_tip, w_width, h_height) {
+            var tmpwidth = 900;
+            var tmpheight = 520;
+            if (w_width != null) {
+                tmpwidth = w_width;
+            }
+            if (h_height != null) {
+                tmpheight = h_height;
+            }
+            if (tmpwidth != 0) {
+                if (tmpheight != 0) {
+                    art.dialog.open(url, { title: title_tip, width: tmpwidth, height: tmpheight }, true);
+                } else {
+                    art.dialog.open(url, { title: title_tip, width: tmpwidth }, true);
+                }
+            } else {
+                if (tmpheight != 0) {
+                    art.dialog.open(url, { title: title_tip, height: tmpheight }, true);
+                } else {
+                    art.dialog.open(url, { title: title_tip }, true);
+                }
+            }
+           
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="hishop_head">
+	<div class="hishop_logo"><img src="images/logogo.png" class="pngFix" /><span style="position:relative; top:-10px; margin-left:10px; color:#fff;"></span></div>
+	<div class="hishop_banner">
+    	<div class="hishop_con2"> 
+			<div class="hishop_banneritem">
+				<p>
+					<img src="images/ren.png" /> <a>shop</a>,欢迎回来　<a><font color="#FBD711">admin</font></a>　<a href="LoginExit.aspx"><strong>[安全退出]</strong></a>
+					<a target="_blank" href="../Vshop/Default.aspx"><img src="images/font.png" />浏览前台</a><span><img src="images/split.jpg" /></span>
+					<a href="Default.aspx"><img src="images/zm.png" />桌面</a>
+				</p>
+			</div>
+			<div class="hishop_menu">
+              <!--  <a onclick="ShowMenuLeft('微配置',null,null)">微配置</a>
+                <a onclick="ShowMenuLeft('微会员',null,null)">微会员</a>
+                <a onclick="ShowMenuLeft('微营销',null,null)">微营销</a>
+				<a onclick="ShowMenuLeft('微商品',null,null)">微商品</a>
+                <a onclick="ShowMenuLeft('微分销',null,null)">微分销</a>
+				<a onclick="ShowMenuLeft('微订单',null,null)">微订单</a>
+                <a onclick="ShowMenuLeft('微统计',null,null)">微统计</a>                
+				<a onclick="ShowMenuLeft('系统工具',null,null)">系统工具</a>-->	
+			</div>
+        </div>
+	</div>
+</div>
+
+<div class="hishop_content">
+	<div class="hishop_menu_scroll">
+		<div id="menu_left">
+
+		</div>
+	</div>
+	<div id="menu_arrow" class="close_arrow" onclick="javascript:ExpendMenuLeft()" style="display:none"></div>
+	<div class="hishop_content_r">
+		<iframe id="frammain" name="frammain" class="framecontent" runat="server" src="Default.aspx" frameborder="no" border="0" scrolling="auto"></iframe>
+	</div>
+</div>
+
+</body>
+</html>

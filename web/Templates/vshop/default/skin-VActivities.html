@@ -1,0 +1,48 @@
+﻿<hi:common_header runat="server" />
+<style>
+    .list-group .title { font-size: 16px; font-weight: bold; }
+    .list-group .validdate { padding-left: 20px; color: #999999; }
+    .list-group .details { padding-top: 5px; }
+    .list-group .details i { color: #f00; }
+    .list-group .pull-right { margin-top: 8px; }
+</style>
+<div class="list-group">
+     <hi:vshoptemplatedrepeater id="rpActivityList" templatefile="/Tags/skin-Common_ActivityList.ascx" runat="server" />
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".list-group button.btn-success").bind("click", function () {
+            var liRow = $(this);
+            if (!liRow.hasClass("btn-success")) return;
+            var fromData = {};
+            fromData.action = "AttendActivity";
+            fromData.activityId = $(this).attr("data-activityid");
+
+            $.ajax({
+                url: "/api/vshopProcess.ashx",
+                type: 'post', dataType: 'json', timeout: 10000,
+                data: fromData,
+                success: function (resultData) {
+                    if (resultData.Status == "OK") {
+                        liRow.removeClass("btn-success").addClass("btn-defaul").text("参与中");
+                        alert_h("参与活动成功！");
+                    }
+                    else {
+                        alert_h("参与活动失败, 请重试！");
+                    }
+                }
+            });
+
+        });
+
+    });
+
+</script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_footer runat="server" />

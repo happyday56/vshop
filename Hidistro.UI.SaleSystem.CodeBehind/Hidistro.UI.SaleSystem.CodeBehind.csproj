@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B9881A1-A3A3-4DA0-88AE-BEB726E6FF4B}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Hidistro.UI.SaleSystem.CodeBehind</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Hidistro.UI.SaleSystem.CodeBehind</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Hidistro.UI.SaleSystem.CodeBehind.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>C:\BuildDLL\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Hidistro.UI.SaleSystem.CodeBehind.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="VActivities.cs" />
+    <Compile Include="VActivitieDetails.cs" />
+    <Reference Include="NewLife.Core, Version=5.4.5736.38074, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NewLife.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Compile Include="VFind.cs" />
+    <Compile Include="VHoutai.cs" />
+    <Compile Include="VMakeInvite.cs" />
+    <Compile Include="VMy.cs" />
+    <Compile Include="VOrderManager.cs" />
+    <Compile Include="VPLDetails.cs" />
+    <Compile Include="VChirldrenDistributorsDetails.cs" />
+    <Compile Include="VDistributorRegister.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ControlHelper.cs" />
+    <Compile Include="ExpressData.cs" />
+    <Compile Include="PaymentTemplatedWebControl.cs" />
+    <Compile Include="OrderNotify.cs" />
+    <Compile Include="OrderReturn.cs" />
+    <Compile Include="SlideImage.cs" />
+    <Compile Include="DistributorRequest.cs" />
+    <Compile Include="VBalanceDrawRequesList.cs" />
+    <Compile Include="VChirldrenDistributors.cs" />
+    <Compile Include="VChooseProducts.cs" />
+    <Compile Include="VCommissionDetails.cs" />
+    <Compile Include="VDefault.cs" />
+    <Compile Include="VDistributorCenter.cs" />
+    <Compile Include="VDistributorCommission.cs" />
+    <Compile Include="VDistributorInfo.cs" />
+    <Compile Include="VDistributorOrders.cs" />
+    <Compile Include="VGetRedShare.cs" />
+    <Compile Include="VGetSuccess.cs" />
+    <Compile Include="VGroupBuyList.cs" />
+    <Compile Include="VGroupBuyProductDetail.cs" />
+    <Compile Include="VInvite.cs" />
+    <Compile Include="VInvite_complated.cs" />
+    <Compile Include="VInvite_login.cs" />
+    <Compile Include="VInvite_open.cs" />
+    <Compile Include="VInvite_success.cs" />
+    <Compile Include="VMemberCard.cs" />
+    <Compile Include="VMemberCoupons.cs" />
+    <Compile Include="VMyRanking.cs" />
+    <Compile Include="VMyRedPager.cs" />
+    <Compile Include="VMyProducts.cs" />
+    <Compile Include="VBusinessArticleDetails.cs" />
+    <Compile Include="VBusinessArticleList.cs" />
+    <Compile Include="VProductListTwo.cs" />
+    <Compile Include="VProductListAll.cs" />
+    <Compile Include="VProductSearch.cs" />
+    <Compile Include="VGetRedPager.cs" />
+    <Compile Include="VRequestCommissions.cs" />
+    <Compile Include="VRequestDistributorFinish.cs" />
+    <Compile Include="VShoppingCartEmpty.cs" />
+    <Compile Include="VShoueyi.cs" />
+    <Compile Include="VSubmmitOrder.cs" />
+    <Compile Include="VTopics.cs" />
+    <Compile Include="VProductDetails.cs" />
+    <Compile Include="VProductDescription.cs" />
+    <Compile Include="VShoppingCart.cs" />
+    <Compile Include="VShippingAddresses.cs" />
+    <Compile Include="VAddShippingAddress.cs" />
+    <Compile Include="VMemberCenter.cs" />
+    <Compile Include="VEditShippingAddress.cs" />
+    <Compile Include="VFinishOrder.cs" />
+    <Compile Include="VBigWheel.cs" />
+    <Compile Include="VVote.cs" />
+    <Compile Include="VScratch.cs" />
+    <Compile Include="VActivity.cs" />
+    <Compile Include="VWenan.cs" />
+    <Compile Include="VWinningResults.cs" />
+    <Compile Include="VProductList.cs" />
+    <Compile Include="VSmashEgg.cs" />
+    <Compile Include="VSignUp.cs" />
+    <Compile Include="VImageTextDetails.cs" />
+    <Compile Include="VTicket.cs" />
+    <Compile Include="VLoginGuide.cs" />
+    <Compile Include="VLogin.cs" />
+    <Compile Include="VProductConsultations.cs" />
+    <Compile Include="VMyConsultations.cs" />
+    <Compile Include="VProductReview.cs" />
+    <Compile Include="VMyFavorites.cs" />
+    <Compile Include="VMyLogistics.cs" />
+    <Compile Include="VUserInfo.cs" />
+    <Compile Include="VBrandDetail.cs" />
+    <Compile Include="VBrandList.cs" />
+    <Compile Include="VMemberOrders.cs" />
+    <Compile Include="VMemberOrderDetails.cs" />
+    <Compile Include="VUserLogin.cs" />
+    <Compile Include="VRegister.cs" />
+    <Compile Include="VSaleService.cs" />
+    <Compile Include="VFriendsCircle.cs" />
+    <Compile Include="VNameCard.cs" />
+    <Compile Include="VQRcode.cs" />
+    <Compile Include="VHelper.cs" />
+    <Compile Include="VLoginOut.cs" />
+    <Compile Include="VApplicationDescription.cs" />
+    <Compile Include="VActivityDetail.cs" />
+    <Compile Include="VMemberOrderReturn.cs" />
+    <Compile Include="VMemberOrderReturnGoods.cs" />
+    <Compile Include="VRequestReturn.cs" />
+    <Compile Include="VProgressCheck.cs" />
+    <Compile Include="VProgressDetail.cs" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPNET.WebControls\ASPNET.WebControls.csproj">
+      <Project>{F0DA0440-2739-482A-8F9B-651D9AA06ECA}</Project>
+      <Name>ASPNET.WebControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlPanel\ControlPanel.csproj">
+      <Project>{fc8aed53-44fa-40a9-96ae-bbfc8c8effa7}</Project>
+      <Name>ControlPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Core\Hidistro.Core.csproj">
+      <Project>{4F98DDDB-C05A-4A71-8400-BC5F790CC8DF}</Project>
+      <Name>Hidistro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Entities\Hidistro.Entities.csproj">
+      <Project>{71E1154B-E640-414D-AA73-57A7F4589BA2}</Project>
+      <Name>Hidistro.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.SaleSystem.Vshop\Hidistro.SaleSystem.Vshop.csproj">
+      <Project>{9996FF6B-6624-42B7-BCD4-7234A7E9493B}</Project>
+      <Name>Hidistro.SaleSystem.Vshop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.Common.Controls\Hidistro.UI.Common.Controls.csproj">
+      <Project>{532E98E3-5752-43DF-934E-5EB49FF11E48}</Project>
+      <Name>Hidistro.UI.Common.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.SaleSystem.Tags\Hidistro.UI.SaleSystem.Tags.csproj">
+      <Project>{7C9B9D24-47EF-4809-AC7A-5F4F17349266}</Project>
+      <Name>Hidistro.UI.SaleSystem.Tags</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Plugins\Hishop.Plugins.csproj">
+      <Project>{672CF77B-93C2-4453-8917-E81585968F32}</Project>
+      <Name>Hishop.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

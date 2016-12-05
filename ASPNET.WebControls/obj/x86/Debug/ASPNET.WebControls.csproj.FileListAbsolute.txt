@@ -1,0 +1,4 @@
+C:\BuildDLL\ASPNET.WebControls.dll
+C:\BuildDLL\ASPNET.WebControls.pdb
+D:\wfx3.0\ASPNET.WebControls\obj\x86\Debug\ASPNET.WebControls.dll
+D:\wfx3.0\ASPNET.WebControls\obj\x86\Debug\ASPNET.WebControls.pdb

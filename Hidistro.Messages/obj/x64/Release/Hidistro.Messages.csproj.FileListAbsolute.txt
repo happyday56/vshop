@@ -1,0 +1,5 @@
+C:\BuildDLL\Hidistro.Messages.dll
+C:\BuildDLL\Hidistro.Messages.pdb
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Messages\obj\x64\Release\Hidistro.Messages.csprojResolveAssemblyReference.cache
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Messages\obj\x64\Release\Hidistro.Messages.dll
+D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Messages\obj\x64\Release\Hidistro.Messages.pdb

@@ -1,0 +1,197 @@
+
+using Hidistro.Core;
+using Hidistro.UI.Common.Controls;
+using System;
+using System.Collections.Specialized;
+using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Web;
+
+namespace Hidistro.UI.Web.API
+{
+	public class UpImg : IHttpHandler
+	{
+		private string AAbiuZJB;
+
+		private string ABdcZUiWNfsGNbV(oArVIo9LHFJa;
+
+		private string AC1i0jG2xGfm5fNZF0eB;
+
+		private string ADBKjZAhy35YJKiZb)12jfe;
+
+		public bool IsReusable
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		public UpImg()
+		{
+		}
+
+		private void AAbiuZJB(HttpContext httpContext, string str)
+		{
+			if (httpContext.Request.Files.Count == 0)
+			{
+				this.ADBKjZAhy35YJKiZb)12jfe(httpContext, "oWwJZ8BoS20wUvtOVU+HZfZO"));
+				return;
+			}
+			HttpPostedFile item = httpContext.Request.Files[0];
+			for (int i = 1; item.ContentLength == 0 && i < httpContext.Request.Files.Count; i++)
+			{
+				item = httpContext.Request.Files[i];
+			}
+			if (item.ContentLength == 0)
+			{
+				this.ADBKjZAhy35YJKiZb)12jfe(httpContext, "U19NUodl9k6hbAln+05VT4VRuVs="));
+				return;
+			}
+			if (item.ContentType.ToLower().StartsWith("aQBtAGEAZwBlAC8A")) && Regex.IsMatch(Path.GetExtension(item.FileName.ToLower()), "XAAuACgAagBwAGcAfABnAGkAZgB8AHAAbgBnAHwAYgBtAHAAfABqAHAAZQBnACkAJAA="), RegexOptions.Compiled))
+			{
+				this.AC1i0jG2xGfm5fNZF0eB(httpContext, item, str);
+				return;
+			}
+			this.ADBKjZAhy35YJKiZb)12jfe(httpContext, "h2X2Tnt8i1cZle+LDP/3iwmQ6WIJZ0hlhHb+Vkdyh2X2Tg=="));
+		}
+
+		private void ABdcZUiWNfsGNbV(oArVIo9LHFJa(HttpContext httpContext, string str)
+		{
+			string str1 = httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, httpContext.Request.Form[string.Concat(this.AAbiuZJB, "XwB1AHAAbABvAGEAZABlAGQASQBtAGEAZwBlAFUAcgBsAA=="))]));
+			string str2 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwA0ADAAXAA0ADAAXwA=");
+			string str3 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwA2ADAAXAA2ADAAXwA=");
+			string str4 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwAxADAAMABcADEAMAAwAF8A");
+			string str5 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwAxADYAMABcADEANgAwAF8A");
+			string str6 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwAxADgAMABcADEAOAAwAF8A");
+			string str7 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwAyADIAMABcADIAMgAwAF8A");
+			string str8 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwAzADEAMABcADMAMQAwAF8A");
+			string str9 = str1.Replace("XABpAG0AYQBnAGUAcwBcAA==", "XAB0AGgAdQBtAGIAcwA0ADEAMABcADQAMQAwAF8A");
+			if (File.Exists(str1))
+			{
+				File.Delete(str1);
+			}
+			if (str == "MQA="))
+			{
+				if (File.Exists(str2))
+				{
+					File.Delete(str2);
+				}
+				if (File.Exists(str3))
+				{
+					File.Delete(str3);
+				}
+				if (File.Exists(str4))
+				{
+					File.Delete(str4);
+				}
+				if (File.Exists(str5))
+				{
+					File.Delete(str5);
+				}
+				if (File.Exists(str6))
+				{
+					File.Delete(str6);
+				}
+				if (File.Exists(str7))
+				{
+					File.Delete(str7);
+				}
+				if (File.Exists(str8))
+				{
+					File.Delete(str8);
+				}
+				if (File.Exists(str9))
+				{
+					File.Delete(str9);
+				}
+			}
+			httpContext.Response.Write(string.Concat("PABzAGMAcgBpAHAAdAAgAHQAeQBwAGUAPQAiAHQAZQB4AHQALwBqAGEAdgBhAHMAYwByAGkAcAB0ACIAPgB3AGkAbgBkAG8AdwAuAHAAYQByAGUAbgB0AC4ARABlAGwAZQB0AGUAQwBhAGwAbABiAGEAYwBrACgAJwA="), this.AAbiuZJB, "JwApADsAPAAvAHMAYwByAGkAcAB0AD4A")));
+		}
+
+		private void AC1i0jG2xGfm5fNZF0eB(HttpContext httpContext, HttpPostedFile httpPostedFile, string str)
+		{
+			string str1 = "LwBzAHQAbwByAGEAZwBlAC8AZABhAHQAYQAvAGcAcgBhAGQAZQA=");
+			Guid guid = Guid.NewGuid();
+			string str2 = string.Concat(guid.ToString("TgA="), CultureInfo.InvariantCulture), Path.GetExtension(httpPostedFile.FileName));
+			string str3 = string.Concat(str1, "LwBpAG0AYQBnAGUAcwAvAA=="), str2);
+			if (this.ABdcZUiWNfsGNbV(oArVIo9LHFJa.ToLower() == UploadType.SharpPic.ToString().ToLower())
+			{
+				str1 = "LwBTAHQAbwByAGEAZwBlAC8AZABhAHQAYQAvAFMAaABhAHIAcAAvAA==");
+				DateTime now = DateTime.Now;
+				str2 = string.Concat(now.ToString("eQB5AHkAeQBNAE0AZABkAEgASABtAG0AcwBzAA==")), Path.GetExtension(httpPostedFile.FileName));
+				str3 = string.Concat(str1, str2);
+			}
+			else if (this.ABdcZUiWNfsGNbV(oArVIo9LHFJa.ToLower() == UploadType.Vote.ToString().ToLower())
+			{
+				str1 = "LwBTAHQAbwByAGEAZwBlAC8AbQBhAHMAdABlAHIALwB2AG8AdABlAC8A");
+				str3 = string.Concat(str1, str2);
+			}
+			else if (this.ABdcZUiWNfsGNbV(oArVIo9LHFJa.ToLower() == UploadType.Topic.ToString().ToLower())
+			{
+				str1 = "LwBTAHQAbwByAGEAZwBlAC8AbQBhAHMAdABlAHIALwB0AG8AcABpAGMALwA=");
+				str3 = string.Concat(str1, str2);
+			}
+			string str4 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwA0ADAALwA0ADAAXwA="), str2);
+			string str5 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwA2ADAALwA2ADAAXwA="), str2);
+			string str6 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwAxADAAMAAvADEAMAAwAF8A"), str2);
+			string str7 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwAxADYAMAAvADEANgAwAF8A"), str2);
+			string str8 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwAxADgAMAAvADEAOAAwAF8A"), str2);
+			string str9 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwAyADIAMAAvADIAMgAwAF8A"), str2);
+			string str10 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwAzADEAMAAvADMAMQAwAF8A"), str2);
+			string str11 = string.Concat(str1, "LwB0AGgAdQBtAGIAcwA0ADEAMAAvADQAMQAwAF8A"), str2);
+			httpPostedFile.SaveAs(httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str3)));
+			string str12 = httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str3));
+			if (str == "MQA="))
+			{
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str4)), 40, 40);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str5)), 60, 60);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str6)), 100, 100);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str7)), 160, 160);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str8)), 180, 180);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str9)), 220, 220);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str10)), 310, 310);
+				ResourcesHelper.CreateThumbnail(str12, httpContext.Request.MapPath(string.Concat(Globals.ApplicationPath, str11)), 410, 410);
+			}
+			string[] strArrays = new string[] { string.Concat("JwA="), this.ABdcZUiWNfsGNbV(oArVIo9LHFJa, "JwA=")), string.Concat("JwA="), this.AAbiuZJB, "JwA=")), string.Concat("JwA="), str3, "JwA=")), string.Concat("JwA="), str, "JwA=")) };
+			string[] strArrays1 = strArrays;
+			httpContext.Response.Write(string.Concat("PABzAGMAcgBpAHAAdAAgAHQAeQBwAGUAPQAiAHQAZQB4AHQALwBqAGEAdgBhAHMAYwByAGkAcAB0ACIAPgB3AGkAbgBkAG8AdwAuAHAAYQByAGUAbgB0AC4AVQBwAGwAbwBhAGQAQwBhAGwAbABiAGEAYwBrACgA"), string.Join("LAA="), strArrays1), "KQA7ADwALwBzAGMAcgBpAHAAdAA+AA==")));
+		}
+
+		private void ADBKjZAhy35YJKiZb)12jfe(HttpContext httpContext, string str)
+		{
+			string[] strArrays = new string[] { string.Concat("JwA="), this.ABdcZUiWNfsGNbV(oArVIo9LHFJa, "JwA=")), string.Concat("JwA="), this.AAbiuZJB, "JwA=")), string.Concat("JwA="), str, "JwA=")), string.Concat("JwA="), this.ADBKjZAhy35YJKiZb)12jfe, "JwA=")) };
+			string[] strArrays1 = strArrays;
+			httpContext.Response.Write(string.Concat("PABzAGMAcgBpAHAAdAAgAHQAeQBwAGUAPQAiAHQAZQB4AHQALwBqAGEAdgBhAHMAYwByAGkAcAB0ACIAPgB3AGkAbgBkAG8AdwAuAHAAYQByAGUAbgB0AC4ARQByAHIAbwByAEMAYQBsAGwAYgBhAGMAawAoAA=="), string.Join("LAA="), strArrays1), "KQA7ADwALwBzAGMAcgBpAHAAdAA+AA==")));
+		}
+
+		public void ProcessRequest(HttpContext context)
+		{
+			context.Response.ContentType = "dABlAHgAdAAvAHAAbABhAGkAbgA=");
+			this.AAbiuZJB = context.Request.QueryString["dQBwAGwAbwBhAGQAZQByAEkAZAA=")];
+			this.ABdcZUiWNfsGNbV(oArVIo9LHFJa = context.Request.QueryString["dQBwAGwAbwBhAGQAVAB5AHAAZQA=")];
+			this.AC1i0jG2xGfm5fNZF0eB = context.Request.QueryString["YQBjAHQAaQBvAG4A")];
+			this.ADBKjZAhy35YJKiZb)12jfe = context.Request.QueryString["cwBuAGEAaQBsAHQAeQBwAGUA")];
+			context.Response.Clear();
+			context.Response.ClearHeaders();
+			context.Response.ClearContent();
+			context.Response.Expires = -1;
+			try
+			{
+				if (this.AC1i0jG2xGfm5fNZF0eB.Equals("dQBwAGwAbwBhAGQA")))
+				{
+					this.AAbiuZJB(context, this.ADBKjZAhy35YJKiZb)12jfe);
+				}
+				else if (this.AC1i0jG2xGfm5fNZF0eB.Equals("ZABlAGwAZQB0AGUA")))
+				{
+					this.ABdcZUiWNfsGNbV(oArVIo9LHFJa(context, this.ADBKjZAhy35YJKiZb)12jfe);
+				}
+			}
+			catch (Exception exception)
+			{
+				this.ADBKjZAhy35YJKiZb)12jfe(context, exception.Message);
+			}
+		}
+	}
+}

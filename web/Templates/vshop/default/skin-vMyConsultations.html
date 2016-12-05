@@ -1,0 +1,50 @@
+﻿<hi:common_header runat="server" />
+<p class="text-center list-empty hide" id="empty">
+    <span class="glyphicon glyphicon-bell"></span>
+           <em>咨询为空</em>
+</p>
+<div class="pbox">
+    <div id="consulationsList">
+        <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_MyConsultations.ascx"
+            runat="server" />
+    </div>
+    <div id="pager">
+    </div>
+</div>
+<input type="hidden" clientidmode="Static" value="" runat="server" id="txtTotal" />
+
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    vshopPager('pager', $('#txtTotal').val(), 1, 50);
+    $(function () {
+        if (!$.trim($('#consulationsList').html())) {
+            $('.pbox').hide();
+            $('#empty').removeClass('hide');
+        }
+
+        var answerDetails = $('.answerDetail');
+        $.each(answerDetails, function (i, answerDetail) {
+            if (!$.trim($(answerDetail).html()))
+                $(answerDetail).parent().hide();
+        });
+        
+       var list_h = (document.documentElement.clientHeight - 49 - $('.list-empty').height())*.5 + 'px';
+       $('.list-empty').css('margin-top',list_h);
+       
+    });
+
+</script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+
+
+
+
+</script>
+<hi:common_footer runat="server" />

@@ -1,0 +1,65 @@
+﻿<hi:common_header runat="server" />
+<ul class="clearfix orders-title title_bg">
+    <li><a href="MyProducts.aspx">我的商品</a></li>
+    <li class="activenum"><a>全部商品</a></li>
+</ul>
+<div class="pbox clearfix">
+    <div class="clearfix class_goods">
+        <div class="dropdown">
+            <div class="dropdown-toggle search_img" id="dropdownMenu1" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+            <div class="search_input">
+                <input type="text" class="text" runat="server" id="keywords" placeholder="">
+                <span class="glyphicon glyphicon-search" onclick="Searchkeys()"></span>
+            </div>
+            <label>全选<input type="checkbox" name="CheckAll" /></label>
+            <ul class="dropdown-menu submenu" role="menu" aria-labelledby="dropdownMenu1">
+                <hi:vshoptemplatedrepeater id="rpCategorys" templatefile="/Tags/skin-Common_SubCategory.ascx" runat="server" />
+            </ul>
+        </div>
+    </div>
+    <div id="empty" style="text-align: center;"><img src="/Utility/pics/nonestore.gif" /></div>
+    <div id="shops" class="clearfix myproduct">
+        <hi:vshoptemplatedrepeater id="rpChooseProducts" templatefile="/Tags/skin-Common_ChooseProducts.ascx" runat="server" />
+    </div>
+</div>
+<div class="nextstep pbox">
+    <a type="button" class="btn btn-danger btn-block" href="#" onclick="javascript:return SaveDistributorProducts()">上架所选商品</a>
+</div>
+<script>
+    $(function () {
+        if (!$.trim($('#shops').html())) {
+            $('#empty').css('display', '');
+        }
+        else {
+            $('#empty').css('display', 'none');
+        }
+
+    });
+
+    function Searchkeys() {
+        var serachkey = $("#VProductListAll_keywords").val().replace(/\s/g, "");
+        location.href = "?keyWord=" + escape(serachkey);
+    }
+
+    function SaveDistributorProducts() {
+        if (jQuery.isEmptyObject(selectProdcut)) {
+            alert_h('请先选择要上架的商品！');
+            return false;
+        }
+
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'POST', dataType: 'json', timeout: 10000,
+            data: { action: "AddDistributorProducts", Params: JSON.stringify(selectProdcut) },
+            async: false,
+            success: function (resultData) {
+                $.cookie("SelectProcutId", null);
+                location.href = location.href;
+            }
+        });
+    }
+
+</script>
+<hi:common_footerdistributor runat="server" />

@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <log>
+    <OperTime>2015/9/30 11:19:17</OperTime>
+    <nonce_str>1594572</nonce_str>
+    <mch_billno>1267305001201518300000000002</mch_billno>
+    <mch_id>1267305001</mch_id>
+    <wxappid>wx59ea9e7417007f98</wxappid>
+    <nick_name>全婴汇</nick_name>
+    <send_name>全婴汇</send_name>
+    <re_openid>oel6ZwU1jvmWujgO-F_dsKqD-YfI</re_openid>
+    <total_amount>100</total_amount>
+    <min_value>100</min_value>
+    <max_value>100</max_value>
+    <total_num>1</total_num>
+    <wishing>恭喜您提现成功!</wishing>
+    <client_ip>120.25.125.177</client_ip>
+    <act_name>您的提现申请已成功</act_name>
+    <remark>分销商发红包提现</remark>
+    <sign>156CB40E4445A3F52424A7B100826D8A</sign>
+    <Msg>&lt;xml&gt;
+&lt;return_code&gt;&lt;![CDATA[SUCCESS]]&gt;&lt;/return_code&gt;
+&lt;return_msg&gt;&lt;![CDATA[发放成功]]&gt;&lt;/return_msg&gt;
+&lt;result_code&gt;&lt;![CDATA[SUCCESS]]&gt;&lt;/result_code&gt;
+&lt;mch_billno&gt;&lt;![CDATA[1267305001201518300000000002]]&gt;&lt;/mch_billno&gt;
+&lt;mch_id&gt;1267305001&lt;/mch_id&gt;
+&lt;wxappid&gt;&lt;![CDATA[wx59ea9e7417007f98]]&gt;&lt;/wxappid&gt;
+&lt;re_openid&gt;&lt;![CDATA[oel6ZwU1jvmWujgO-F_dsKqD-YfI]]&gt;&lt;/re_openid&gt;
+&lt;total_amount&gt;100&lt;/total_amount&gt;
+&lt;send_listid&gt;&lt;![CDATA[0010510883201509300239194610]]&gt;&lt;/send_listid&gt;
+&lt;send_time&gt;&lt;![CDATA[20150930112246]]&gt;&lt;/send_time&gt;
+&lt;/xml&gt;</Msg>
+    <Sign>156CB40E4445A3F52424A7B100826D8A</Sign>
+    <Url>https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack</Url>
+  </log>
+</DocumentElement>
