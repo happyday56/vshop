@@ -60,6 +60,10 @@
                     </li>
                     <li>
                         <asp:Button ID="btnSearch" runat="server" Text="查询" CssClass="searchbutton" /></li>
+                     <li>
+                        <asp:LinkButton ID="btnCreateReport" runat="server" Text="导出" />
+                        （导出数据一次最多6万条）
+                    </li>
                 </ul>
             </div>
             <!--结束-->

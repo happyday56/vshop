@@ -12,10 +12,10 @@ using System.Text;
 using System.Web.UI.WebControls;
 namespace Hidistro.UI.Web.Admin
 {
-	[PrivilegeCheck(Privilege.SaleDetails)]
-	public class SaleDetails : AdminPage
-	{
-		protected Button btnQuery;
+    [PrivilegeCheck(Privilege.SaleDetails)]
+    public class SaleDetails : AdminPage
+    {
+        protected Button btnQuery;
         protected WebCalendar calendarOrderStartDate;
         protected WebCalendar calendarOrderEndDate;
         protected WebCalendar calendarPayStartDate;
@@ -28,20 +28,20 @@ namespace Hidistro.UI.Web.Admin
         private DateTime? payEndTime;
         private DateTime? shippingStartTime;
         private DateTime? shippingEndTime;
-		protected GridView grdOrderLineItem;
-		protected Pager pager;
+        protected GridView grdOrderLineItem;
+        protected Pager pager;
         protected DropDownList ddlOrderType;
         protected TextBox txtOrderId;
         private string OrderId = "";
         private int? orderTypeId;
         protected LinkButton btnCreateReport;
 
-		private void BindList()
-		{
-			SaleStatisticsQuery query = new SaleStatisticsQuery
-			{
-				PageIndex = this.pager.PageIndex,
-				PageSize = this.pager.PageSize,
+        private void BindList()
+        {
+            SaleStatisticsQuery query = new SaleStatisticsQuery
+            {
+                PageIndex = this.pager.PageIndex,
+                PageSize = this.pager.PageSize,
                 OrderId = this.OrderId,
                 OrderTypeId = this.orderTypeId,
                 OrderStartDate = this.orderStartTime,
@@ -52,21 +52,21 @@ namespace Hidistro.UI.Web.Admin
                 ShippingEndDate = this.shippingEndTime,
                 SortBy = "OrderDate",
                 SortOrder = Core.Enums.SortAction.Desc
-			};
-			DbQueryResult saleOrderLineItemsStatistics = SalesHelper.GetSaleOrderLineItemsStatistics(query);
-			this.grdOrderLineItem.DataSource = saleOrderLineItemsStatistics.Data;
-			this.grdOrderLineItem.DataBind();
-			this.pager.TotalRecords = saleOrderLineItemsStatistics.TotalRecords;
-			this.grdOrderLineItem.PageSize = query.PageSize;
-		}
-		private void btnQuery_Click(object sender, System.EventArgs e)
-		{
-			this.ReBind(true);
-		}
-		private void LoadParameters()
-		{
-			if (!this.Page.IsPostBack)
-			{
+            };
+            DbQueryResult saleOrderLineItemsStatistics = SalesHelper.GetSaleOrderLineItemsStatistics(query);
+            this.grdOrderLineItem.DataSource = saleOrderLineItemsStatistics.Data;
+            this.grdOrderLineItem.DataBind();
+            this.pager.TotalRecords = saleOrderLineItemsStatistics.TotalRecords;
+            this.grdOrderLineItem.PageSize = query.PageSize;
+        }
+        private void btnQuery_Click(object sender, System.EventArgs e)
+        {
+            this.ReBind(true);
+        }
+        private void LoadParameters()
+        {
+            if (!this.Page.IsPostBack)
+            {
                 if (!string.IsNullOrEmpty(this.Page.Request.QueryString["OrderStartDate"]))
                 {
                     this.orderStartTime = new System.DateTime?(System.DateTime.Parse(this.Page.Request.QueryString["OrderStartDate"]));
@@ -119,9 +119,9 @@ namespace Hidistro.UI.Web.Admin
                 {
                     this.ddlOrderType.SelectedValue = this.orderTypeId.Value.ToString();
                 }
-			}
-			else
-			{
+            }
+            else
+            {
                 this.orderStartTime = this.calendarOrderStartDate.SelectedDate;
                 this.orderEndTime = this.calendarOrderEndDate.SelectedDate;
                 this.payStartTime = this.calendarPayStartDate.SelectedDate;
@@ -135,16 +135,16 @@ namespace Hidistro.UI.Web.Admin
                     this.orderTypeId = int.Parse(this.ddlOrderType.SelectedValue);
 
                 }
-			}
+            }
 
-		}
-		protected void Page_Load(object sender, System.EventArgs e)
-		{
-			this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+        }
+        protected void Page_Load(object sender, System.EventArgs e)
+        {
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             this.btnCreateReport.Click += new EventHandler(this.btnCreateReport_Click);
-			this.LoadParameters();
-			if (!this.Page.IsPostBack)
-			{
+            this.LoadParameters();
+            if (!this.Page.IsPostBack)
+            {
                 this.ddlOrderType.Items.Clear();
                 this.ddlOrderType.Items.Add(new ListItem("全部", string.Empty));
                 this.ddlOrderType.Items.Add(new ListItem("普通订单", "1"));
@@ -155,12 +155,12 @@ namespace Hidistro.UI.Web.Admin
                     this.ddlOrderType.SelectedValue = this.orderTypeId.Value.ToString();
                 }
 
-				this.BindList();
-			}
-		}
-		private void ReBind(bool isSearch)
-		{
-			NameValueCollection queryStrings = new NameValueCollection();
+                this.BindList();
+            }
+        }
+        private void ReBind(bool isSearch)
+        {
+            NameValueCollection queryStrings = new NameValueCollection();
             queryStrings.Add("OrderStartDate", this.calendarOrderStartDate.SelectedDate.ToString());
             queryStrings.Add("OrderEndDate", this.calendarOrderEndDate.SelectedDate.ToString());
             queryStrings.Add("PayStartDate", this.calendarPayStartDate.SelectedDate.ToString());
@@ -173,12 +173,12 @@ namespace Hidistro.UI.Web.Admin
             {
                 queryStrings.Add("OrderType", this.ddlOrderType.SelectedValue);
             }
-			if (!isSearch)
-			{
-				queryStrings.Add("pageIndex", this.pager.PageIndex.ToString());
-			}
-			base.ReloadPage(queryStrings);
-		}
+            if (!isSearch)
+            {
+                queryStrings.Add("pageIndex", this.pager.PageIndex.ToString());
+            }
+            base.ReloadPage(queryStrings);
+        }
 
         private void btnCreateReport_Click(object sender, System.EventArgs e)
         {
@@ -222,17 +222,27 @@ namespace Hidistro.UI.Web.Admin
                 builder.AppendLine("        <td>成交时间</td>");
                 builder.AppendLine("        <td>发货时间</td>");
                 builder.AppendLine("        <td>订单类型</td>");
+                builder.AppendLine("        <td>成本金额</td>");
+                builder.AppendLine("        <td>佣金</td>");
+                builder.AppendLine("        <td>利润</td>"); 
+                builder.AppendLine("        <td>毛利</td>");
                 builder.AppendLine("    </tr>");
 
                 foreach (DataRow row in exportData.Rows)
                 {
+                    //todo暂时3层
+                    decimal commission = (Decimal.Parse(row["ItemsCommission"].ToString()) + Decimal.Parse(row["SecondItemsCommission"].ToString()) + Decimal.Parse(row["ThirdItemsCommission"].ToString()));
+                    decimal amount = Decimal.Parse(row["Amount"].ToString());
+                    decimal costPrice = Decimal.Parse(row["CostPrice"].ToString());
+                    decimal profit = amount - costPrice;
+                    decimal maoProfit = profit - commission;
                     builder.AppendLine("    <tr>");
                     builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["SKU"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ProductName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ShipmentQuantity"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ItemAdjustedPrice"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["Amount"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + amount + "</td>");
                     builder.AppendLine("        <td>" + row["DiscountAmount"].ToString() + "　" + "</td>");
                     builder.AppendLine("        <td>" + row["RedPagerAmount"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["VirtualPointAmount"].ToString() + "</td>");
@@ -240,7 +250,12 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("        <td>" + row["orderDate"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ShippingDate"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["OrderTypeName"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + costPrice + "</td>");
+                    builder.AppendLine("        <td>" + commission + "</td>");
+                    builder.AppendLine("        <td>" + profit + "</td>");
+                    builder.AppendLine("        <td>" + maoProfit + "</td>");
                     builder.AppendLine("    </tr>");
+
                 }
 
                 builder.AppendLine("</table>");
@@ -261,5 +276,5 @@ namespace Hidistro.UI.Web.Admin
                 this.ShowMsg("没有导出数据", true);
             }
         }
-	}
+    }
 }
