@@ -1,8 +1,0 @@
-C:\BuildDLL\Hishop.Weixin.Pay.dll
-C:\BuildDLL\Hishop.Weixin.Pay.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Weixin.Pay\obj\x86\Debug\Hishop.Weixin.Pay.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Weixin.Pay\obj\x86\Debug\Hishop.Weixin.Pay.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.Weixin.Pay\obj\x86\Debug\Hishop.Weixin.Pay.csprojResolveAssemblyReference.cache
-D:\wfx3.0\Hishop.Weixin.Pay\obj\x86\Debug\Hishop.Weixin.Pay.csprojResolveAssemblyReference.cache
-D:\wfx3.0\Hishop.Weixin.Pay\obj\x86\Debug\Hishop.Weixin.Pay.dll
-D:\wfx3.0\Hishop.Weixin.Pay\obj\x86\Debug\Hishop.Weixin.Pay.pdb

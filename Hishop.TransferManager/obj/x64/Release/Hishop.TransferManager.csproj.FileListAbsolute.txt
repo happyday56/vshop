@@ -1,4 +1,0 @@
-C:\BuildDLL\Hishop.TransferManager.dll
-C:\BuildDLL\Hishop.TransferManager.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.TransferManager\obj\x64\Release\Hishop.TransferManager.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hishop.TransferManager\obj\x64\Release\Hishop.TransferManager.pdb

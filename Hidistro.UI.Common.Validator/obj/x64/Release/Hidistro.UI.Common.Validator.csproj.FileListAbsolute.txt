@@ -1,4 +1,0 @@
-C:\BuildDLL\Hidistro.UI.Common.Validator.dll
-C:\BuildDLL\Hidistro.UI.Common.Validator.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.Common.Validator\obj\x64\Release\Hidistro.UI.Common.Validator.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.Common.Validator\obj\x64\Release\Hidistro.UI.Common.Validator.pdb

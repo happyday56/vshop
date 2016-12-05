@@ -1,5 +1,0 @@
-C:\BuildDLL\Hidistro.UI.SaleSystem.Tags.dll
-C:\BuildDLL\Hidistro.UI.SaleSystem.Tags.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.SaleSystem.Tags\obj\x64\Release\Hidistro.UI.SaleSystem.Tags.csprojResolveAssemblyReference.cache
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.SaleSystem.Tags\obj\x64\Release\Hidistro.UI.SaleSystem.Tags.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.SaleSystem.Tags\obj\x64\Release\Hidistro.UI.SaleSystem.Tags.pdb

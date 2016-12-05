@@ -1,5 +1,0 @@
-C:\BuildDLL\ControlPanel.dll
-C:\BuildDLL\ControlPanel.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\ControlPanel\obj\x86\Release\ControlPanel.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\ControlPanel\obj\x86\Release\ControlPanel.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\ControlPanel\obj\x86\Release\ControlPanel.csprojResolveAssemblyReference.cache

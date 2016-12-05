@@ -1,5 +1,0 @@
-C:\BuildDLL\ASPNET.WebControls.dll
-C:\BuildDLL\ASPNET.WebControls.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\ASPNET.WebControls\obj\x64\Release\ASPNET.WebControls.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\ASPNET.WebControls\obj\x64\Release\ASPNET.WebControls.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\ASPNET.WebControls\obj\x64\Release\ASPNET.WebControls.csprojResolveAssemblyReference.cache

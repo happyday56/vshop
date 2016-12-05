@@ -1,5 +1,0 @@
-C:\BuildDLL\Hidistro.SaleSystem.Vshop.dll
-C:\BuildDLL\Hidistro.SaleSystem.Vshop.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.SaleSystem.Vshop\obj\x64\Release\Hidistro.SaleSystem.Vshop.csprojResolveAssemblyReference.cache
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.SaleSystem.Vshop\obj\x64\Release\Hidistro.SaleSystem.Vshop.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.SaleSystem.Vshop\obj\x64\Release\Hidistro.SaleSystem.Vshop.pdb

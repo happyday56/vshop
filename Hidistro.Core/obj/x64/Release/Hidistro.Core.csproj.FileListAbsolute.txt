@@ -1,5 +1,0 @@
-C:\BuildDLL\Hidistro.Core.dll
-C:\BuildDLL\Hidistro.Core.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Core\obj\x64\Release\Hidistro.Core.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Core\obj\x64\Release\Hidistro.Core.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.Core\obj\x64\Release\Hidistro.Core.csprojResolveAssemblyReference.cache

@@ -1,8 +1,0 @@
-C:\BuildDLL\Hidistro.UI.SaleSystem.CodeBehind.dll
-C:\BuildDLL\Hidistro.UI.SaleSystem.CodeBehind.pdb
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.SaleSystem.CodeBehind\obj\x86\Debug\Hidistro.UI.SaleSystem.CodeBehind.csprojResolveAssemblyReference.cache
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.SaleSystem.CodeBehind\obj\x86\Debug\Hidistro.UI.SaleSystem.CodeBehind.dll
-D:\02.SoftData\99.DevProject\15.WFX\trunk\01.Src\wfx3.0\Hidistro.UI.SaleSystem.CodeBehind\obj\x86\Debug\Hidistro.UI.SaleSystem.CodeBehind.pdb
-D:\wfx3.0\Hidistro.UI.SaleSystem.CodeBehind\obj\x86\Debug\Hidistro.UI.SaleSystem.CodeBehind.csprojResolveAssemblyReference.cache
-D:\wfx3.0\Hidistro.UI.SaleSystem.CodeBehind\obj\x86\Debug\Hidistro.UI.SaleSystem.CodeBehind.dll
-D:\wfx3.0\Hidistro.UI.SaleSystem.CodeBehind\obj\x86\Debug\Hidistro.UI.SaleSystem.CodeBehind.pdb
