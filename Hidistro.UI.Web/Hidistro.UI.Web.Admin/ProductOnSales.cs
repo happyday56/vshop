@@ -502,8 +502,8 @@ namespace Hidistro.UI.Web.Admin
                 Keywords = this.productName,
                 ProductCode = this.productCode,
                 CategoryId = this.categoryId,
-                PageSize = this.pager.PageSize,
-                PageIndex = this.pager.PageIndex,
+                PageSize = 60000,
+                PageIndex = 1,
                 SortOrder = SortAction.Desc,
                 SortBy = "DisplaySequence",
                 StartDate = this.startDate,
@@ -561,22 +561,22 @@ namespace Hidistro.UI.Web.Admin
                 builder.AppendLine("        <td>商品库存</td>");
                 builder.AppendLine("        <td>商品重量</td>");
                 builder.AppendLine("        <td>实际累计销量</td>");
-                builder.AppendLine("        <td>后台有个虚假销量</td>");
+                builder.AppendLine("        <td>虚假销量</td>");
                 builder.AppendLine("        <td>商品状态</td>");
                 builder.AppendLine("        <td>首页显示</td>");
                 builder.AppendLine("        <td>跨境商品</td>");
                 builder.AppendLine("    </tr>");
 
                 foreach (DataRow row in exportData.Rows)
-                {                     
+                {
                     builder.AppendLine("    <tr>");
                     builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["ProductId"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ProductName"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["CategoryName"].ToString() + "</td>");//new
-                    builder.AppendLine("        <td>" + row["TypeName"].ToString() + "</td>");//new
-                    builder.AppendLine("        <td>" + row["BrandName"].ToString() + "　" + "</td>");//new
-                    builder.AppendLine("        <td>X</td>");
-                    builder.AppendLine("        <td>" + row[""].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["CategoryName"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["TypeName"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["BrandName"].ToString() + "　" + "</td>");
+                    builder.AppendLine("        <td>" + row["ProductCode"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["Unit"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["DisplaySequence"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["MarketPrice"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["SalePrice"].ToString() + "</td>");
@@ -586,9 +586,25 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("        <td>" + row["Weight"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["SaleCounts"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ShowSaleCounts"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["SaleStatus"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["IsDisplayHome"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["IsCross"].ToString() + "(" + row["MaxCross"].ToString() + ")</td>");  
+                    string SaleStatus = "";
+                    if (row["SaleStatus"].ToString() == "1")
+                    {
+                        SaleStatus = "出售中";
+                    }
+                    else
+                    {
+                        if (row["SaleStatus"].ToString() == "2")
+                        {
+                            SaleStatus = "下架区";
+                        }
+                        else
+                        {
+                            SaleStatus = "仓库中";
+                        }
+                    }
+                    builder.AppendLine("        <td>" + SaleStatus + "</td>");
+                    builder.AppendLine("        <td>" + (row["IsDisplayHome"].ToString() == "1" ? "显示" : "不显示") + "</td>");
+                    builder.AppendLine("        <td>" + (row["IsCross"].ToString() == "1" ? "是" : "否") + "(" + row["MaxCross"].ToString() + ")</td>");
                     builder.AppendLine("    </tr>");
 
                 }

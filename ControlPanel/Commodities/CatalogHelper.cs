@@ -303,6 +303,11 @@
             postedFile.SaveAs(HttpContext.Current.Request.MapPath(Globals.ApplicationPath + str));
             return str;
         }
+
+        public static int SetHasChildren(int categoryId, bool hasChildren)
+        {
+            return new CategoryDao().SetHasChildren(categoryId,hasChildren);
+        }
     }
 }
 

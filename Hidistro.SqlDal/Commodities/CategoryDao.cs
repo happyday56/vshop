@@ -181,6 +181,14 @@
             this.database.AddInParameter(sqlStringCommand, "IsDisplayHome", DbType.Int32, category.IsDisplayHome);
             return ((this.database.ExecuteNonQuery(sqlStringCommand) >= 1) ? CategoryActionStatus.Success : CategoryActionStatus.UnknowError);
         }
+
+        public int SetHasChildren(int categoryId, bool hasChildren)
+        {
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand("UPDATE Hishop_Categories SET HasChildren = @HasChildren WHERE CategoryId = @CategoryId");
+            this.database.AddInParameter(sqlStringCommand, "CategoryId", DbType.Int32, categoryId);
+            this.database.AddInParameter(sqlStringCommand, "HasChildren", DbType.Boolean, hasChildren);
+            return this.database.ExecuteNonQuery(sqlStringCommand);
+        }
     }
 }
 

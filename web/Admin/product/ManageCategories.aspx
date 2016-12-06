@@ -36,7 +36,7 @@
                 AutoGenerateColumns="false" HeaderStyle-CssClass="table_title" GridLines="None"
                 Width="100%">
                 <Columns>
-                    <asp:TemplateField HeaderText="分类名称" HeaderStyle-Width="40%" HeaderStyle-CssClass="td_right td_left">
+                    <asp:TemplateField HeaderText="分类名称" HeaderStyle-Width="20%" HeaderStyle-CssClass="td_right td_left">
                         <ItemTemplate>
                             <span class="icon" categoryid='<%# Eval("CategoryId") %>' parentid='<%# Eval("ParentCategoryId") %>'
                                 id="spShowImage" style="display:none" runat="server">
@@ -51,7 +51,7 @@
                                 <asp:Literal ID="litIsDisplayHome" runat="server" Text='<%#Eval("IsDisplayHome")%>'></asp:Literal></span>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="URL重写名称" HeaderStyle-Width="30%" DataField="RewriteName"
+                    <asp:BoundField HeaderText="URL重写名称" HeaderStyle-Width="10%" DataField="RewriteName"
                         HeaderStyle-CssClass="td_right td_left" />
                     <asp:TemplateField HeaderText="排序" HeaderStyle-Width="80px" HeaderStyle-CssClass="td_right td_left">
                         <ItemTemplate>
@@ -61,10 +61,11 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="操作" HeaderStyle-CssClass="td_left td_right_fff">
                         <ItemTemplate>
-                            <span class="Name icon Pg_10"><a href="javascript:ShowRemoveProduct(<%#Eval("CategoryId") %>)">转移商品</a></span> <span class="submit_bianji">
+                            <span class="Name icon Pg_10"><a href="javascript:ShowRemoveProduct(<%#Eval("CategoryId") %>)">转移商品</a></span>
+                            <span><asp:HyperLink ID="lkEditSub" runat="server" Text="添加子分类" NavigateUrl='<%# "AddCategory.aspx?parentCategoryId=" + Eval("CategoryId")%>'></asp:HyperLink></span>
+                           <span><asp:HyperLink ID="lkBrowseSub" runat="server" Text="查看子分类" NavigateUrl='<%# "ManageCategories.aspx?parentCategoryId=" + Eval("CategoryId")%>'></asp:HyperLink></span>
+                             <span class="submit_bianji">
                                 <asp:HyperLink ID="lkEdit" runat="server" Text="编辑" NavigateUrl='<%# "EditCategory.aspx?CategoryId="+Eval("CategoryId") + "&parentCategoryId=" + Eval("ParentCategoryId")%>'></asp:HyperLink>
-
-                                <asp:HyperLink ID="lkEditSub" runat="server" Text="添加子分类" NavigateUrl='<%# "AddCategory.aspx?parentCategoryId=" + Eval("ParentCategoryId")%>'></asp:HyperLink>
                             </span>
                             
                             <span class="submit_shanchu">

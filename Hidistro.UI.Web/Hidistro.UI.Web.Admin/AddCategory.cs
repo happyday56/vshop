@@ -40,6 +40,7 @@ namespace Hidistro.UI.Web.Admin
         protected System.Web.UI.WebControls.FileUpload coverFileUpload;
         protected System.Web.UI.WebControls.RadioButton radOnHome;
         protected System.Web.UI.WebControls.RadioButton radUnHome;
+        public int parentCategoryId;
 
         private void btnSaveAddCategory_Click(object sender, System.EventArgs e)
 		{
@@ -74,6 +75,11 @@ namespace Hidistro.UI.Web.Admin
 			{
 				if (CatalogHelper.AddCategory(category) == CategoryActionStatus.Success)
 				{
+                    if (this.parentCategoryId > 0)
+                    {
+                        CatalogHelper.SetHasChildren(this.parentCategoryId,true);
+                    }
+
 					base.Response.Redirect(Globals.GetAdminAbsolutePath("/product/ManageCategories.aspx"), true);
 				}
 				else
@@ -130,6 +136,11 @@ namespace Hidistro.UI.Web.Admin
 			target.Notes2 = this.fckNotes2.Text;
 			target.Notes3 = this.fckNotes3.Text;
 			target.DisplaySequence = 0;
+            target.ParentCategoryId = this.parentCategoryId;
+            if (target.ParentCategoryId > 0)
+            {
+                target.Depth = 2;            
+            }
             if (this.radOnHome.Checked)
             {
                 target.IsDisplayHome = 1;
@@ -143,28 +154,28 @@ namespace Hidistro.UI.Web.Admin
 			if (target.ParentCategoryId.HasValue)
 			{
 				CategoryInfo category = CatalogHelper.GetCategory(target.ParentCategoryId.Value);
-				if (category == null || category.Depth >= 5)
+				if (category != null && category.Depth >=2)
 				{
-					this.ShowMsg(string.Format("您选择的上级分类有误，商品分类最多只支持{0}级分类", 5), false);
+					this.ShowMsg(string.Format("您选择的上级分类有误，商品分类最多只支持{0}级分类", 2), false);
 					result2 = null;
 					return result2;
 				}
-				if (string.IsNullOrEmpty(target.Notes1))
-				{
-					target.Notes1 = category.Notes1;
-				}
-				if (string.IsNullOrEmpty(target.Notes2))
-				{
-					target.Notes2 = category.Notes2;
-				}
-				if (string.IsNullOrEmpty(target.Notes3))
-				{
-					target.Notes3 = category.Notes3;
-				}
-				if (string.IsNullOrEmpty(target.RewriteName))
-				{
-					target.RewriteName = category.RewriteName;
-				}
+                //if (string.IsNullOrEmpty(target.Notes1))
+                //{
+                //    target.Notes1 = category.Notes1;
+                //}
+                //if (string.IsNullOrEmpty(target.Notes2))
+                //{
+                //    target.Notes2 = category.Notes2;
+                //}
+                //if (string.IsNullOrEmpty(target.Notes3))
+                //{
+                //    target.Notes3 = category.Notes3;
+                //}
+                //if (string.IsNullOrEmpty(target.RewriteName))
+                //{
+                //    target.RewriteName = category.RewriteName;
+                //}
 			}
             // 添加于2015-09-28
             if (string.IsNullOrEmpty(this.txtfirst.Text) || string.IsNullOrEmpty(this.txtsecond.Text) || string.IsNullOrEmpty(this.txtthird.Text))
@@ -234,8 +245,11 @@ namespace Hidistro.UI.Web.Admin
 					base.Response.End();
 				}
 			}
+
+            this.parentCategoryId = string.IsNullOrEmpty(this.Page.Request.QueryString["parentCategoryId"]) ? 0
+                 : int.Parse(this.Page.Request.QueryString["parentCategoryId"]);
 			if (!this.Page.IsPostBack)
-			{
+			{               
 				this.dropCategories.DataBind();
 				this.dropProductTypes.DataBind();
 			}
