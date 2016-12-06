@@ -62,8 +62,12 @@
                     <asp:TemplateField HeaderText="操作" HeaderStyle-CssClass="td_left td_right_fff">
                         <ItemTemplate>
                             <span class="Name icon Pg_10"><a href="javascript:ShowRemoveProduct(<%#Eval("CategoryId") %>)">转移商品</a></span> <span class="submit_bianji">
-                                <asp:HyperLink ID="lkEdit" runat="server" Text="编辑" NavigateUrl='<%# "EditCategory.aspx?CategoryId="+Eval("CategoryId")%>'></asp:HyperLink>
-                            </span><span class="submit_shanchu">
+                                <asp:HyperLink ID="lkEdit" runat="server" Text="编辑" NavigateUrl='<%# "EditCategory.aspx?CategoryId="+Eval("CategoryId") + "&parentCategoryId=" + Eval("ParentCategoryId")%>'></asp:HyperLink>
+
+                                <asp:HyperLink ID="lkEditSub" runat="server" Text="添加子分类" NavigateUrl='<%# "AddCategory.aspx?parentCategoryId=" + Eval("ParentCategoryId")%>'></asp:HyperLink>
+                            </span>
+                            
+                            <span class="submit_shanchu">
                                 <Hi:ImageLinkButton runat="server" IsShow="true" Text="删除" CommandName="DeleteCagetory"
                                     DeleteMsg="删除分类会级联删除其所有子分类，确定要删除选择的分类吗？" /></span> <span class="Name icon Pg_10"><a
                                         href="javascript:void(0)" onclick="EditeCommission(<%# Eval("CategoryId")%>,'<%# Eval("FirstCommission") %>','<%# Eval("SecondCommission") %>','<%# Eval("ThirdCommission") %>')">类目佣金</a>

@@ -24,9 +24,11 @@ namespace Hidistro.UI.Web.Admin
         protected System.Web.UI.HtmlControls.HtmlInputText txtsecondtothree;
         protected System.Web.UI.HtmlControls.HtmlInputText txtthird;
         protected System.Web.UI.HtmlControls.HtmlInputText txtthridtoone;
+        public int parentCategoryId;
+
         private void BindData()
         {
-            this.grdTopCategries.DataSource = CatalogHelper.GetSequenceCategories();
+            this.grdTopCategries.DataSource = this.parentCategoryId > 0 ? CatalogHelper.GetSubCategories(this.parentCategoryId): CatalogHelper.GetSequenceCategories();
             this.grdTopCategries.DataBind();
         }
         private void btnOrder_Click(object sender, System.EventArgs e)
@@ -292,8 +294,12 @@ namespace Hidistro.UI.Web.Admin
             this.grdTopCategries.RowDataBound += new System.Web.UI.WebControls.GridViewRowEventHandler(this.grdTopCategries_RowDataBound);
             this.btnSetCommissions.Click += new System.EventHandler(this.btnSetCommissions_Click);
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+
             if (!this.Page.IsPostBack)
             {
+
+                this.parentCategoryId = string.IsNullOrEmpty(this.Page.Request.QueryString["parentCategoryId"]) ? 0 
+                    : int.Parse(this.Page.Request.QueryString["parentCategoryId"]);
                 this.BindData();
             }
         }

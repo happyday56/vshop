@@ -220,6 +220,7 @@ namespace Hidistro.UI.Web.Admin
 		}
 		protected void Page_Load(object sender, System.EventArgs e)
 		{
+
 			if (!int.TryParse(this.Page.Request.QueryString["categoryId"], out this.categoryId))
 			{
 				base.GotoResourceNotFound();
