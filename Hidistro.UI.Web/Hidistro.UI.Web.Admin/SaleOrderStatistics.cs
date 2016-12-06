@@ -269,10 +269,20 @@ namespace Hidistro.UI.Web.Admin
                 builder.AppendLine("        <td>实收金额</td>");
                 builder.AppendLine("        <td>订单类型</td>");
                 builder.AppendLine("        <td>订单状态</td>");
+                builder.AppendLine("        <td>成本金额</td>");
+                builder.AppendLine("        <td>佣金</td>");
+                builder.AppendLine("        <td>利润</td>");
+                builder.AppendLine("        <td>毛利</td>");
                 builder.AppendLine("    </tr>");
 
                 foreach (DataRow row in exportData.Rows)
                 {
+                    decimal commission = (Decimal.Parse(row["FirstCommission"].ToString()) + Decimal.Parse(row["SecondCommission"].ToString()) + Decimal.Parse(row["ThirdCommission"].ToString()));
+                    decimal amount = Decimal.Parse(row["Amount"].ToString());
+                    decimal costPrice = Decimal.Parse(row["OrderCostPrice"].ToString());
+                    decimal profit = amount - costPrice;
+                    decimal maoProfit = profit - commission;
+
                     builder.AppendLine("    <tr>");
                     builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["OrderDate"].ToString() + "</td>");
@@ -281,7 +291,7 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("        <td>" + row["StoreName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["StoreUserName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["MemberUserName"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["Amount"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + amount + "</td>");
                     builder.AppendLine("        <td>" + row["DiscountAmount"].ToString() + "　" + "</td>");
                     builder.AppendLine("        <td>" + row["RedPagerAmount"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["VirtualPointAmount"].ToString() + "</td>");
@@ -290,6 +300,10 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("        <td>" + row["OrderTotal"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["OrderTypeName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["OrderStatusName"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + costPrice + "</td>");
+                    builder.AppendLine("        <td>" + commission + "</td>");
+                    builder.AppendLine("        <td>" + profit + "</td>");
+                    builder.AppendLine("        <td>" + maoProfit + "</td>");
                     builder.AppendLine("    </tr>");
                 }
 

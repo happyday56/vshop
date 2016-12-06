@@ -44,6 +44,7 @@
                     
                     <li>
                         <asp:LinkButton ID="btnCreateReport" runat="server" Text="导出" />
+                        （导出数据一次最多6万条）
                     </li>
                 </ul>
             </div>

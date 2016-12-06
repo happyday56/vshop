@@ -11,6 +11,8 @@ using Hidistro.UI.ControlPanel.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data;
+using System.Text;
 using System.Web.UI.WebControls;
 namespace Hidistro.UI.Web.Admin
 {
@@ -50,6 +52,7 @@ namespace Hidistro.UI.Web.Admin
 		protected System.Web.UI.WebControls.TextBox txtSKU;
 		private int? typeId;
         protected string LocalUrl = string.Empty;
+        protected LinkButton btnCreateReport;
 
         public bool isEditStatus = false;
         public string editStatusStyle = "";
@@ -417,6 +420,7 @@ namespace Hidistro.UI.Web.Admin
 			this.grdProducts.RowDataBound += new System.Web.UI.WebControls.GridViewRowEventHandler(this.grdProducts_RowDataBound);
 			this.grdProducts.RowDeleting += new System.Web.UI.WebControls.GridViewDeleteEventHandler(this.grdProducts_RowDeleting);
 			this.dropSaleStatus.SelectedIndexChanged += new System.EventHandler(this.dropSaleStatus_SelectedIndexChanged);
+            this.btnCreateReport.Click += new EventHandler(this.btnCreateReport_Click);
 			if (!this.Page.IsPostBack)
 			{
 				this.dropCategories.IsUnclassified = true;
@@ -487,5 +491,127 @@ namespace Hidistro.UI.Web.Admin
 			queryStrings.Add("SaleStatus", this.dropSaleStatus.SelectedValue.ToString());
 			base.ReloadPage(queryStrings);
 		}
+
+
+        private void btnCreateReport_Click(object sender, System.EventArgs e)
+        {
+            LoadParameters();
+
+            ProductQuery entity = new ProductQuery
+            {
+                Keywords = this.productName,
+                ProductCode = this.productCode,
+                CategoryId = this.categoryId,
+                PageSize = this.pager.PageSize,
+                PageIndex = this.pager.PageIndex,
+                SortOrder = SortAction.Desc,
+                SortBy = "DisplaySequence",
+                StartDate = this.startDate,
+                BrandId = this.dropBrandList.SelectedValue.HasValue ? this.dropBrandList.SelectedValue : null,
+                TagId = this.dropTagList.SelectedValue.HasValue ? this.dropTagList.SelectedValue : null,
+                TypeId = this.typeId,
+                SaleStatus = this.saleStatus,
+                EndDate = this.endDate
+            };
+            if (this.categoryId.HasValue && this.categoryId > 0)
+            {
+                entity.MaiCategoryPath = CatalogHelper.GetCategory(this.categoryId.Value).Path;
+            }
+
+            ManagerInfo manager = ManagerHelper.GetCurrentManager();
+            var currentPrivilege = ManagerHelper.GetPrivilegeByRoles(manager.RoleId);
+
+            if (null != currentPrivilege)
+            {
+                if (currentPrivilege.Contains(10010))
+                {
+                    entity.AddUserId = 0;
+                }
+                else
+                {
+                    entity.AddUserId = manager.UserId;
+                }
+            }
+            else
+            {
+                entity.AddUserId = manager.UserId;
+            }
+
+            Globals.EntityCoding(entity, true);
+            DbQueryResult products = ProductHelper.GetProducts(entity, true);
+
+            DataTable exportData = (DataTable)products.Data;
+            StringBuilder builder = new StringBuilder();
+            if (null != exportData && exportData.Rows.Count > 0)
+            {
+                builder.AppendLine("<table cellspacing=\"0\" cellpadding=\"5\" rules=\"all\" border=\"1\">");
+                builder.AppendLine("    <tr style=\"font-weight: bold; white-space: nowrap;\">");
+                builder.AppendLine("        <td>订单号</td>");
+                builder.AppendLine("        <td>货号</td>");
+                builder.AppendLine("        <td>商品名称</td>");
+                builder.AppendLine("        <td>发货数量</td>");
+                builder.AppendLine("        <td>商品单价</td>");
+                builder.AppendLine("        <td>订单总价</td>");
+                builder.AppendLine("        <td>优惠减免</td>");
+                builder.AppendLine("        <td>红包抵扣</td>");
+                builder.AppendLine("        <td>金贝抵扣</td>");
+                builder.AppendLine("        <td>实收金额</td>");
+                builder.AppendLine("        <td>成交时间</td>");
+                builder.AppendLine("        <td>发货时间</td>");
+                builder.AppendLine("        <td>订单类型</td>");
+                builder.AppendLine("        <td>成本金额</td>");
+                builder.AppendLine("        <td>佣金</td>");
+                builder.AppendLine("        <td>利润</td>");
+                builder.AppendLine("        <td>毛利</td>");
+                builder.AppendLine("    </tr>");
+
+                foreach (DataRow row in exportData.Rows)
+                {
+                    //todo暂时3层
+                    decimal commission = (Decimal.Parse(row["ItemsCommission"].ToString()) + Decimal.Parse(row["SecondItemsCommission"].ToString()) + Decimal.Parse(row["ThirdItemsCommission"].ToString()));
+                    decimal amount = Decimal.Parse(row["Amount"].ToString());
+                    decimal costPrice = Decimal.Parse(row["CostPrice"].ToString());
+                    decimal profit = amount - costPrice;
+                    decimal maoProfit = profit - commission;
+                    builder.AppendLine("    <tr>");
+                    builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["SKU"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["ProductName"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["ShipmentQuantity"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["ItemAdjustedPrice"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + amount + "</td>");
+                    builder.AppendLine("        <td>" + row["DiscountAmount"].ToString() + "　" + "</td>");
+                    builder.AppendLine("        <td>" + row["RedPagerAmount"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["VirtualPointAmount"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["OrderTotal"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["orderDate"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["ShippingDate"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["OrderTypeName"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + costPrice + "</td>");
+                    builder.AppendLine("        <td>" + commission + "</td>");
+                    builder.AppendLine("        <td>" + profit + "</td>");
+                    builder.AppendLine("        <td>" + maoProfit + "</td>");
+                    builder.AppendLine("    </tr>");
+
+                }
+
+                builder.AppendLine("</table>");
+
+                this.Page.Response.Clear();
+                this.Page.Response.Buffer = false;
+                this.Page.Response.Charset = "UTF-8";
+                base.Response.AppendHeader("Content-Disposition", "attachment;filename=ProductData_" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
+                this.Page.Response.ContentEncoding = System.Text.Encoding.GetEncoding("UTF-8");
+                this.Page.Response.ContentType = "application/ms-excel";
+                this.Page.EnableViewState = false;
+                this.Page.Response.Write(builder.ToString());
+                this.Page.Response.End();
+
+            }
+            else
+            {
+                this.ShowMsg("没有导出数据", true);
+            }
+        }
 	}
 }

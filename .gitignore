@@ -2,4 +2,5 @@
 log/
 debug/
 obj/
-web/Bin/
+web/bin/
+*.suo
