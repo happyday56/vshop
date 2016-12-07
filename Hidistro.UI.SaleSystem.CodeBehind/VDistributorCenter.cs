@@ -364,11 +364,13 @@
                         MemberInfo twoMember = MemberProcessor.GetCurrentMember();
                         if (null == twoMember)
                         {
+                            XTrace.WriteLine(currentMember.UserId+"您还不是店主，请联系官方客服001。");
                             base.GotoResourceNotFound("您还不是店主，请联系官方客服。");
                         }
                         DistributorsInfo twoDist = DistributorsBrower.GetUserIdDistributors(twoMember.UserId);
                         if (null == twoDist)
                         {
+                            XTrace.WriteLine(currentMember.UserId+"您还不是店主，请联系官方客服002。");
                             base.GotoResourceNotFound("您还不是店主，请联系官方客服。");
                         }
                     }
@@ -383,11 +385,13 @@
                     MemberInfo twoMember = MemberProcessor.GetCurrentMember();
                     if (null == twoMember)
                     {
+                        XTrace.WriteLine("您还不是店主，请联系官方客服003。");
                         base.GotoResourceNotFound("您还不是店主，请联系官方客服。");
                     }
                     DistributorsInfo twoDist = DistributorsBrower.GetUserIdDistributors(twoMember.UserId);
                     if (null == twoDist)
                     {
+                        XTrace.WriteLine("您还不是店主，请联系官方客服004。");
                         base.GotoResourceNotFound("您还不是店主，请联系官方客服。");
                     }                    
                 }

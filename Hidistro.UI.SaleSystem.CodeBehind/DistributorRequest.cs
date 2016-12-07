@@ -47,6 +47,7 @@
                         if (DistributorsBrower.IsExistDistributor())
                         {
                             // 不能开店则提示
+                            XTrace.WriteLine(currentMember.UserId + "您还不是店主，请联系官方客服005。");
                             base.GotoResourceNotFound("您还不是店主，请联系官方客服。");
                         }
                     //}          
@@ -54,6 +55,7 @@
             }
             else
             {
+                XTrace.WriteLine("您还不是店主，请联系官方客服006。");
                 base.GotoResourceNotFound("您还不是店主，请联系官方客服。");
             }
 

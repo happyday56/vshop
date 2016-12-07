@@ -1,4 +1,4 @@
-
+Ôªø
 -- 1207
 ALTER VIEW [dbo].[vw_Hishop_BrowseProductListNoBuy]
 AS
@@ -35,14 +35,14 @@ GO
 
 ALTER VIEW [dbo].[vw_Hishop_SaleDetails]
 AS
-SELECT     oi.OrderId, p.SKU, oi.ItemDescription AS ProductName, oi.Quantity, oi.ShipmentQuantity, oi.ItemAdjustedPrice, o.Amount, o.DiscountAmount, 
+SELECT     oi.OrderId, s3.SKU, oi.ItemDescription AS ProductName, oi.Quantity, oi.ShipmentQuantity, oi.ItemAdjustedPrice, o.Amount, o.DiscountAmount, 
                       CASE WHEN o.RedPagerID <> 1 THEN o.RedPagerAmount ELSE 0 END AS RedPagerAmount, CASE WHEN o.RedPagerID = 1 THEN o.RedPagerAmount ELSE 0 END AS VirtualPointAmount, 
                       o.OrderTotal, o.OrderDate, o.PayDate, o.ShippingDate, o.FinishDate, o.OrderStatus, o.OrderType, 
-                      CASE WHEN o.OrderType = 1 THEN '∆’Õ®∂©µ•' WHEN o.OrderType = 2 THEN 'ø™µÍ∂©µ•' ELSE '' END AS OrderTypeName, oi.CostPrice, oi.ItemsCommission, oi.SecondItemsCommission, 
+                      CASE WHEN o.OrderType = 1 THEN 'ÊôÆÈÄöËÆ¢Âçï' WHEN o.OrderType = 2 THEN 'ÂºÄÂ∫óËÆ¢Âçï' ELSE '' END AS OrderTypeName, oi.CostPrice, oi.ItemsCommission, oi.SecondItemsCommission, 
                       oi.ThirdItemsCommission, oi.ItemAdjustedCommssion
 FROM         dbo.Hishop_OrderItems AS oi LEFT OUTER JOIN
-                      dbo.Hishop_Orders AS o ON oi.OrderId = o.OrderId LEFT OUTER JOIN
-                      dbo.vw_Hishop_ProductSkuList AS p ON oi.ProductId = p.ProductId
+                      dbo.Hishop_Orders AS o ON oi.OrderId = o.OrderId
+                       LEFT JOIN   Hishop_SKUs s3 ON s3.SkuId=oi.SkuId
 
 GO
 
@@ -52,11 +52,11 @@ AS
 SELECT     o.OrderId, o.OrderDate, o.PayDate, o.ShippingDate, o.FinishDate, o.ReferralUserId AS StoreUserId, rd.StoreName, rm.UserName AS StoreUserName, rm.RealName AS StoreRealName, 
                       o.UserId AS MemberUserId, m.UserName AS MemberUserName, m.RealName AS MemberRealName, o.Amount, o.DiscountAmount, 
                       CASE WHEN o.RedPagerID <> 1 THEN o.RedPagerAmount ELSE 0 END AS RedPagerAmount, CASE WHEN o.RedPagerID = 1 THEN o.RedPagerAmount ELSE 0 END AS VirtualPointAmount, 
-                      o.StoreGiftMoney, o.MemberGiftMoney, o.OrderTotal, o.OrderType, CASE WHEN o.OrderType = 1 THEN '∆’Õ®∂©µ•' WHEN o.OrderType = 2 THEN 'ø™µÍ∂©µ•' ELSE '' END AS OrderTypeName, 
+                      o.StoreGiftMoney, o.MemberGiftMoney, o.OrderTotal, o.OrderType, CASE WHEN o.OrderType = 1 THEN 'ÊôÆÈÄöËÆ¢Âçï' WHEN o.OrderType = 2 THEN 'ÂºÄÂ∫óËÆ¢Âçï' ELSE '' END AS OrderTypeName, 
                       o.OrderStatus, 
-                      CASE WHEN o.OrderStatus = 1 THEN '¥˝∏∂øÓ' WHEN o.OrderStatus = 2 THEN '¥˝∑¢ªı' WHEN o.OrderStatus = 3 THEN '“—∑¢ªı' WHEN o.OrderStatus = 4 THEN '“—πÿ±’' WHEN o.OrderStatus = 5 THEN
-                       '∂©µ•“—ÕÍ≥…' WHEN o.OrderStatus = 6 THEN '…Í«ÎÕÀøÓ' WHEN o.OrderStatus = 7 THEN '…Í«ÎÕÀªı' WHEN o.OrderStatus = 8 THEN '…Í«Îªªªı' WHEN o.OrderStatus = 9 THEN '“—ÕÀøÓ' WHEN o.OrderStatus
-                       = 10 THEN '“—ÕÀªı' ELSE '¿˙ ∑∂©µ•' END AS OrderStatusName, o.FirstCommission, o.SecondCommission, o.ThirdCommission, o.OrderCostPrice
+                      CASE WHEN o.OrderStatus = 1 THEN 'ÂæÖ‰ªòÊ¨æ' WHEN o.OrderStatus = 2 THEN 'ÂæÖÂèëË¥ß' WHEN o.OrderStatus = 3 THEN 'Â∑≤ÂèëË¥ß' WHEN o.OrderStatus = 4 THEN 'Â∑≤ÂÖ≥Èó≠' WHEN o.OrderStatus = 5 THEN
+                       'ËÆ¢ÂçïÂ∑≤ÂÆåÊàê' WHEN o.OrderStatus = 6 THEN 'Áî≥ËØ∑ÈÄÄÊ¨æ' WHEN o.OrderStatus = 7 THEN 'Áî≥ËØ∑ÈÄÄË¥ß' WHEN o.OrderStatus = 8 THEN 'Áî≥ËØ∑Êç¢Ë¥ß' WHEN o.OrderStatus = 9 THEN 'Â∑≤ÈÄÄÊ¨æ' WHEN o.OrderStatus
+                       = 10 THEN 'Â∑≤ÈÄÄË¥ß' ELSE 'ÂéÜÂè≤ËÆ¢Âçï' END AS OrderStatusName, o.FirstCommission, o.SecondCommission, o.ThirdCommission, o.OrderCostPrice
 FROM         dbo.Hishop_Orders AS o LEFT OUTER JOIN
                       dbo.aspnet_Distributors AS rd ON o.ReferralUserId = rd.UserId LEFT OUTER JOIN
                       dbo.aspnet_Members AS rm ON o.ReferralUserId = rm.UserId LEFT OUTER JOIN
